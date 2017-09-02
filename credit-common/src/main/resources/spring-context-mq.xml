@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/rabbit
+    http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd" >
+
+	<!--<description>rabbitmq 连接服务配置</description>
+	&lt;!&ndash; 连接配置 &ndash;&gt;
+	<rabbit:connection-factory id="connectionFactory" host="${mq.host}" username="${mq.username}" password="${mq.password}" port="${mq.port}"/>
+	&lt;!&ndash;<rabbit:connection-factory id="connectionFactory" host="10.10.50.163" username="zhangsan" password="123456" port="5672"  />&ndash;&gt;
+	<rabbit:admin connection-factory="connectionFactory"/>
+
+	&lt;!&ndash; spring template声明&ndash;&gt;
+	<rabbit:template id="amqpTemplate"  connection-factory="connectionFactory"  message-converter="jsonMessageConverter" />
+
+	&lt;!&ndash; 消息对象json转换类 &ndash;&gt;
+	<bean id="jsonMessageConverter" class="org.springframework.amqp.support.converter.Jackson2JsonMessageConverter" />
+
+
+	&lt;!&ndash; 声明一个消息队列
+		durable:是否持久化
+		exclusive: 仅创建者可以使用的私有队列，断开后自动删除
+		auto_delete: 当所有消费客户端连接断开后，是否自动删除队列 &ndash;&gt;
+	<rabbit:queue id="blackListQueue" name="blackListQueue" durable="true" auto-delete="false" exclusive="false" />
+
+	&lt;!&ndash; 交换机定义
+	rabbit:direct-exchange：定义exchange模式为direct，意思就是消息与一个特定的路由键完全匹配，才会转发。
+	rabbit:binding：设置消息queue匹配的key&ndash;&gt;
+	<rabbit:direct-exchange name="test-mq-exchange" durable="true" auto-delete="false" id="test-mq-exchange">
+		<rabbit:bindings>
+			<rabbit:binding queue="blackListQueue" key="blackListQueue"/>
+		</rabbit:bindings>
+	</rabbit:direct-exchange>-->
+</beans>

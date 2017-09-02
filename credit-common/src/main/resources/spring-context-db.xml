@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd"
+	   default-lazy-init="true">
+	
+	<!-- 加载配置属性文件 -->
+	<context:property-placeholder ignore-unresolvable="true" location="classpath*:config.properties" />
+	
+	
+	<!-- ==================================== ds1 ( crm local db ) transaction =========================================== -->
+	
+	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+	<bean id="ds1_ssf" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="ds1" />
+		<property name="typeAliasesPackage" value="com.honeywen.credit.model" />
+		
+		<property name="typeAliasesSuperType" value="com.honeywen.credit.model.base.BaseModel" />
+		<property name="mapperLocations" value="classpath*:sqlmap/**/*.xml" />
+		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <value>
+                            helperDialect=mysql
+                            reasonable=true
+                            supportMethodsArguments=true
+                            params=count=countSql
+                            autoRuntimeDialect=true
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
+	</bean>
+	<!-- 集成mybatis通用mapper -->
+	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.honeywen.credit.repository" />
+		<property name="sqlSessionFactoryBeanName" value="ds1_ssf" />
+	</bean>
+	<!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
+	<bean id="mapperScannerConfigurerBase" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="ds1_ssf" />
+		 <property name="basePackage" value="com.honeywen.credit.repository" />
+	</bean>
+	<!-- 定义事务 -->
+	<bean id="ds1TransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds1" />
+        <qualifier value="ds1TM"/>  
+	</bean>
+	<!-- 配置 Annotation 驱动，扫描@Transactional注解的类定义事务 -->
+	<tx:annotation-driven transaction-manager="ds1TransactionManager" proxy-target-class="true" />
+	
+	
+<!-- =============================== ds2 (etongdai parent db) transaction ============================================== -->
+	
+	<bean id="ds2_ssf" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="ds2" />
+		<property name="typeAliasesPackage" value="com.honeywen.credit.model" />
+		<property name="typeAliasesSuperType" value="com.honeywen.credit.model.base.BaseModel" />
+		<property name="mapperLocations" value="classpath*:sqlmap/**/*.xml" />
+		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <value>
+							helperDialect=mysql
+							reasonable=true
+                            supportMethodsArguments=true
+                            params=count=countSql
+                            autoRuntimeDialect=true
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
+	</bean>
+	<!-- 集成mybatis通用mapper -->
+	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.honeywen.credit.repository" />
+		<property name="sqlSessionFactoryBeanName" value="ds2_ssf" />
+	</bean>
+	<!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
+	<bean id="mapperScannerConfigurerParent" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="ds1_ssf" />
+		<property name="basePackage" value="com.honeywen.credit.repository" />
+		<!--<property name="annotationClass" value="cn.com.yintongkaxinyue.amlrs.base.persistence.annotation.MyBatisDao" />-->
+	</bean>
+	<!-- 系统事务定义 开始 -->
+	<bean id="ds2TransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds2" />
+        <qualifier value="ds2TM"/>  
+	</bean>
+	<!-- 系统事务定义 结束 -->
+	<tx:annotation-driven transaction-manager="ds2TransactionManager" proxy-target-class="true" />
+
+
+
+	<!-- =============================== ds3 (backend-core ) transaction ============================================== -->
+
+	<!--<bean id="ds3_ssf" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="ds3" />
+		<property name="typeAliasesPackage" value="com.glorystone.core" />
+		<property name="mapperLocations" value="classpath*:/mappings/**/*.xml" />
+		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <value>
+                            helperDialect=mysql
+                            reasonable=true
+                            supportMethodsArguments=true
+                            params=count=countSql
+                            autoRuntimeDialect=true
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
+	</bean>
+	&lt;!&ndash; 集成mybatis通用mapper &ndash;&gt;
+	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.glorystone.core.entity" />
+		<property name="sqlSessionFactoryBeanName" value="ds3_ssf" />
+	</bean>
+	&lt;!&ndash; 扫描basePackage下所有以@MyBatisDao注解的接口 &ndash;&gt;
+	<bean id="mapperScannerConfigurerSys" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="ds3_ssf" />
+		<property name="basePackage" value="com.glorystone.core" />
+        <property name="annotationClass" value="com.glorystone.core.util.MyBatisDao"/>
+	</bean>
+	&lt;!&ndash; 系统事务定义 开始 &ndash;&gt;
+	<bean id="ds3TransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds3" />
+        <qualifier value="ds3TM"/>
+	</bean>
+	&lt;!&ndash; 系统事务定义 结束 &ndash;&gt;
+	<tx:annotation-driven transaction-manager="ds3TransactionManager" proxy-target-class="true" />-->
+	 <!--MyBatis end-->
+
+	 <!--配置 JSR303 Bean Validator 定义-->
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+</beans>
