@@ -19,19 +19,12 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.glorystone.prod</groupId>
-            <artifactId>prod-common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
 
         <dependency>
-            <groupId>com.glorystone.prod</groupId>
-            <artifactId>prod-api</artifactId>
+            <groupId>com.honeywen.credit</groupId>
+            <artifactId>credit-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
-
 
         <!-- WEB begin -->
         <dependency>

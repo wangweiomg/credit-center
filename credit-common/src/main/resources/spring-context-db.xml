@@ -106,50 +106,8 @@
 	<tx:annotation-driven transaction-manager="ds2TransactionManager" proxy-target-class="true" />
 
 
-
-	<!-- =============================== ds3 (backend-core ) transaction ============================================== -->
-
-	<!--<bean id="ds3_ssf" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="ds3" />
-		<property name="typeAliasesPackage" value="com.glorystone.core" />
-		<property name="mapperLocations" value="classpath*:/mappings/**/*.xml" />
-		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
-        <property name="plugins">
-            <array>
-                <bean class="com.github.pagehelper.PageInterceptor">
-                    <property name="properties">
-                        <value>
-                            helperDialect=mysql
-                            reasonable=true
-                            supportMethodsArguments=true
-                            params=count=countSql
-                            autoRuntimeDialect=true
-                        </value>
-                    </property>
-                </bean>
-            </array>
-        </property>
-	</bean>
-	&lt;!&ndash; 集成mybatis通用mapper &ndash;&gt;
-	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.glorystone.core.entity" />
-		<property name="sqlSessionFactoryBeanName" value="ds3_ssf" />
-	</bean>
-	&lt;!&ndash; 扫描basePackage下所有以@MyBatisDao注解的接口 &ndash;&gt;
-	<bean id="mapperScannerConfigurerSys" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="sqlSessionFactoryBeanName" value="ds3_ssf" />
-		<property name="basePackage" value="com.glorystone.core" />
-        <property name="annotationClass" value="com.glorystone.core.util.MyBatisDao"/>
-	</bean>
-	&lt;!&ndash; 系统事务定义 开始 &ndash;&gt;
-	<bean id="ds3TransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="ds3" />
-        <qualifier value="ds3TM"/>
-	</bean>
-	&lt;!&ndash; 系统事务定义 结束 &ndash;&gt;
-	<tx:annotation-driven transaction-manager="ds3TransactionManager" proxy-target-class="true" />-->
-	 <!--MyBatis end-->
-
 	 <!--配置 JSR303 Bean Validator 定义-->
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
+	<import resource="spring-context-ds.xml"/>
 </beans>

@@ -1,37 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:rabbit="http://www.springframework.org/schema/rabbit"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:rabbid="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd
     http://www.springframework.org/schema/rabbit
-    http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd" >
-
-	<!--<description>rabbitmq 连接服务配置</description>
-	&lt;!&ndash; 连接配置 &ndash;&gt;
-	<rabbit:connection-factory id="connectionFactory" host="${mq.host}" username="${mq.username}" password="${mq.password}" port="${mq.port}"/>
-	&lt;!&ndash;<rabbit:connection-factory id="connectionFactory" host="10.10.50.163" username="zhangsan" password="123456" port="5672"  />&ndash;&gt;
-	<rabbit:admin connection-factory="connectionFactory"/>
-
-	&lt;!&ndash; spring template声明&ndash;&gt;
-	<rabbit:template id="amqpTemplate"  connection-factory="connectionFactory"  message-converter="jsonMessageConverter" />
-
-	&lt;!&ndash; 消息对象json转换类 &ndash;&gt;
-	<bean id="jsonMessageConverter" class="org.springframework.amqp.support.converter.Jackson2JsonMessageConverter" />
+    http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd">
 
 
-	&lt;!&ndash; 声明一个消息队列
-		durable:是否持久化
-		exclusive: 仅创建者可以使用的私有队列，断开后自动删除
-		auto_delete: 当所有消费客户端连接断开后，是否自动删除队列 &ndash;&gt;
-	<rabbit:queue id="blackListQueue" name="blackListQueue" durable="true" auto-delete="false" exclusive="false" />
+    <!-- 加载配置属性文件 -->
+    <context:property-placeholder ignore-unresolvable="true" location="classpath*:config.properties" />
 
-	&lt;!&ndash; 交换机定义
-	rabbit:direct-exchange：定义exchange模式为direct，意思就是消息与一个特定的路由键完全匹配，才会转发。
-	rabbit:binding：设置消息queue匹配的key&ndash;&gt;
-	<rabbit:direct-exchange name="test-mq-exchange" durable="true" auto-delete="false" id="test-mq-exchange">
+	<!-- 创建连接类 -->
+    <!--<rabbit:connection-factory id="connectionFactory" host="${rmq.ip}" username="${rmq.manager.user}" password="${rmq.manager.password}" port="${mq.port}"/>
+
+	<rabbit:admin connection-factory="connectionFactory" />-->
+
+	<!-- queue 队列声明 需要发送消息到哪些队列-->
+	<!-- 消息系统监听队列 -->
+	<!--<rabbit:queue id="message_queue1" durable="true" auto-delete="false" exclusive="false" name="message_queue1"/>
+	<rabbit:queue id="amg_loanReceiver_queue" durable="true" auto-delete="false" exclusive="false" name="amg_loanReceiver_queue"/>
+-->
+	<!-- exchange queue binging key 绑定 -->
+	<!--<rabbit:topic-exchange name="${rmq.topic.exchange}" durable="true" auto-delete="false">
 		<rabbit:bindings>
-			<rabbit:binding queue="blackListQueue" key="blackListQueue"/>
+			<rabbit:binding queue="message_queue1" pattern="Q1.*" />
+			<rabbit:binding queue="amg_loanReceiver_queue" pattern="QUEUE_AMG_LOAN.*"/>
 		</rabbit:bindings>
-	</rabbit:direct-exchange>-->
+	</rabbit:topic-exchange>-->
+
+	<!-- spring amqp默认的是jackson 的一个插件,目的将生产者生产的数据转换为json存入消息队列，由于fastjson的速度快于jackson,这里替换为fastjson的一个实现 -->
+	<!--<bean id="jsonMessageConverter"  class="org.springframework.amqp.support.converter.Jackson2JsonMessageConverter"/>-->
+
+	<!-- spring template声明-->
+	<!--<rabbit:template exchange="${rmq.topic.exchange}" id="amqpTemplate"  connection-factory="connectionFactory" message-converter="jsonMessageConverter"/>-->
+
+	<!-- 监听容器 -->
+	<!--<rabbit:listener-container
+        connection-factory="connectionFactory" acknowledge="auto">
+        <rabbit:listener queues="message_queue1" ref="consumer1" method="onMessage"/>
+        <rabbit:listener queues="message_queue2" ref="consumer2" method="onMessage"/>
+        <rabbit:listener queues="message_queue3" ref="consumer3" method="onMessage"/>
+        <rabbit:listener queues="amg_loanReceiver_queue" ref="loanReceiver" method="onMessage"/>
+    </rabbit:listener-container>-->
+
+    <!--消费者-->
+    <!--<bean id="consumer1" class="com.glorystone.amg.mq.receiver.ConsumerTest"/>
+    <bean id="consumer2" class="com.glorystone.amg.mq.receiver.ConsumerTest2"/>
+    <bean id="consumer3" class="com.glorystone.amg.mq.receiver.ConsumerTest3"/>
+    <bean id="loanReceiver" class="com.glorystone.amg.mq.receiver.loan.LoanReceiver"/>-->
 </beans>

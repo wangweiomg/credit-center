@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:cache="http://www.springframework.org/schema/cache"
+  xmlns:tx="http://www.springframework.org/schema/tx"
   xmlns:c="http://www.springframework.org/schema/c"
   xmlns:p="http://www.springframework.org/schema/p"
   xmlns:context="http://www.springframework.org/schema/context" 
   xsi:schemaLocation="http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd    
    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   
-   http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd"
+   http://www.springframework.org/schema/tx http://www.springframework.org/schema/cache/spring-tx.xsd"
    default-lazy-init="true">
     
-	<!--<description>Jedis Configuration</description>
+	<description>Jedis Configuration</description>
 	
-	&lt;!&ndash; turn on declarative caching &ndash;&gt;
-   <cache:annotation-driven />
+	<!-- turn on declarative caching -->
+   <!--<cache:annotation-driven />-->
 
-    &lt;!&ndash; 加载配置属性文件 &ndash;&gt;
-	<context:property-placeholder ignore-unresolvable="true" location="classpath*:config.properties" />
+    <!-- 加载配置属性文件 -->
+	<!--<context:property-placeholder ignore-unresolvable="true" location="classpath*:config.properties" />
 	
 	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
-		<property name="maxIdle" value="20" /> &lt;!&ndash; 最大能够保持idel状态的对象数  &ndash;&gt;
-		<property name="maxTotal" value="200" /> &lt;!&ndash; 最大分配的对象数 &ndash;&gt;
-		<property name="testOnBorrow" value="true" /> &lt;!&ndash; 当调用borrow Object方法时，是否进行有效性检查 &ndash;&gt;
-	</bean>
-	
-    &lt;!&ndash; 	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
-		<constructor-arg index="0" ref="jedisPoolConfig" />
-		<constructor-arg index="1" value="${redis.host}" />
-		<constructor-arg index="2" value="${redis.port}" type="int" />
-	</bean> &ndash;&gt;
-	
-  &lt;!&ndash;  &ndash;&gt;
-  <bean id="jedisConnectionFactory" 
-   class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" 
-   p:host-name="${redis.host} " p:port="${redis.port}"  p:pool-config-ref="jedisPoolConfig"
-   p:use-pool="true"/>
+        <property name="maxTotal" value="${redis.maxTotal}" /> &lt;!&ndash; 最大分配的对象数 &ndash;&gt;
+        <property name="maxIdle" value="${redis.maxIdle}" /> &lt;!&ndash; 最大能够保持idel状态的对象数  &ndash;&gt;
+		<property name="maxWaitMillis" value="${redis.maxWaitMillis}"/>
+		<property name="testOnBorrow" value="${redis.testOnBorrow}" /> &lt;!&ndash; 当调用borrow Object方法时，是否进行有效性检查 &ndash;&gt;
+        <property name="testOnReturn" value="${redis.testOnReturn}"/>
+	</bean>-->
 
- &lt;!&ndash; redis template definition &ndash;&gt;
-  <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
-  			   p:connection-factory-ref="jedisConnectionFactory"/>
+    <!-- jedis 方式， JedisUtil 来使用 -->
+    <!--<bean id="jedisSentinelPool" class="redis.clients.jedis.JedisSentinelPool">
+        <constructor-arg index="0" value="mymaster" />
+        <constructor-arg index="1">
+            <set>
+                <value>${redis.sentine1.url}</value>
+                <value>${redis.sentine2.url}</value>
+                <value>${redis.sentine3.url}</value>
+            </set>
+        </constructor-arg>
+        <constructor-arg index="2" ref="jedisPoolConfig" />
+    </bean>-->
 
-  &lt;!&ndash; declare Redis Cache Manager &ndash;&gt;
-  <bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager"
-               c:template-ref="redisTemplate"/>-->
+
+
+
+
+
+
+
+
 </beans>

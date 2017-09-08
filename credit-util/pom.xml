@@ -20,9 +20,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>cn.com.yintongkaxinyue.amlrs</groupId>
-            <artifactId>amlrs-utils</artifactId>
-            <version>1.0.0</version>
+            <groupId>com.honeywen.credit</groupId>
+            <artifactId>credit-parent</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <!-- LOGGING begin -->
