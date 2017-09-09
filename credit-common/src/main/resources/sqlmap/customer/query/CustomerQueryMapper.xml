@@ -8,7 +8,13 @@
     <sql id="customerColumns">
         id,
         name,
-        mobile
+        telephone,
+        mobile,
+        create_by,
+        create_at,
+        update_by,
+        update_at,
+        delete_flag
     </sql>
 
     <select id="findAll" resultType="com.honeywen.credit.model.customer.Customer">
