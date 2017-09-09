@@ -11,9 +11,4 @@ public @Data class Customer extends BaseModel {
     private String name;
     private String telephone;
 
-    public static void main(String[] args) {
-        Customer customer = new Customer();
-
-
-    }
 }
