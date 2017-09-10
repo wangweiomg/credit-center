@@ -9,8 +9,8 @@ import lombok.Data;
 public @Data class User extends BaseModel {
 
     private String name;
-    private String email;
     private String password;
+    private String email;
     private Integer age;
     private Integer gender;
 

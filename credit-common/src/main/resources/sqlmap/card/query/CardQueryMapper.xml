@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间 是必须的 -->
+<mapper namespace="com.honeywen.credit.repository.card.query.CardQueryMapper">
+
+    <sql id="cardColumns">
+        t.id,
+        t.card_no,
+        t.alias,
+        t.bank_id,
+        t.card_type,
+        t.credit_limit,
+        t.bill_day,
+        t.fixed_repay_day,
+        t.delay_repay_day,
+        t.status,
+        t.create_by,
+        t.create_at,
+        t.update_by,
+        t.update_at,
+        t.delete_flag
+    </sql>
+
+    <select id="findAll" resultType="com.honeywen.credit.model.card.Card">
+        select
+        <include refid="cardColumns"/>
+         from t_card t
+    </select>
+
+</mapper>

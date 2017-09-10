@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1,,maximum-scale=1,user-scalable=no">
     <!--上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！-->
-    <title>汽车金融业务系统</title>
+    <title>信用卡管理</title>
     <meta name="keywords" content="#">
     <meta name="description" content="#">
     <meta name="author" content="#">
@@ -21,7 +21,7 @@
 <body>
 <div id="wrap">
     <header id="header">
-        <h1><a href="javascript:;">汽车金融业务系统</a></h1>
+        <h1><a href="javascript:;">信用卡管理系统</a></h1>
         <ul class="links pull-right">
             <li><i class="ico ico-avotar"></i></li>
             <li>你好，</li>
@@ -46,10 +46,10 @@
                 </dl>
                 <dl class="panel panel-default">
                     <dt role="tab" class="panel-heading">
-                        <h4 data-href="user/list.html" role="button" data-toggle="collapse" data-parent="#accordion" href="#11" aria-expanded="false" aria-controls="11" class="panel-title collapsed"><i class="ico ico-user"></i>客户管理</h4>
+                        <h4 data-href="user/list.html" role="button" data-toggle="collapse" data-parent="#accordion" href="#11" aria-expanded="false" aria-controls="11" class="panel-title collapsed"><i class="ico ico-user"></i>卡片管理</h4>
                     </dt>
                     <dd id="11" role="tabpanel" class="panel-collapse collapse panel-collapse collapse">
-                        <div class="panel-body"><a data-href="user/list.html" href="javascript:;">客户列表</a><a data-href="user/list.html" href="javascript:;">客户列表</a>
+                        <div class="panel-body"><a data-href="/card/list" href="javascript:;">卡片列表</a><a data-href="user/list.html" href="javascript:;">客户列表</a>
                         </div>
                     </dd>
                 </dl>
