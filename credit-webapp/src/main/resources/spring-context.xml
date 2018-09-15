@@ -14,15 +14,7 @@
 	    default-lazy-init="true">
 
 	<description>Spring Configuration</description>
-	
-	<!-- 初始化FastDFS配置 -->
-	<bean id="fdfsUtil" class="org.csource.FdfsUtil">
-         <constructor-arg index="0" value="classpath:fdfs_client.conf" />
-         <constructor-arg index="1" value="classpath:fdht_client.conf" />
-         <constructor-arg index="2" value="auto"/>
-         <constructor-arg index="3" value="0" />
-    </bean>
-	
+
     <!-- 加载配置属性文件 -->
 	<context:property-placeholder ignore-unresolvable="true" location="classpath*:config.properties" />
 	

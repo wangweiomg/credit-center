@@ -8,4 +8,5 @@ import lombok.Data;
 public @Data class BaseModel {
 
     private Integer id;
+
 }

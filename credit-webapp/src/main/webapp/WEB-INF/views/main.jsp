@@ -25,7 +25,7 @@
         <ul class="links pull-right">
             <li><i class="ico ico-avotar"></i></li>
             <li>你好，</li>
-            <li class="dropdown"><a href="javascript:;" data-toggle="dropdown" title="个人信息" class="dropdown-toggle">周林<i class="caret"></i></a>
+            <li class="dropdown"><a href="javascript:;" data-toggle="dropdown" title="个人信息" class="dropdown-toggle">Jack<i class="caret"></i></a>
                 <ul class="dropdown-menu">
                     <li><a href="javascript:;">修改密码</a></li>
                     <li><a href="javascript:;">退出</a></li>

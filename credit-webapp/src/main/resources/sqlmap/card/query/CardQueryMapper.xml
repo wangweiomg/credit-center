@@ -7,14 +7,14 @@
 
     <sql id="cardColumns">
         t.id,
+        t.name,
         t.card_no,
-        t.alias,
         t.bank_id,
         t.card_type,
-        t.credit_limit,
+        t.card_limit,
         t.bill_day,
-        t.fixed_repay_day,
-        t.delay_repay_day,
+        t.repay_day_type,
+        t.repay_day_num,
         t.status,
         t.create_by,
         t.create_at,
@@ -24,9 +24,9 @@
     </sql>
 
     <select id="findAll" resultType="com.honeywen.credit.model.card.Card">
-        select
+        SELECT
         <include refid="cardColumns"/>
-         from t_card t
+         FROM t_card t
     </select>
 
 </mapper>
