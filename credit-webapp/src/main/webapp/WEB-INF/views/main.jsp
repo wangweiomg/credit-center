@@ -49,7 +49,7 @@
                         <h4 data-href="user/list.html" role="button" data-toggle="collapse" data-parent="#accordion" href="#11" aria-expanded="false" aria-controls="11" class="panel-title collapsed"><i class="ico ico-user"></i>卡片管理</h4>
                     </dt>
                     <dd id="11" role="tabpanel" class="panel-collapse collapse panel-collapse collapse">
-                        <div class="panel-body"><a data-href="/card/list" href="javascript:;">卡片列表</a><a data-href="user/list.html" href="javascript:;">客户列表</a>
+                        <div class="panel-body"><a data-href="/router/card/list" href="javascript:;">卡片列表</a><a data-href="user/list.html" href="javascript:;">客户列表</a>
                         </div>
                     </dd>
                 </dl>
