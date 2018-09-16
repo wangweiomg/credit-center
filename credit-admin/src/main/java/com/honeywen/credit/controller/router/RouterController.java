@@ -12,10 +12,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RouterController {
 
 
-    @RequestMapping("/card/list")
-    public String toCardList() {
-        return "modules/card/cardList";
+    @RequestMapping("/index")
+    public String index() {
+        return "index";
+    }
+
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @RequestMapping("/crud")
+    public String crud() {
+        return "crud";
+    }
+
+    @RequestMapping("/demo")
+    public String demo() {
+        return "demo";
     }
 
 
+    @RequestMapping("/card/index")
+    public String card() {
+        return "modules/card/card-index";
+
+    }
 }

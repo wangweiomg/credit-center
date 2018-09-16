@@ -104,6 +104,7 @@
 	<!-- 静态资源映射 -->
 	<mvc:resources mapping="/static/**" location="/static/"
 		cache-period="31536000" />
+	<mvc:resources mapping="/WEB-INF/views/**/*.html" location="/WEB-INF/views/"/>
 
 
 	<!-- 拦截器配置，拦截顺序：先执行后定义的，排在第一位的最后执行。 -->
