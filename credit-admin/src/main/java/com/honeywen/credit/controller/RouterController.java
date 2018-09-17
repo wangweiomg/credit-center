@@ -1,4 +1,4 @@
-package com.honeywen.credit.controller.router;
+package com.honeywen.credit.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +35,13 @@ public class RouterController {
 
     @RequestMapping("/card/index")
     public String card() {
-        return "modules/card/card-index";
+        return "modules/card-index";
+
+    }
+
+    @RequestMapping("/plan/index")
+    public String plan() {
+        return "modules/plan-index";
 
     }
 }

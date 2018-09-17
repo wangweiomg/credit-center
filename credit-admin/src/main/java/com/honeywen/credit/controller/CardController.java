@@ -1,4 +1,4 @@
-package com.honeywen.credit.controller.card.rest;
+package com.honeywen.credit.controller;
 
 import com.honeywen.credit.base.BaseController;
 import com.honeywen.credit.model.card.Card;

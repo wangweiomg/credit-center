@@ -52,6 +52,7 @@
 <script src="/static/resources/plugins/waves-0.7.5/waves.min.js"></script>
 <script src="/static/resources/plugins/jquery-confirm/jquery-confirm.min.js"></script>
 <script src="/static/resources/plugins/select2/js/select2.min.js"></script>
+<script src="/static/resources/plugins/moment.min.js"></script>
 
 <script src="/static/resources/js/common.js"></script>
 <script type="text/javascript">
@@ -95,20 +96,20 @@
             toolbar: '#toolbar',
             columns: [
                 {field: 'state', checkbox: true},
-                {field: 'id', title: '编号', sortable: true, halign: 'center'},
-                {field: 'name', title: '账号', sortable: true, halign: 'center'},
-                {field: 'cardNo', title: '密码', sortable: true, halign: 'center'},
-                {field: 'bankId', title: '姓名', sortable: true, halign: 'center'},
-                {field: 'cardType', title: '性别', sortable: true, halign: 'center'},
-                {field: 'cardLimit', title: '年龄', sortable: true, halign: 'center'},
-                {field: 'billDay', title: '手机', sortable: true, halign: 'center'},
-                {field: 'repayDayType', title: '邮箱', sortable: true, halign: 'center'},
-                {field: 'repayDayNum', title: '地址', sortable: true, halign: 'center'},
-                {field: 'status', title: '备注', sortable: true, halign: 'center'},
+                {field: 'id', title: '编号', sortable: true, halign: 'center', visible: false},
+                {field: 'name', title: '卡片名称', sortable: true, halign: 'center'},
+                {field: 'cardNo', title: '卡号', sortable: true, halign: 'center'},
+                {field: 'bankId', title: '所属银行', sortable: true, halign: 'center'},
+                {field: 'cardType', title: '卡片类型', sortable: true, halign: 'center', visible: false},
+                {field: 'cardLimit', title: '额度', sortable: true, halign: 'center'},
+                {field: 'billDay', title: '账单日', sortable: true, halign: 'center'},
+                {field: 'repayDayType', title: '还款日类型', sortable: true, halign: 'center'},
+                {field: 'repayDayNum', title: '款款日记数', sortable: true, halign: 'center'},
+                {field: 'status', title: '状态', sortable: true, halign: 'center'},
                 {field: 'createBy', title: '创建人', halign: 'center', align: 'center'},
-                {field: 'createAt', title: '创建时间', halign: 'center', align: 'center'},
-                {field: 'updateBy', title: '更新人', halign: 'center', align: 'center'},
-                {field: 'updateAt', title: '更新时间', halign: 'center', align: 'center'},
+                {field: 'createAt', title: '创建时间', halign: 'center', align: 'center', formatter: 'formatDate'},
+                {field: 'updateBy', title: '更新人', halign: 'center', align: 'center', visible: false},
+                {field: 'updateAt', title: '更新时间', halign: 'center', align: 'center', formatter: 'formatDate', visible: false},
                 {title: '操作', halign: 'center', align: 'center', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false},
             ]
         }).on('all.bs.table', function (e, name, args) {
@@ -123,6 +124,10 @@
             '<a class="remove ml10" href="javascript:void(0)" data-toggle="tooltip" title="Remove"><i class="glyphicon glyphicon-remove"></i></a>'
         ].join('');
     }
+
+    function formatDate(value, row, index) {
+        return moment(value).format('YYYY-MM-DD HH:mm:ss');
+	}
 
     window.actionEvents = {
         'click .like': function (e, value, row, index) {

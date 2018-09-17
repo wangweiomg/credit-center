@@ -1,4 +1,4 @@
-package com.honeywen.credit.controller.home.rest;
+package com.honeywen.credit.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
