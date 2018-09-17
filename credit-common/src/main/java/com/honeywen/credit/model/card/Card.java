@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * Created by wangwei on 2017/9/10.
@@ -54,9 +55,9 @@ public @Data class Card extends BaseModel {
      */
     private Integer status;
 
-    private LocalDateTime createAt;
+    private Date createAt;
     private Integer createBy;
-    private LocalDateTime updateAt;
+    private Date updateAt;
     private Integer updateBy;
     private Integer deleteFlag;
 

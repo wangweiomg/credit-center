@@ -1,7 +1,7 @@
 CREATE database credit DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE t_card (
-  id int(11) NOT NULL COMMENT '主键id',
+  id int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id' ,
   name VARCHAR(32) NOT NULL COMMENT '名称',
   card_no VARCHAR(32) COMMENT '卡号',
   bank_id tinyint(2) COMMENT '银行ID',
@@ -15,5 +15,7 @@ CREATE TABLE t_card (
   create_at datetime COMMENT '创建时间',
   update_by int(11) COMMENT '更新人ID',
   update_at datetime COMMENT '更新时间',
-  delete_flag tinyint(1) DEFAULT 0 COMMENT '删除标志1.是 0否'
+  delete_flag tinyint(1) DEFAULT 0 COMMENT '删除标志1.是 0否',
+  UNIQUE (id),
+  PRIMARY KEY (id)
 ) COMMENT '卡片表';

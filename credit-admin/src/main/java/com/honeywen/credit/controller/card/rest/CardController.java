@@ -5,9 +5,9 @@ import com.honeywen.credit.model.card.Card;
 import com.honeywen.credit.service.card.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -22,11 +22,11 @@ public class CardController extends BaseController {
     private CardService cardService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String findAll(Model model) {
+    @ResponseBody
+    public List<Card> findAll() {
 
         List<Card> cardList = cardService.findAll();
-        model.addAttribute("cardList", cardList);
-        return "modules/card/cardList";
+        return cardList;
     }
 
 }

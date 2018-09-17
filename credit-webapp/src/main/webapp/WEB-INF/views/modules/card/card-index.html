@@ -54,20 +54,21 @@
 <script src="/static/resources/plugins/select2/js/select2.min.js"></script>
 
 <script src="/static/resources/js/common.js"></script>
-<script>
+<script type="text/javascript">
     var $table = $('#table');
     $(function() {
         $(document).on('focus', 'input[type="text"]', function() {
             $(this).parent().find('label').addClass('active');
         }).on('blur', 'input[type="text"]', function() {
-            if ($(this).val() == '') {
+            if ($(this).val() === '') {
                 $(this).parent().find('label').removeClass('active');
             }
         });
         // bootstrap table初始化
         // http://bootstrap-table.wenzhixin.net.cn/zh-cn/documentation/
         $table.bootstrapTable({
-            url: '/static/resources/data/data1.json',
+            // url: '/static/resources/data/data1.json',
+			url: '/card/list',
             height: getHeight(),
             striped: true,
             search: true,
@@ -90,23 +91,25 @@
             sortName: 'id',
             sortOrder: 'desc',
             escape: true,
-            searchOnEnterKey: true,
-            idField: 'systemId',
             maintainSelected: true,
             toolbar: '#toolbar',
             columns: [
                 {field: 'state', checkbox: true},
                 {field: 'id', title: '编号', sortable: true, halign: 'center'},
-                {field: 'username', title: '账号', sortable: true, halign: 'center'},
-                {field: 'password', title: '密码', sortable: true, halign: 'center'},
-                {field: 'name', title: '姓名', sortable: true, halign: 'center'},
-                {field: 'sex', title: '性别', sortable: true, halign: 'center'},
-                {field: 'age', title: '年龄', sortable: true, halign: 'center'},
-                {field: 'phone', title: '手机', sortable: true, halign: 'center'},
-                {field: 'email', title: '邮箱', sortable: true, halign: 'center'},
-                {field: 'address', title: '地址', sortable: true, halign: 'center'},
-                {field: 'remark', title: '备注', sortable: true, halign: 'center'},
-                {field: 'action', title: '操作', halign: 'center', align: 'center', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false}
+                {field: 'name', title: '账号', sortable: true, halign: 'center'},
+                {field: 'cardNo', title: '密码', sortable: true, halign: 'center'},
+                {field: 'bankId', title: '姓名', sortable: true, halign: 'center'},
+                {field: 'cardType', title: '性别', sortable: true, halign: 'center'},
+                {field: 'cardLimit', title: '年龄', sortable: true, halign: 'center'},
+                {field: 'billDay', title: '手机', sortable: true, halign: 'center'},
+                {field: 'repayDayType', title: '邮箱', sortable: true, halign: 'center'},
+                {field: 'repayDayNum', title: '地址', sortable: true, halign: 'center'},
+                {field: 'status', title: '备注', sortable: true, halign: 'center'},
+                {field: 'createBy', title: '创建人', halign: 'center', align: 'center'},
+                {field: 'createAt', title: '创建时间', halign: 'center', align: 'center'},
+                {field: 'updateBy', title: '更新人', halign: 'center', align: 'center'},
+                {field: 'updateAt', title: '更新时间', halign: 'center', align: 'center'},
+                {title: '操作', halign: 'center', align: 'center', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false},
             ]
         }).on('all.bs.table', function (e, name, args) {
             $('[data-toggle="tooltip"]').tooltip();
@@ -167,7 +170,7 @@
     // 编辑
     function updateAction() {
         var rows = $table.bootstrapTable('getSelections');
-        if (rows.length == 0) {
+        if (rows.length === 0) {
             $.confirm({
                 title: false,
                 content: '请至少选择一条记录！',
@@ -205,7 +208,7 @@
     // 删除
     function deleteAction() {
         var rows = $table.bootstrapTable('getSelections');
-        if (rows.length == 0) {
+        if (rows.length === 0) {
             $.confirm({
                 title: false,
                 content: '请至少选择一条记录！',
