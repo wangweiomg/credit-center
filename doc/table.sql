@@ -1,4 +1,4 @@
-CREATE database credit DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- CREATE database credit DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE t_card (
   id int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id' ,
