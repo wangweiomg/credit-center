@@ -1,4 +1,4 @@
-package com.honeywen.credit.service.card;
+package com.honeywen.credit.service;
 
 import com.honeywen.credit.model.card.Card;
 

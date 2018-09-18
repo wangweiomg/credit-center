@@ -2,7 +2,7 @@ package com.honeywen.credit.controller;
 
 import com.honeywen.credit.base.BaseController;
 import com.honeywen.credit.model.card.Card;
-import com.honeywen.credit.service.card.CardService;
+import com.honeywen.credit.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
