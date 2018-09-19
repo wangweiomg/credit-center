@@ -14,12 +14,11 @@
 
     <link href="/static/resources/css/common.css" rel="stylesheet"/>
 	<link href="/static/resources/css/admin.css" rel="stylesheet"/>
+	<link href="/static/resources/plugins/fullcalendar-3.9.0/fullcalendar.min.css" rel="stylesheet"/>
 </head>
 <body>
-公共素材 plan index
-
-<div class="content">
-    <table id="table"></table>
+<div id="main">
+    <div id="calendar"></div>
 
 </div>
 
@@ -31,60 +30,13 @@
 <script src="/static/resources/plugins/jquery-confirm/jquery-confirm.min.js"></script>
 <script src="/static/resources/plugins/select2/js/select2.min.js"></script>
 <script src="/static/resources/plugins/moment.min.js"></script>
+<script src="/static/resources/plugins/fullcalendar-3.9.0/fullcalendar.min.js"></script>
+<script src="/static/resources/plugins/fullcalendar-3.9.0/locale-all.js"></script>
 <script src="/static/resources/js/common.js"></script>
+
+<script src="/static/modules/plan-index.js"></script>
 <script type="text/javascript">
 
-    const $table = $("#table");
-
-    $table.bootstrapTable({
-        // url: '/static/resources/data/data1.json',
-        url: '/card/list',
-        height: getHeight(),
-        striped: true,
-        search: true,
-        searchOnEnterKey: true,
-        showRefresh: true,
-        showToggle: true,
-        showColumns: true,
-        minimumCountColumns: 2,
-        showPaginationSwitch: true,
-        clickToSelect: true,
-        detailView: true,
-        detailFormatter: 'detailFormatter',
-        pagination: true,
-        paginationLoop: false,
-        classes: 'table table-hover table-no-bordered',
-        //sidePagination: 'server',
-        //silentSort: false,
-        smartDisplay: false,
-        idField: 'id',
-        sortName: 'id',
-        sortOrder: 'desc',
-        escape: true,
-        maintainSelected: true,
-        toolbar: '#toolbar',
-        columns: [
-            {field: 'state', checkbox: true},
-            {field: 'id', title: '编号', sortable: true, halign: 'center', visible: false},
-            {field: 'name', title: '卡片名称', sortable: true, halign: 'center'},
-            {field: 'cardNo', title: '卡号', sortable: true, halign: 'center'},
-            {field: 'bankId', title: '所属银行', sortable: true, halign: 'center'},
-            {field: 'cardType', title: '卡片类型', sortable: true, halign: 'center', visible: false},
-            {field: 'cardLimit', title: '额度', sortable: true, halign: 'center'},
-            {field: 'billDay', title: '账单日', sortable: true, halign: 'center'},
-            {field: 'repayDayType', title: '还款日类型', sortable: true, halign: 'center'},
-            {field: 'repayDayNum', title: '款款日记数', sortable: true, halign: 'center'},
-            {field: 'status', title: '状态', sortable: true, halign: 'center'},
-            {field: 'createBy', title: '创建人', halign: 'center', align: 'center'},
-            {field: 'createAt', title: '创建时间', halign: 'center', align: 'center', formatter: 'formatDate'},
-            {field: 'updateBy', title: '更新人', halign: 'center', align: 'center', visible: false},
-            {field: 'updateAt', title: '更新时间', halign: 'center', align: 'center', formatter: 'formatDate', visible: false},
-            {title: '操作', halign: 'center', align: 'center', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false},
-        ]
-    }).on('all.bs.table', function (e, name, args) {
-        $('[data-toggle="tooltip"]').tooltip();
-        $('[data-toggle="popover"]').popover();
-    });
 </script>
 </body>
 </html>
