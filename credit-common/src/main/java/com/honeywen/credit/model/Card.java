@@ -1,16 +1,14 @@
-package com.honeywen.credit.model.card;
+package com.honeywen.credit.model;
 
-import com.honeywen.credit.model.base.BaseModel;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
  * Created by wangwei on 2017/9/10.
  */
-public @Data class Card extends BaseModel {
+public @Data class Card {
 
 
     private Integer id;

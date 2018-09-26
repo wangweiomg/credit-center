@@ -1,7 +1,11 @@
 package com.honeywen.credit.controller;
 
+import com.honeywen.credit.dto.EventDTO;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @author weiw@opera.com
@@ -12,7 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class PlanController {
 
 
-    public void myPlan() {
+    @GetMapping("/event/list")
+    public List<EventDTO> myPlan() {
+
+        return null;
 
 
     }

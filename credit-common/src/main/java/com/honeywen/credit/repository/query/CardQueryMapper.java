@@ -1,6 +1,6 @@
-package com.honeywen.credit.repository.card.query;
+package com.honeywen.credit.repository.query;
 
-import com.honeywen.credit.model.card.Card;
+import com.honeywen.credit.model.Card;
 
 import java.util.List;
 

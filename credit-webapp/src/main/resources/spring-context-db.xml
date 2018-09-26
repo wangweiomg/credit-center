@@ -24,7 +24,6 @@
 		<property name="dataSource" ref="ds1" />
 		<property name="typeAliasesPackage" value="com.honeywen.credit.model" />
 		
-		<property name="typeAliasesSuperType" value="com.honeywen.credit.model.base.BaseModel" />
 		<property name="mapperLocations" value="classpath*:sqlmap/**/*.xml" />
 		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
         <property name="plugins">
@@ -67,7 +66,6 @@
 	<bean id="ds2_ssf" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds2" />
 		<property name="typeAliasesPackage" value="com.honeywen.credit.model" />
-		<property name="typeAliasesSuperType" value="com.honeywen.credit.model.base.BaseModel" />
 		<property name="mapperLocations" value="classpath*:sqlmap/**/*.xml" />
 		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
         <property name="plugins">

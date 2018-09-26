@@ -1,12 +1,11 @@
-package com.honeywen.credit.model.sys;
+package com.honeywen.credit.model;
 
-import com.honeywen.credit.model.base.BaseModel;
 import lombok.Data;
 
 /**
  * Created by wangwei on 2017/9/9.
  */
-public @Data class User extends BaseModel {
+public @Data class User {
 
     private String name;
     private String password;

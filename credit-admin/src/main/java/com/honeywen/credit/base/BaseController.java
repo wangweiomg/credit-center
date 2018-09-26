@@ -1,7 +1,7 @@
 package com.honeywen.credit.base;
 
 import com.honeywen.credit.constants.CommonConstant;
-import com.honeywen.credit.model.sys.User;
+import com.honeywen.credit.model.User;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;

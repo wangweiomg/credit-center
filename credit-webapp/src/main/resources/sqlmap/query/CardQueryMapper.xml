@@ -23,7 +23,7 @@
         t.delete_flag
     </sql>
 
-    <select id="findAll" resultType="com.honeywen.credit.model.card.Card">
+    <select id="findAll" resultType="com.honeywen.credit.model.Card">
         SELECT
         <include refid="cardColumns"/>
          FROM t_card t
