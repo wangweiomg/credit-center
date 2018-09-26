@@ -26,22 +26,34 @@
 </div>
 <!-- 新增 -->
 <div id="createDialog" class="crudDialog" hidden>
-	<form>
+	<form id="createForm" class="form-horizontal">
 		<div class="form-group">
-			<label for="input1">标题</label>
-			<input id="input1" type="text" class="form-control">
+			<label for="input1">卡片名称</label>
+			<input id="input1" name="name" type="text" class="form-control">
 		</div>
 		<div class="form-group">
-			<label for="input2">名称</label>
-			<input id="input2" type="text" class="form-control">
+			<label for="input2">卡号</label>
+			<input id="input2" name="cardNo" type="text" class="form-control">
 		</div>
 		<div class="form-group">
-			<label for="input3">根目录</label>
-			<input id="input3" type="text" class="form-control">
+			<label for="input3">所属银行</label>
+			<input id="input3" name="bankId" type="text" class="form-control">
 		</div>
 		<div class="form-group">
-			<label for="input4">图标</label>
-			<input id="input4" type="text" class="form-control">
+			<label for="input4">额度</label>
+			<input id="input4" name="cardLimit" type="text" class="form-control">
+		</div>
+		<div class="form-group">
+			<label for="input5">账单日</label>
+			<input id="input5" name="billDay" type="text" class="form-control">
+		</div>
+		<div class="form-group">
+			<label for="input6">还款日类型</label>
+			<input id="input6" name="repayDayType" type="text" class="form-control">
+		</div>
+		<div class="form-group">
+			<label for="input7">还款日记数</label>
+			<input id="input7" name="repayDayNum" type="text" class="form-control">
 		</div>
 	</form>
 </div>
@@ -56,8 +68,5 @@
 
 <script src="/static/resources/js/common.js"></script>
 <script src="/static/modules/card-index.js"></script>
-<script type="text/javascript">
-
-</script>
 </body>
 </html>

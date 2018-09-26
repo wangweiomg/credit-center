@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 命名空间 是必须的 -->
-<mapper namespace="com.honeywen.credit.repository.card.query.CardQueryMapper">
+<mapper namespace="com.honeywen.credit.repository.query.CardQueryMapper">
 
     <sql id="cardColumns">
         t.id,

@@ -3,6 +3,35 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 命名空间 是必须的 -->
-<mapper namespace="com.honeywen.credit.repository.card.command.CardCommandMapper">
+<mapper namespace="com.honeywen.credit.repository.command.CardCommandMapper">
 
+    <insert id="save" parameterType="com.honeywen.credit.model.Card" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO t_card (
+        name,
+        card_no,
+        bank_id,
+        card_type,
+        card_limit,
+        bill_day,
+        repay_day_type,
+        repay_day_num,
+        status,
+        create_by,
+        create_at)
+        VALUES
+        (
+        #{name},
+        #{cardNo},
+        #{bankId},
+        #{cardType},
+        #{cardLimit},
+        #{billDay},
+        #{repayDayType},
+        #{repayDayNum}，
+        #{status}
+        #{createBy},
+        NOW()
+        )
+
+    </insert>
 </mapper>

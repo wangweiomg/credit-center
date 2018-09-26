@@ -10,4 +10,6 @@ import java.util.List;
 public interface CardService {
 
     List<Card> findAll();
+
+    Card save(Card card);
 }

@@ -41,7 +41,7 @@
 	
 	<!-- 类型别名 -->
 	<!--<typeAliases>
-		<typeAlias alias="Paging" type="com.glorystone.amg.base.BaseResponse.Paging" />&lt;!&ndash;分页  &ndash;&gt;
+		<typeAlias alias="Paging" type="com.glorystone.amg.base.JsonResult.Paging" />&lt;!&ndash;分页  &ndash;&gt;
 	</typeAliases>-->
 	
 	<!-- 插件配置 -->

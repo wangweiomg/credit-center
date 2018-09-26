@@ -1,13 +1,11 @@
 package com.honeywen.credit.controller;
 
-import com.honeywen.credit.base.BaseController;
+import com.honeywen.credit.base.response.JsonResult;
 import com.honeywen.credit.model.Card;
 import com.honeywen.credit.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,17 +14,27 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/card")
-public class CardController extends BaseController {
+public class CardController {
 
     @Autowired
     private CardService cardService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @GetMapping("/list")
     @ResponseBody
     public List<Card> findAll() {
 
         List<Card> cardList = cardService.findAll();
         return cardList;
+    }
+
+
+    @PostMapping("/save")
+    public JsonResult save(Card card) {
+        cardService.save(card);
+
+        return JsonResult.success();
+
+
     }
 
 }

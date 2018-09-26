@@ -97,14 +97,28 @@ function createAction() {
     $.confirm({
         type: 'dark',
         animationSpeed: 300,
-        title: '新增系统',
+        title: '新增卡片',
         content: $('#createDialog').html(),
         buttons: {
             confirm: {
                 text: '确认',
                 btnClass: 'waves-effect waves-button',
                 action: function () {
-                    $.alert('确认');
+                    // $.alert('确认');
+                    var params = $("#createForm").serialize();
+                    console.log(1, params);
+                    var input1 = $("#input1").val();
+                    var input2 = $("#input2").val();
+                    var input3 = $("#input3").val();
+                    var input4 = $("#input4").val();
+                    var input5 = $("#input5").val();
+                    console.log(2, input1, input2, input3, input4, input5);
+                    var url = '/card/save';
+                    $.post(url, params, function(data){
+                        console.log(data);
+                        $.alert("hello world!");
+                    });
+
                 }
             },
             cancel: {
