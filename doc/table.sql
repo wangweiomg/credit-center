@@ -4,7 +4,7 @@ CREATE TABLE t_card (
   id int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id' ,
   name VARCHAR(32) NOT NULL COMMENT '名称',
   card_no VARCHAR(32) COMMENT '卡号',
-  bank_id tinyint(2) COMMENT '银行ID',
+  bank_id tinyint(2) NOT NULL COMMENT '银行ID',
   card_type tinyint(1) NOT NULL DEFAULT 1 COMMENT '1信用卡 2.储蓄卡',
   card_limit DECIMAL(10, 2) NOT NULL COMMENT '卡片额度',
   bill_day tinyint(2) NOT NULL COMMENT '账单日',

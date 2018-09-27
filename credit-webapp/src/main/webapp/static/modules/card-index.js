@@ -94,7 +94,7 @@ function detailFormatter(index, row) {
 }
 // 新增
 function createAction() {
-    $.confirm({
+    $.dialog({
         type: 'dark',
         animationSpeed: 300,
         title: '新增卡片',

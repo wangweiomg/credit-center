@@ -26,7 +26,7 @@
 </div>
 <!-- 新增 -->
 <div id="createDialog" class="crudDialog" hidden>
-	<form id="createForm" class="form-horizontal">
+	<form id="createForm" action="/card/save" method="post">
 		<div class="form-group">
 			<label for="input1">卡片名称</label>
 			<input id="input1" name="name" type="text" class="form-control">
@@ -55,6 +55,7 @@
 			<label for="input7">还款日记数</label>
 			<input id="input7" name="repayDayNum" type="text" class="form-control">
 		</div>
+		<button type="submit" class="btn btn-default">Submit</button>
 	</form>
 </div>
 <script src="/static/resources/plugins/jquery.1.12.4.min.js"></script>

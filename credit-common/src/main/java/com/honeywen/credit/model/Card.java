@@ -1,19 +1,19 @@
 package com.honeywen.credit.model;
 
+import com.honeywen.credit.base.BaseModel;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * Created by wangwei on 2017/9/10.
  */
-public @Data class Card {
+public @Data class Card extends BaseModel {
 
 
     private Integer id;
     /**
-     * 卡片名称
+     * 卡片名称， 非空
      */
     private String name;
 
@@ -23,7 +23,7 @@ public @Data class Card {
     private String cardNo;
 
     /**
-     * 所属银行ID
+     * 所属银行ID,非空
      */
     private Integer bankId;
     /**
@@ -53,14 +53,46 @@ public @Data class Card {
      */
     private Integer status;
 
-    private Date createAt;
-    private Integer createBy;
-    private Date updateAt;
-    private Integer updateBy;
-    private Integer deleteFlag;
+
+    public enum CardTypeEnum {
+
+        /**
+         * 1. 信用卡 2.储蓄卡
+         */
+        CREDIT_CARD(1),
+        SAVING_CARD(2);
+
+        private int value;
+
+        CardTypeEnum(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
 
 
+    public enum StatusEnum {
+        /**
+         * 1. 启用中
+         * 2. 停用
+         */
+        ON(1),
+        OFF(2);
 
+        private int value;
+
+        StatusEnum(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+    }
 
 
 }

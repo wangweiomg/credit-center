@@ -27,8 +27,8 @@
         #{cardLimit},
         #{billDay},
         #{repayDayType},
-        #{repayDayNum}，
-        #{status}
+        #{repayDayNum},
+        #{status},
         #{createBy},
         NOW()
         )

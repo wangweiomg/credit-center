@@ -23,8 +23,7 @@ public class CardController {
     @ResponseBody
     public List<Card> findAll() {
 
-        List<Card> cardList = cardService.findAll();
-        return cardList;
+        return cardService.findAll();
     }
 
 
