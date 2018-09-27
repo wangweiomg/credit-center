@@ -102,7 +102,8 @@ function createAction() {
         buttons: {
             confirm: {
                 text: '确认',
-                btnClass: 'waves-effect waves-button',
+                // btnClass: 'waves-effect waves-button',
+                // btnClass: 'btn-blue',
                 action: function () {
                     // $.alert('确认');
                     var params = $("#createForm").serialize();
@@ -155,7 +156,7 @@ function updateAction() {
                     text: '确认',
                     btnClass: 'waves-effect waves-button',
                     action: function () {
-                        $.alert('确认');
+                        $.alert('确认' + $("#createForm").serialize());
                     }
                 },
                 cancel: {
