@@ -14,7 +14,7 @@ import java.util.Map;
  * @author weiw@opera.com
  * @date 2018/9/26 上午9:42
  */
-public class JsonResult {
+public @Data class JsonResult {
 
     private Head head;
     private Map<String, Object> body;
@@ -28,9 +28,7 @@ public class JsonResult {
         this.body = body;
     }
 
-    private static @Data
-    @AllArgsConstructor
-    class Head {
+    private static @Data @AllArgsConstructor class Head {
 
         private Integer code;
         private String msg;

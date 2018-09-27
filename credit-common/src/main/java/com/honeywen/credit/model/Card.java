@@ -1,7 +1,9 @@
 package com.honeywen.credit.model;
 
 import com.honeywen.credit.base.BaseModel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
@@ -29,7 +31,7 @@ public @Data class Card extends BaseModel {
     /**
      * 卡片类型 1. 贷记卡 2.储蓄卡
      */
-    private String cardType;
+    private Integer cardType;
     /**
      * 卡片额度
      */

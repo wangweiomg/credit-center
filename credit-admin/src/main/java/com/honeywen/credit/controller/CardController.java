@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by wangwei on 2017/9/10.
  */
-@Controller
+@RestController
 @RequestMapping("/card")
 public class CardController {
 
@@ -20,7 +20,6 @@ public class CardController {
     private CardService cardService;
 
     @GetMapping("/list")
-    @ResponseBody
     public List<Card> findAll() {
 
         return cardService.findAll();

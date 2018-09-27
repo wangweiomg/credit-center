@@ -1,5 +1,6 @@
 package com.honeywen.credit.service.impl;
 
+import com.google.common.base.Strings;
 import com.honeywen.credit.model.Card;
 import com.honeywen.credit.repository.command.CardCommandMapper;
 import com.honeywen.credit.repository.query.CardQueryMapper;
@@ -31,6 +32,19 @@ public class CardServiceImpl implements CardService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public Card save(Card card) {
-        return cardCommandMapper.save(card);
+
+        if (card.getCardType() == null) {
+            card.setCardType(Card.CardTypeEnum.CREDIT_CARD.getValue());
+        }
+
+        if (card.getStatus() == null) {
+            card.setStatus(Card.StatusEnum.ON.getValue());
+        }
+
+
+
+        cardCommandMapper.save(card);
+
+        return card;
     }
 }

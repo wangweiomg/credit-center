@@ -6,5 +6,5 @@ import com.honeywen.credit.model.Card;
  * Created by wangwei on 2017/9/2.
  */
 public interface CardCommandMapper {
-    Card save(Card card);
+    void save(Card card);
 }
