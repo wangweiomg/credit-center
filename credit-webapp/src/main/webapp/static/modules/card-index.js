@@ -81,8 +81,15 @@ window.actionEvents = {
         console.log(value, row, index);
     },
     'click .remove': function (e, value, row, index) {
-        alert('You click remove icon, row: ' + JSON.stringify(row));
-        console.log(value, row, index);
+        var url = "/card/remove/" + row.id;
+        $.post(url, function(data){
+
+            if (data.head !== null) {
+                $.alert(data.head.msg);
+            }
+            $table.bootstrapTable("refresh");
+
+        });
     }
 };
 function detailFormatter(index, row) {
@@ -112,6 +119,7 @@ function createAction() {
                         } else {
                             $.alert('server error!');
                         }
+                        $table.bootstrapTable("refresh");
 
 
                     });

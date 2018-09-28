@@ -34,4 +34,8 @@
         )
 
     </insert>
+
+    <update id="removeById" parameterType="java.lang.Integer">
+        UPDATE t_card SET delete_flag = 1 WHERE id = #{id}
+    </update>
 </mapper>

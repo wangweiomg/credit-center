@@ -12,4 +12,6 @@ public interface CardService {
     List<Card> findAll();
 
     Card save(Card card);
+
+    void removeById(Integer id);
 }

@@ -7,4 +7,6 @@ import com.honeywen.credit.model.Card;
  */
 public interface CardCommandMapper {
     void save(Card card);
+
+    void removeById(Integer id);
 }

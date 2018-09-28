@@ -35,4 +35,10 @@ public class CardController {
 
     }
 
+    @PostMapping("/remove/{id}")
+    public JsonResult remove(@PathVariable("id") Integer id) {
+        cardService.removeById(id);
+        return JsonResult.success();
+    }
+
 }

@@ -27,6 +27,8 @@
         SELECT
         <include refid="cardColumns"/>
          FROM t_card t
+        WHERE 1=1
+        AND t.delete_flag = 0
     </select>
 
 </mapper>
