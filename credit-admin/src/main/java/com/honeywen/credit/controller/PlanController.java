@@ -2,6 +2,8 @@ package com.honeywen.credit.controller;
 
 import com.google.common.collect.Lists;
 import com.honeywen.credit.dto.EventDTO;
+import com.honeywen.credit.service.PlanService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +19,9 @@ import java.util.List;
 @RequestMapping("/plan")
 public class PlanController {
 
+
+    @Autowired
+    private PlanService planService;
 
     @GetMapping("/event/list")
     public List<EventDTO> myPlan() {
@@ -35,6 +40,7 @@ public class PlanController {
 
 
     }
+
 
 
 }
