@@ -1,7 +1,12 @@
 package com.honeywen.credit.service.impl;
 
+import com.honeywen.credit.model.Card;
+import com.honeywen.credit.repository.query.CardQueryMapper;
 import com.honeywen.credit.service.PlanService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author weiw@opera.com
@@ -10,4 +15,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class PlanServiceImpl implements PlanService {
 
+    @Autowired
+    private CardQueryMapper cardQueryMapper;
+
+
+    @Override
+    public void generatePlan() {
+
+        List<Card> cards = cardQueryMapper.findAll();
+
+
+    }
 }

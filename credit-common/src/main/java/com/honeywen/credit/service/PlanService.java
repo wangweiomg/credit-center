@@ -7,6 +7,10 @@ package com.honeywen.credit.service;
  */
 public interface PlanService {
 
+    /**
+     * 生成刷卡计划
+     */
+    void generatePlan();
 
 
 
