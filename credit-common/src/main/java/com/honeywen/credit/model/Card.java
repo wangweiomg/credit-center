@@ -76,6 +76,22 @@ public @Data class Card extends BaseModel {
     }
 
 
+    public enum RepayDayTypeEnum {
+
+        /**
+         * 1. 固定日期 2.顺延日期
+         */
+        FIXED_DAY(1),
+        DELAY_DAY(2);
+
+        private int value;
+        RepayDayTypeEnum(int value) {
+            this.value = value;
+        }
+        public int getValue() {
+            return value;
+        }
+    }
     public enum StatusEnum {
         /**
          * 1. 启用中

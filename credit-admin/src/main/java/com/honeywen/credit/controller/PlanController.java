@@ -36,8 +36,9 @@ public class PlanController {
         EventDTO event5 = EventDTO.builder().title("刷中行1111").start("2018-09-30").build();
 
         ArrayList<EventDTO> list = Lists.newArrayList(event1, event2, event3, event4, event5, event11, event12);
-        return list;
+//        return list;
 
+        return planService.generatePlan();
 
     }
 

@@ -15,5 +15,6 @@ public @Data @Builder class EventDTO implements Serializable {
     private String title;
     private String start;
     private String end;
+    private String color;
 
 }

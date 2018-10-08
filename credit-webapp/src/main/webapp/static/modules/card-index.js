@@ -102,6 +102,7 @@ function detailFormatter(index, row) {
 // 新增
 function createAction() {
     $.confirm({
+        columnClass: 'medium',
         type: 'dark',
         animationSpeed: 300,
         title: '新增卡片',
@@ -200,7 +201,7 @@ function deleteAction() {
                     action: function () {
                         var ids = new Array();
                         for (var i in rows) {
-                            ids.push(rows[i].systemId);
+                            ids.push(rows[i].id);
                         }
                         $.alert('删除：id=' + ids.join("-"));
                     }

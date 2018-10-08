@@ -1,5 +1,6 @@
 package com.honeywen.credit.service;
 
+import com.honeywen.credit.dto.EventDTO;
 import com.honeywen.credit.model.Card;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface CardService {
     Card save(Card card);
 
     void removeById(Integer id);
+
+    List<EventDTO> showOverview();
 }

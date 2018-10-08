@@ -1,10 +1,10 @@
 package com.honeywen.credit.controller;
 
 import com.honeywen.credit.base.response.JsonResult;
+import com.honeywen.credit.dto.EventDTO;
 import com.honeywen.credit.model.Card;
 import com.honeywen.credit.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,6 +39,12 @@ public class CardController {
     public JsonResult remove(@PathVariable("id") Integer id) {
         cardService.removeById(id);
         return JsonResult.success();
+    }
+
+    @GetMapping("/overview")
+    public List<EventDTO> overview() {
+
+        return cardService.showOverview();
     }
 
 }

@@ -1,5 +1,9 @@
 package com.honeywen.credit.service;
 
+import com.honeywen.credit.dto.EventDTO;
+
+import java.util.List;
+
 /**
  * 计划
  * @author weiw@opera.com
@@ -10,7 +14,7 @@ public interface PlanService {
     /**
      * 生成刷卡计划
      */
-    void generatePlan();
+    List<EventDTO> generatePlan();
 
 
 
