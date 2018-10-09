@@ -20,6 +20,16 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>credit-webapp</finalName>
+        <finalName>credit</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.2</version>
+                <configuration>
+                    <packagingExcludes>WEB-INF/lib/*log4j*.jar</packagingExcludes>
+                </configuration>
+            </plugin>
+        </plugins>
+
     </build>
 </project>
