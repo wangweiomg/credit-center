@@ -35,6 +35,12 @@ public class CardController {
 
     }
 
+    @PostMapping("/update")
+    public JsonResult update(Card card) {
+        cardService.update(card);
+        return JsonResult.success();
+    }
+
     @PostMapping("/remove/{id}")
     public JsonResult remove(@PathVariable("id") Integer id) {
         cardService.removeById(id);

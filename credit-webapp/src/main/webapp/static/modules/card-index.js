@@ -137,10 +137,10 @@ function createAction() {
 // 编辑
 function updateAction() {
     var rows = $table.bootstrapTable('getSelections');
-    if (rows.length === 0) {
+    if (rows.length !== 1) {
         $.confirm({
             title: false,
-            content: '请至少选择一条记录！',
+            content: '请选择一条记录！',
             autoClose: 'cancel|3000',
             backgroundDismiss: true,
             buttons: {
@@ -152,16 +152,30 @@ function updateAction() {
         });
     } else {
         $.confirm({
+            columnClass: 'medium',
             type: 'blue',
             animationSpeed: 300,
             title: '编辑系统',
-            content: $('#createDialog').html(),
+            content: $('#updateDialog').html(),
             buttons: {
                 confirm: {
                     text: '确认',
                     btnClass: 'waves-effect waves-button',
                     action: function () {
-                        $.alert('确认' + $("#createForm").serialize());
+                        var params = this.$content.find("#updateForm").serialize();
+                        console.log(1, rows);
+                        params.id = rows[0].id;
+                        var url = '/card/update';
+                        $.post(url, params, function (data) {
+                            if (data.head !== null) {
+                                $.alert(data.head.msg);
+                            } else {
+                                $.alert('server error!');
+                            }
+                            $table.bootstrapTable("refresh");
+
+
+                        });
                     }
                 },
                 cancel: {

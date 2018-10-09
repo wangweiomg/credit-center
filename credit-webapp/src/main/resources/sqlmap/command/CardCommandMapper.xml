@@ -35,6 +35,36 @@
 
     </insert>
 
+    <update id="update" parameterType="com.honeywen.credit.model.Card">
+
+        UPDATE t_card
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+
+            <if test="cardLimit != null">
+                card_limit = #{cardLimt},
+            </if>
+            <if test="billDay != null">
+                bill_day = #{billDay},
+            </if>
+            <if test="repayDayType != null">
+                repay_day_type = #{repayDayType},
+            </if>
+            <if test="repayDayNum != null">
+                repay_day_num = #{repayDayNum},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+
+            update_at = NOW()
+        </set>
+
+        WHERE id = #{id}
+    </update>
+
     <update id="removeById" parameterType="java.lang.Integer">
         UPDATE t_card SET delete_flag = 1, update_at = NOW() WHERE id = #{id}
     </update>

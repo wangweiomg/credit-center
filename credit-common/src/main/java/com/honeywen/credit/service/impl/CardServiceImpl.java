@@ -75,6 +75,14 @@ public class CardServiceImpl implements CardService {
         return list;
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void update(Card card) {
+
+        cardCommandMapper.update(card);
+
+    }
+
     private int getCardRepayDay(Card card) {
 
         Integer repayDayType = card.getRepayDayType();

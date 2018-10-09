@@ -9,4 +9,6 @@ public interface CardCommandMapper {
     void save(Card card);
 
     void removeById(Integer id);
+
+    void update(Card card);
 }

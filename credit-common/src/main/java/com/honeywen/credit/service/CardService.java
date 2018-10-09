@@ -17,4 +17,6 @@ public interface CardService {
     void removeById(Integer id);
 
     List<EventDTO> showOverview();
+
+    void update(Card card);
 }
