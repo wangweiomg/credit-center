@@ -40,8 +40,8 @@ $(function() {
             {field: 'state', checkbox: true},
             {field: 'id', title: '编号', sortable: true, halign: 'center', visible: false},
             {field: 'name', title: '卡片名称', sortable: true, halign: 'center'},
-            {field: 'cardNo', title: '卡号', sortable: true, halign: 'center'},
-            {field: 'bankId', title: '所属银行', sortable: true, halign: 'center'},
+            {field: 'cardNo', title: '卡号', sortable: true, halign: 'center', visible: false},
+            {field: 'bankId', title: '所属银行', sortable: true, halign: 'center', visible: false},
             {field: 'cardType', title: '卡片类型', sortable: true, halign: 'center', visible: false},
             {field: 'cardLimit', title: '额度', sortable: true, halign: 'center'},
             {field: 'billDay', title: '账单日', sortable: true, halign: 'center'},
@@ -162,7 +162,8 @@ function updateAction() {
                 this.$content.find("#updateForm input[name='name']").val(row.name);
                 this.$content.find("#updateForm input[name='cardLimit']").val(row.cardLimit);
                 this.$content.find("#updateForm input[name='billDay']").val(row.billDay);
-                this.$content.find("#updateForm input[name='repayDayType']").val(row.repayDayType);
+                var repayDayType = row.repayDayType;
+                this.$content.find("#updateForm input[name='repayDayType'][value='"+ repayDayType +"']").attr("checked", true);
                 this.$content.find("#updateForm input[name='repayDayNum']").val(row.repayDayNum);
 
             },

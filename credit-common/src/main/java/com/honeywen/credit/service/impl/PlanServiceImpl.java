@@ -31,15 +31,16 @@ public class PlanServiceImpl implements PlanService {
 
         final LocalDate now = LocalDate.now();
 
-        List<EventDTO> eventList = cards.stream().map(card -> {
+        return cards.stream().map(card -> {
 
             int billDay = card.getBillDay();
-            return EventDTO.builder().title("刷" + card.getName()).start(now.withDayOfMonth(billDay + 1).toString()).build();
+            return EventDTO.builder()
+                    .title("刷" + card.getName())
+                    .start(now.withDayOfMonth(billDay + 1).toString())
+                    .build();
 
         }).collect(Collectors.toList());
 
-
-        return eventList;
 
     }
 }

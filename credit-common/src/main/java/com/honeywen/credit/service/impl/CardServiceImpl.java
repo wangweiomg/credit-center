@@ -65,11 +65,11 @@ public class CardServiceImpl implements CardService {
 
         List<EventDTO> list = Lists.newArrayListWithCapacity(cards.size() * 2);
         cards.forEach(card -> {
-            list.add(EventDTO.builder().title("账单日 - " + card.getName()).start(now.withDayOfMonth(card.getBillDay()).toString()).color("#FFBB54").build());
+            list.add(EventDTO.builder().title("账单日 - " + card.getName()).start(now.withDayOfMonth(card.getBillDay()).toString()).color("#008B00").build());
 
             int repayDayNum = getCardRepayDay(card);
 
-            list.add(EventDTO.builder().title("还款日 - " + card.getName()).start(now.withDayOfMonth(repayDayNum).toString()).color("#FF474E").build());
+            list.add(EventDTO.builder().title("还款日 - " + card.getName()).start(now.withDayOfMonth(repayDayNum).toString()).color("#FF0000").build());
         });
 
         return list;
