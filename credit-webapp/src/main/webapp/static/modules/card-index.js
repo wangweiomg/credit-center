@@ -157,14 +157,24 @@ function updateAction() {
             animationSpeed: 300,
             title: '编辑系统',
             content: $('#updateDialog').html(),
+            onContentReady: function() {
+                var row = rows[0];
+                this.$content.find("#updateForm input[name='name']").val(row.name);
+                this.$content.find("#updateForm input[name='cardLimit']").val(row.cardLimit);
+                this.$content.find("#updateForm input[name='billDay']").val(row.billDay);
+                this.$content.find("#updateForm input[name='repayDayType']").val(row.repayDayType);
+                this.$content.find("#updateForm input[name='repayDayNum']").val(row.repayDayNum);
+
+            },
             buttons: {
                 confirm: {
                     text: '确认',
                     btnClass: 'waves-effect waves-button',
                     action: function () {
                         var params = this.$content.find("#updateForm").serialize();
-                        console.log(1, rows);
-                        params.id = rows[0].id;
+                        params = params + '&id=' + rows[0].id;
+
+                        console.log(params);
                         var url = '/card/update';
                         $.post(url, params, function (data) {
                             if (data.head !== null) {

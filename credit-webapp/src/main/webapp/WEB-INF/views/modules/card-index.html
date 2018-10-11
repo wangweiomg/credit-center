@@ -50,29 +50,29 @@
             <input type="text" name="repayDayNum" style="width: 70px;">
 		</label>
 	</form>
-</div><!-- 新增 -->
+</div>
+<!-- 编辑 -->
 <div id="updateDialog" class="crudDialog" hidden>
     <form id="updateForm" action="/card/save" method="post">
         <div class="form-group">
-            <label for="input11">卡片名称</label>
+            <label class="active" for="input11">卡片名称</label>
             <input id="input11" name="name" type="text" class="form-control">
         </div>
         <div class="form-group">
-            <label for="input22">额度</label>
+            <label class="active" for="input22">额度</label>
             <input id="input22" name="cardLimit" type="text" class="form-control">
         </div>
         <div class="form-group">
-            <label for="input33">账单日</label>
+            <label class="active" for="input33">账单日</label>
             <input id="input33" name="billDay" type="text" class="form-control">
         </div>
 
 
         <label class="radio-inline">
-            <input type="radio" name="repayDayType" checked="checked" id="inlineRadio11" value="1"> 固定还款日
-            <input id="input44" type="text" name="repayDayNum" style="width: 70px;">
+            <input type="radio" name="repayDayType" checked="checked" id="inlineRadio11" value="1"> 固定还款日 n
         </label>
         <label class="radio-inline">
-            <input type="radio" name="repayDayType" id="inlineRadio22" value="2"> 账单日后 n 天
+            <input type="radio" name="repayDayType" id="inlineRadio22" value="2"> 账单日后 n 天   &nbsp;&nbsp;&nbsp;n=
             <input type="text" name="repayDayNum" style="width: 70px;">
         </label>
     </form>
