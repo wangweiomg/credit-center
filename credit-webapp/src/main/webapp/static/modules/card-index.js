@@ -28,6 +28,8 @@ $(function() {
         paginationLoop: false,
         classes: 'table table-hover table-no-bordered',
         // sidePagination: 'server',
+        dataField: 'result',
+        totalField: 'total',
         //silentSort: false,
         smartDisplay: false,
         idField: 'id',

@@ -1,5 +1,6 @@
 package com.honeywen.credit.service;
 
+import com.github.pagehelper.Page;
 import com.honeywen.credit.dto.EventDTO;
 import com.honeywen.credit.model.Card;
 
@@ -20,5 +21,5 @@ public interface CardService {
 
     void update(Card card);
 
-    List<Card> findByTest();
+    Page<Card> findByTest();
 }

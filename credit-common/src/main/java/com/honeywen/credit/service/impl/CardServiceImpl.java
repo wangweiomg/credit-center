@@ -1,5 +1,7 @@
 package com.honeywen.credit.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.honeywen.credit.dto.EventDTO;
@@ -7,6 +9,7 @@ import com.honeywen.credit.model.Card;
 import com.honeywen.credit.repository.command.CardCommandMapper;
 import com.honeywen.credit.repository.query.CardQueryMapper;
 import com.honeywen.credit.service.CardService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +21,7 @@ import java.util.Map;
 /**
  * Created by wangwei on 2017/9/10.
  */
+@Slf4j
 @Service
 @Transactional(readOnly = true, rollbackFor = Exception.class)
 public class CardServiceImpl implements CardService {
@@ -44,7 +48,6 @@ public class CardServiceImpl implements CardService {
         if (card.getStatus() == null) {
             card.setStatus(Card.StatusEnum.ON.getValue());
         }
-
 
 
         cardCommandMapper.save(card);
@@ -85,13 +88,15 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public List<Card> findByTest() {
+    public Page<Card> findByTest() {
 
         Map<String, Object> map = Maps.newHashMap();
-        map.put("first", "1");
-        map.put("third", 2);
+//        map.put("first", "1");
+//        map.put("third", 2);
+        PageHelper.startPage(2, 10);
 
-        return cardQueryMapper.findByTest(map);
+        return (Page<Card>)cardQueryMapper.findByTest(map);
+//        return cardQueryMapper.findByTest(map);
     }
 
     private int getCardRepayDay(Card card) {

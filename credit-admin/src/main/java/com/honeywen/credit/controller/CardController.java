@@ -1,5 +1,6 @@
 package com.honeywen.credit.controller;
 
+import com.github.pagehelper.Page;
 import com.honeywen.credit.base.response.JsonResult;
 import com.honeywen.credit.dto.EventDTO;
 import com.honeywen.credit.model.Card;
@@ -54,10 +55,8 @@ public class CardController {
     }
 
     @GetMapping("/test")
-    public JsonResult test() {
-        List<Card> list = cardService.findByTest();
-
-        return JsonResult.success(String.valueOf(list.size()));
+    public Page<Card> test() {
+        return cardService.findByTest();
     }
 
 }
