@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Created by wangwei on 2017/9/10.
+ * 卡片控制类
+ *
+ * @author wangwei
+ * @date 2018/09/10
  */
 @RestController
 @RequestMapping("/card")
