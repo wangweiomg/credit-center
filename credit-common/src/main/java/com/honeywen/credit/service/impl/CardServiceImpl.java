@@ -1,6 +1,7 @@
 package com.honeywen.credit.service.impl;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.honeywen.credit.dto.EventDTO;
 import com.honeywen.credit.model.Card;
 import com.honeywen.credit.repository.command.CardCommandMapper;
@@ -12,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 /**
  * Created by wangwei on 2017/9/10.
@@ -81,6 +82,16 @@ public class CardServiceImpl implements CardService {
 
         cardCommandMapper.update(card);
 
+    }
+
+    @Override
+    public List<Card> findByTest() {
+
+        Map<String, Object> map = Maps.newHashMap();
+        map.put("first", "1");
+        map.put("third", 2);
+
+        return cardQueryMapper.findByTest(map);
     }
 
     private int getCardRepayDay(Card card) {

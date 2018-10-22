@@ -53,4 +53,11 @@ public class CardController {
         return cardService.showOverview();
     }
 
+    @GetMapping("/test")
+    public JsonResult test() {
+        List<Card> list = cardService.findByTest();
+
+        return JsonResult.success(String.valueOf(list.size()));
+    }
+
 }

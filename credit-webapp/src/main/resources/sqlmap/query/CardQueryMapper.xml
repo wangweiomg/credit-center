@@ -31,4 +31,17 @@
         AND t.delete_flag = 0
     </select>
 
+    <select id="findByTest" resultType="com.honeywen.credit.model.Card">
+        SELECT
+        <include refid="cardColumns"/>
+        FROM t_card t
+        WHERE 1=1
+        AND t.delete_flag = 0
+        <if test="first == 1">
+            limit 1
+        </if>
+        <if test="second == '2'">
+            limit 2
+        </if>
+    </select>
 </mapper>

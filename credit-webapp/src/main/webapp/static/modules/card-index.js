@@ -27,7 +27,7 @@ $(function() {
         pagination: true,
         paginationLoop: false,
         classes: 'table table-hover table-no-bordered',
-        //sidePagination: 'server',
+        // sidePagination: 'server',
         //silentSort: false,
         smartDisplay: false,
         idField: 'id',

@@ -19,4 +19,6 @@ public interface CardService {
     List<EventDTO> showOverview();
 
     void update(Card card);
+
+    List<Card> findByTest();
 }
