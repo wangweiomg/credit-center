@@ -18,9 +18,7 @@
 <body>
 <div id="main">
 	<div id="toolbar">
-		<a class="waves-effect waves-button" href="javascript:;" onclick="createAction()"><i class="zmdi zmdi-plus"></i> 新增用户</a>
-		<a class="waves-effect waves-button" href="javascript:;" onclick="updateAction()"><i class="zmdi zmdi-edit"></i> 编辑用户</a>
-		<a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-close"></i> 删除用户</a>
+		<h4>Card List</h4>
 	</div>
     <table class="table table-bordered">
         <tbody>
@@ -91,45 +89,6 @@
 <script src="/static/resources/plugins/moment.min.js"></script>
 
 <script src="/static/resources/js/common.js"></script>
-<!--<script src="/static/modules/card-list.js"></script>-->
-<script type="text/javascript">
-    
-    $(function () {
-        $.get('/card/list', function (data) {
-            var tr = $("#cloneTr");
-            $.each(data, function(index, card){
-                var cloneTr = tr.clone();
-                cloneTr.append("<td>" + card.name + "</td>");
-                for (var i = 1; i < 32; i++) {
-                    var td = "<td>" + i + "</td>";
-                    cloneTr.append(td);
-                }
-
-
-                var day = moment().format('D');
-                cloneTr.find("td").eq(day).css("background-color", "lightgreen");
-
-                var billDay = card.billDay;
-                cloneTr.find("td").eq(billDay).css("background-color", "yellow");
-
-                var repayDayType = card.repayDayType;
-                var repayDayNum = card.repayDayNum;
-
-                if (repayDayType === 1) {
-                    cloneTr.find("td").eq(repayDayNum).css("background-color", "red");
-                }
-
-                if (repayDayType === 2) {
-                    var num = (billDay + repayDayNum) % 32;
-                    cloneTr.find("td").eq(num).css("background-color", "red");
-
-                }
-                cloneTr.insertBefore(tr);
-
-            })
-
-        });
-    });
-</script>
+<script src="/static/modules/card-list.js"></script>
 </body>
 </html>
