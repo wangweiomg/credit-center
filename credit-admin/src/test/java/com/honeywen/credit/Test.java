@@ -2,7 +2,9 @@ package com.honeywen.credit;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author weiw@opera.com
@@ -25,6 +27,12 @@ public class Test {
 
         System.out.println(date.withDayOfMonth(12));
         System.out.println(date.withDayOfMonth(2));
+
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime t1 = now.withDayOfMonth(3);
+        System.out.println(t1.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        LocalDateTime t2 = now.withHour(3);
+        System.out.println(t2.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
     }
 
 }

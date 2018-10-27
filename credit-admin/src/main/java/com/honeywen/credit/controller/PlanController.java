@@ -19,6 +19,15 @@ import java.util.List;
 @RequestMapping("/plan")
 public class PlanController {
 
+    // 多元化消费，
+    /**
+     * 多元化消费。
+     * 而多元化就是刷卡方式以及商户多元化，这些信用卡的知识你必须要学。
+     * 最少每个月需要刷15-25笔，消费7-8成，
+     * 小卡要刷爆，
+     *
+     * 0 账单模式，非0账单
+     */
 
     @Autowired
     private PlanService planService;
@@ -41,6 +50,7 @@ public class PlanController {
         return planService.generatePlan();
 
     }
+
 
 
 
