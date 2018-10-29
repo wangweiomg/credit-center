@@ -1,6 +1,8 @@
 
 $(function () {
 
+    $("#time").html(moment().format('YYYY-MM-DD'));
+
     $.get('/card/list', function (data) {
         var tr = $("#cloneTr");
         $.each(data, function (index, card) {
