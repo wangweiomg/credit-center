@@ -5,10 +5,12 @@ import com.honeywen.credit.base.response.JsonResult;
 import com.honeywen.credit.dto.EventDTO;
 import com.honeywen.credit.model.Card;
 import com.honeywen.credit.service.CardService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 卡片控制类
@@ -16,6 +18,7 @@ import java.util.List;
  * @author wangwei
  * @date 2018/09/10
  */
+@Slf4j
 @RestController
 @RequestMapping("/card")
 public class CardController {
@@ -31,7 +34,8 @@ public class CardController {
 
 
     @PostMapping("/save")
-    public JsonResult save(Card card) {
+    public JsonResult save(@RequestBody Card card) {
+        log.debug("<--request--> card-->{}", card);
         cardService.save(card);
 
         return JsonResult.success();
@@ -60,6 +64,11 @@ public class CardController {
     @GetMapping("/test")
     public Page<Card> test() {
         return cardService.findByTest();
+    }
+
+    @GetMapping("/test2")
+    public Map<String, Object> test2() {
+        return cardService.findByTest2();
     }
 
 }

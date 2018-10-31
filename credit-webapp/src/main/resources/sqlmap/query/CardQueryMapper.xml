@@ -37,11 +37,36 @@
         FROM t_card t
         WHERE 1=1
         AND t.delete_flag = 0
-        <if test="first == 1">
-            limit 1
-        </if>
-        <if test="second == '2'">
+
+        <if test="second = ''">
             limit 2
         </if>
+    </select>
+
+    <select id="findByTest2" resultType="java.util.Map">
+        SELECT
+        100 as flag,
+        <if test="first = ''">
+            2 as second,
+        </if>
+        <if test='first = ""'>
+            3 as third,
+        </if>
+        <if test="second = ''">
+            4 as forth,
+        </if>
+        <if test='second = ""'>
+            4 as forth2,
+        </if>
+        <if test="second = 0">
+            5 as fifth,
+        </if>
+        <if test='second != ""'>
+            6 as sixth,
+        </if>
+        <if test="second != ''">
+            7 as seventh,
+        </if>
+        101 as flag2
     </select>
 </mapper>

@@ -116,15 +116,19 @@ function createAction() {
                 action: function () {
                     var params = this.$content.find("#createForm").serialize();
                     var url = '/card/save';
-                    $.post(url, params, function (data) {
-                        if (data.head !== null) {
-                            $.alert(data.head.msg);
-                        } else {
-                            $.alert('server error!');
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(params),
+                        success: function(data) {
+                            if (data.head !== null) {
+                                $.alert(data.head.msg);
+                            } else {
+                                $.alert('server error!');
+                            }
+                            $table.bootstrapTable("refresh");
                         }
-                        $table.bootstrapTable("refresh");
-
-
                     });
 
                 }

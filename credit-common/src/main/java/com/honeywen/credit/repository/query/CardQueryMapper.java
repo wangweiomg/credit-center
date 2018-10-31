@@ -14,4 +14,6 @@ public interface CardQueryMapper {
     List<Card> findAll();
 
     List<Card> findByTest(Map<String, Object> map);
+
+    Map<String, Object> findByTest2(Map<String,Object> map);
 }

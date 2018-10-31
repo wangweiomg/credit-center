@@ -5,6 +5,7 @@ import com.honeywen.credit.dto.EventDTO;
 import com.honeywen.credit.model.Card;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wangwei on 2017/9/10.
@@ -22,4 +23,6 @@ public interface CardService {
     void update(Card card);
 
     Page<Card> findByTest();
+
+    Map<String, Object> findByTest2();
 }

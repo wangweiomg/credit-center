@@ -91,12 +91,21 @@ public class CardServiceImpl implements CardService {
     public Page<Card> findByTest() {
 
         Map<String, Object> map = Maps.newHashMap();
-//        map.put("first", "1");
-//        map.put("third", 2);
+        map.put("first", "1");
+        map.put("third", 2);
+        map.put("second", 3);
         PageHelper.startPage(2, 10);
 
         return (Page<Card>)cardQueryMapper.findByTest(map);
 //        return cardQueryMapper.findByTest(map);
+    }
+
+    @Override
+    public Map<String, Object> findByTest2() {
+        Map<String, Object> map = Maps.newHashMap();
+        map.put("first", "");
+        map.put("second", 0);
+        return cardQueryMapper.findByTest2(map);
     }
 
     private int getCardRepayDay(Card card) {
