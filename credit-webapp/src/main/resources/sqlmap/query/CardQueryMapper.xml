@@ -69,4 +69,24 @@
         </if>
         101 as flag2
     </select>
+
+    <select id="findByTest3" resultType="java.util.Map">
+
+        SELECT 1
+        <if test="first != null and first.length > 0">
+            ,2
+        </if>
+
+        <if test="second != null and second.size > 0">
+            ,3
+        </if>
+
+        <if test="second != null and second.size() > 0">
+            ,4
+        </if>
+
+
+
+
+    </select>
 </mapper>

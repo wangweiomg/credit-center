@@ -71,4 +71,9 @@ public class CardController {
         return cardService.findByTest2();
     }
 
+    @GetMapping("/test3")
+    public Map<String, Object> test3() {
+        return cardService.findByTest3();
+    }
+
 }

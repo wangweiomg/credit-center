@@ -16,4 +16,8 @@ public interface CardQueryMapper {
     List<Card> findByTest(Map<String, Object> map);
 
     Map<String, Object> findByTest2(Map<String,Object> map);
+
+    Map<String,Object> ç(Map<String,Object> map);
+
+    Map<String,Object> findByTest3(Map<String,Object> map);
 }

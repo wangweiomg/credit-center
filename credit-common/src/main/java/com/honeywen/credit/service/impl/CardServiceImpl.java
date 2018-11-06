@@ -108,6 +108,16 @@ public class CardServiceImpl implements CardService {
         return cardQueryMapper.findByTest2(map);
     }
 
+    @Override
+    public Map<String, Object> findByTest3() {
+        Map<String, Object> map = Maps.newHashMap();
+        map.put("first", new String[]{"a", "b", "c"});
+        map.put("second", Lists.newArrayList(3, 4));
+
+
+        return cardQueryMapper.findByTest3(map);
+    }
+
     private int getCardRepayDay(Card card) {
 
         Integer repayDayType = card.getRepayDayType();

@@ -25,4 +25,6 @@ public interface CardService {
     Page<Card> findByTest();
 
     Map<String, Object> findByTest2();
+
+    Map<String,Object> findByTest3();
 }
