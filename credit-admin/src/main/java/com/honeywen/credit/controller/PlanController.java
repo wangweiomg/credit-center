@@ -26,7 +26,7 @@ public class PlanController {
      * 最少每个月需要刷15-25笔，消费7-8成，
      * 小卡要刷爆，
      *
-     * 0 账单模式，非0账单
+     *
      */
 
     @Autowired
