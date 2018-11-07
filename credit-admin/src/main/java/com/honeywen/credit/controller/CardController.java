@@ -1,5 +1,7 @@
 package com.honeywen.credit.controller;
 
+import cn.binarywang.wx.miniapp.api.WxMaService;
+import cn.binarywang.wx.miniapp.config.WxMaConfig;
 import com.github.pagehelper.Page;
 import com.honeywen.credit.base.response.JsonResult;
 import com.honeywen.credit.dto.EventDTO;
