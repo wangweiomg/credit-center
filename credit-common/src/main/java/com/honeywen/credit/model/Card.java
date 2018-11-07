@@ -1,11 +1,10 @@
 package com.honeywen.credit.model;
 
 import com.honeywen.credit.base.BaseModel;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+
 
 /**
  * Created by wangwei on 2017/9/10.
