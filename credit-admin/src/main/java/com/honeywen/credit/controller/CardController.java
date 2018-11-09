@@ -1,9 +1,10 @@
 package com.honeywen.credit.controller;
 
-import cn.binarywang.wx.miniapp.api.WxMaService;
-import cn.binarywang.wx.miniapp.config.WxMaConfig;
+import cn.binarywang.wx.miniapp.message.WxMaMessageRouter;
 import com.github.pagehelper.Page;
 import com.honeywen.credit.base.response.JsonResult;
+import com.honeywen.credit.config.WxMaConfiguration;
+import com.honeywen.credit.config.WxMaProperties;
 import com.honeywen.credit.dto.EventDTO;
 import com.honeywen.credit.model.Card;
 import com.honeywen.credit.service.CardService;
@@ -76,6 +77,12 @@ public class CardController {
     @GetMapping("/test3")
     public Map<String, Object> test3() {
         return cardService.findByTest3();
+    }
+
+    @GetMapping("/test4")
+    public String test4() {
+
+        return "success-->" + WxMaConfiguration.getMaServices();
     }
 
 }
