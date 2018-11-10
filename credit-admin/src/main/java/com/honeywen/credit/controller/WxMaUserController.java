@@ -4,12 +4,9 @@ import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import cn.binarywang.wx.miniapp.bean.WxMaPhoneNumberInfo;
 import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
-import com.alibaba.druid.support.json.JSONUtils;
 import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.google.common.base.Strings;
 import com.honeywen.credit.config.WxMaConfiguration;
-import com.honeywen.credit.config.WxMaProperties;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxErrorException;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,6 +41,8 @@ public class WxMaUserController {
             log.info("<--session:  sessionKey-->{}, openid-->{}", session.getSessionKey(), session.getOpenid());
 
             // 保存到数据库
+            String unionid = session.getUnionid();
+
 
             return JSON.toJSONString(session);
         } catch (WxErrorException e) {
