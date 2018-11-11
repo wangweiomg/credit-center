@@ -44,7 +44,7 @@ public class WxPortalController {
     }
 
     @PostMapping(produces = "application/xml; charset=UTF-8")
-    public void post(@PathVariable String appid,
+    public String post(@PathVariable String appid,
                        @RequestBody String requestBody,
                        @RequestParam("msg_signature") String msgSignature,
                        @RequestParam("encrypt_type") String encryptType,
@@ -72,7 +72,7 @@ public class WxPortalController {
             }
 
             this.route(inMessage, appid);
-//            return "success";
+            return "success";
         }
 
         if ("aes".equals(encryptType)) {
@@ -87,7 +87,7 @@ public class WxPortalController {
             log.debug("<--msg-->{}", inMessage);
 
             this.route(inMessage, appid);
-//            return "success";
+            return "success";
         }
 
         throw new RuntimeException("不可识别的加密类型：" + encryptType);
