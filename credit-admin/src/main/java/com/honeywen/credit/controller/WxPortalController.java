@@ -24,7 +24,7 @@ public class WxPortalController {
                           @RequestParam(name = "timestamp", required = false) String timestamp,
                           @RequestParam(name = "nonce", required = false) String nonce,
                           @RequestParam(name = "echostr", required = false) String echostr) {
-        log.info("\n接收到来自微信服务器的认证消息：signature = [{}], timestamp = [{}], nonce = [{}], echostr = [{}]",
+        log.debug("\n接收到来自微信服务器的认证消息：signature = [{}], timestamp = [{}], nonce = [{}], echostr = [{}]",
                 signature, timestamp, nonce, echostr);
 
         if (StringUtils.isAnyBlank(signature, timestamp, nonce, echostr)) {
