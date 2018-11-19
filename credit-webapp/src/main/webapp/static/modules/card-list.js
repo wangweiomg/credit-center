@@ -1,19 +1,19 @@
 
 $(function () {
 
-    $("#time").html(moment().format('YYYY-MM-DD'));
+    var nowDate = moment().format('YYYY-MM-DD');
+    $("#time").html(nowDate);
+    $("h3").html(nowDate);
 
     $.get('/card/list', function (data) {
         var tr = $("#cloneTr");
         $.each(data, function (index, card) {
             var cloneTr = tr.clone();
             cloneTr.append("<td>" + card.name + "</td>");
-            for (var i = 1; i < 32; i++) {
-                // var td = "<td>" + i + "</td>";
-
+            var daysInMonth = moment().daysInMonth();
+            for (var i = 1; i <= daysInMonth; i++) {
                 var td = $("<td></td>");
                 $(td).html(i);
-                // $(td).css("background-color", "pink");
                 cloneTr.append(td);
             }
 
@@ -32,7 +32,7 @@ $(function () {
             }
 
             if (repayDayType === 2) {
-                var num = (billDay + repayDayNum) % 32;
+                var num = (billDay + repayDayNum) % daysInMonth + 1;
                 cloneTr.find("td").eq(num).css("background-color", "red");
 
             }
