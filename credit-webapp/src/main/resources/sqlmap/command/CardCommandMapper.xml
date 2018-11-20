@@ -35,6 +35,39 @@
 
     </insert>
 
+    <insert id="saveList" parameterType="java.util.List">
+        INSERT INTO t_card (
+        name,
+        card_no,
+        bank_id,
+        card_type,
+        card_limit,
+        bill_day,
+        repay_day_type,
+        repay_day_num,
+        status,
+        create_by,
+        create_at)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.name},
+            #{item.cardNo},
+            #{item.bankId},
+            #{item.cardType},
+            #{item.cardLimit},
+            #{item.billDay},
+            #{item.repayDayType},
+            #{item.repayDayNum},
+            #{item.status},
+            #{item.createBy},
+            NOW()
+            )
+        </foreach>
+
+
+    </insert>
+
     <update id="update" parameterType="com.honeywen.credit.model.Card">
 
         UPDATE t_card

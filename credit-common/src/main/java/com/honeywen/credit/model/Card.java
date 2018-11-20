@@ -55,6 +55,20 @@ public @Data class Card extends BaseModel {
     private Integer status;
 
 
+
+
+    /**
+     * params
+     */
+
+
+    /**
+     * 批量添加数量
+     */
+    private Integer multipleNum;
+
+
+
     public enum CardTypeEnum {
 
         /**

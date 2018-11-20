@@ -49,6 +49,19 @@ public class CardServiceImpl implements CardService {
             card.setStatus(Card.StatusEnum.ON.getValue());
         }
 
+        if (card.getMultipleNum() != null) {
+
+            int num = card.getMultipleNum();
+
+            List<Card> list = Lists.newArrayListWithCapacity(num);
+
+            for (int i = 0; i < card.getMultipleNum(); i++) {
+                list.add(card);
+            }
+
+            cardCommandMapper.saveList(list);
+        }
+
 
         cardCommandMapper.save(card);
 
