@@ -60,10 +60,12 @@ public class CardServiceImpl implements CardService {
             }
 
             cardCommandMapper.saveList(list);
+
+        } else {
+
+            cardCommandMapper.save(card);
         }
 
-
-        cardCommandMapper.save(card);
 
         return card;
     }
