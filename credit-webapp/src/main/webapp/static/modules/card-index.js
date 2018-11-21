@@ -51,9 +51,9 @@ $(function() {
             {field: 'repayDayNum', title: '款款日记数', sortable: true, halign: 'center'},
             {field: 'status', title: '状态', sortable: true, halign: 'center'},
             {field: 'createBy', title: '创建人', halign: 'center', align: 'center'},
-            {field: 'createAt', title: '创建时间', halign: 'center', align: 'center', formatter: 'formatDate'},
+            {field: 'createAt', title: '创建时间', sortable: true, halign: 'center', align: 'center', formatter: 'formatDate'},
             {field: 'updateBy', title: '更新人', halign: 'center', align: 'center', visible: false},
-            {field: 'updateAt', title: '更新时间', halign: 'center', align: 'center', formatter: 'formatDate', visible: false},
+            {field: 'updateAt', title: '更新时间', sortable: true, halign: 'center', align: 'center', formatter: 'formatDate', visible: false},
             {title: '操作', halign: 'center', align: 'center', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false},
         ]
     }).on('all.bs.table', function (e, name, args) {
