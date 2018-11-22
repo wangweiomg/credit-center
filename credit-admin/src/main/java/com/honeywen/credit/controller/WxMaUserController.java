@@ -41,7 +41,8 @@ public class WxMaUserController {
             log.info("<--session:  sessionKey-->{}, openid-->{}", session.getSessionKey(), session.getOpenid());
 
             // 保存到数据库
-            String unionid = session.getUnionid();
+            String openId = session.getOpenid();
+            String unionId = session.getUnionid();
 
 
             return JSON.toJSONString(session);

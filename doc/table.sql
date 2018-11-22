@@ -80,7 +80,7 @@ CREATE TABLE sys_menu (
   type TINYINT(1) COMMENT '1.菜单 2.权限操作',
   permission VARCHAR(100) COMMENT '权限码',
   sort INT(11) COMMENT '排序',
-  href VARCHAR(100) COMMENT '链接',
+  url VARCHAR(100) COMMENT '链接',
   icon VARCHAR(100) COMMENT '图标',
   status TINYINT(1) COMMENT '1在用 2停用',
   remark VARCHAR(100) COMMENT '备注',
