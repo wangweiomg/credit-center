@@ -47,7 +47,7 @@ public class CardController {
     }
 
     @PostMapping("/update")
-    public JsonResult update(Card card) {
+    public JsonResult update(@RequestBody Card card) {
         cardService.update(card);
         return JsonResult.success();
     }
