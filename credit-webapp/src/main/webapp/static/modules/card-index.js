@@ -85,12 +85,7 @@ window.actionEvents = {
     'click .remove': function (e, value, row, index) {
         var url = "/card/remove/" + row.id;
         $.post(url, function(data){
-
-            if (data.head !== null) {
-                $.alert(data.head.msg);
-            }
             $table.bootstrapTable("refresh");
-
         });
     }
 };
@@ -114,7 +109,13 @@ function createAction() {
                 text: '提交',
                 btnClass: 'waves-effect waves-button',
                 action: function () {
-                    var params = this.$content.find("#createForm").serialize();
+                    var params = new Object();
+                    params.name = this.$content.find("#updateForm input[name='name']").val();
+                    params.cardLimit = this.$content.find("#updateForm input[name='cardLimit']").val();
+                    params.billDay = this.$content.find("#updateForm input[name='billDay']").val();
+                    params.repayDayType = this.$content.find("#updateForm input[name='repayDayType'][checked='checked']").val();
+                    params.repayDayNum = this.$content.find("#updateForm input[name='repayDayNum']").val();
+                    $.alert(params);
                     var url = '/card/save';
                     $.ajax({
                         url: url,
@@ -183,15 +184,17 @@ function updateAction() {
 
                         console.log(params);
                         var url = '/card/update';
-                        $.post(url, params, function (data) {
-                            if (data.head !== null) {
-                                $.alert(data.head.msg);
-                            } else {
-                                $.alert('server error!');
+                        $.ajax({
+                            url: url,
+                            data: params,
+                            success: function (data) {
+                                if (data.head !== null) {
+                                    $.alert(data.head.msg);
+                                } else {
+                                    $.alert('server error!');
+                                }
+                                $table.bootstrapTable("refresh");
                             }
-                            $table.bootstrapTable("refresh");
-
-
                         });
                     }
                 },
@@ -224,7 +227,7 @@ function deleteAction() {
             type: 'red',
             animationSpeed: 300,
             title: false,
-            content: '确认删除该系统吗？',
+            content: '确认删除吗？',
             buttons: {
                 confirm: {
                     text: '确认',
@@ -234,7 +237,11 @@ function deleteAction() {
                         for (var i in rows) {
                             ids.push(rows[i].id);
                         }
-                        $.alert('删除：id=' + ids.join("-"));
+
+                        var url = "/card/remove/" + ids.join();
+                        $.post(url, function(data){
+                            $table.bootstrapTable("refresh");
+                        });
                     }
                 },
                 cancel: {

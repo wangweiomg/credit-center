@@ -8,6 +8,7 @@ import com.honeywen.credit.dto.EventDTO;
 import com.honeywen.credit.model.Card;
 import com.honeywen.credit.repository.command.CardCommandMapper;
 import com.honeywen.credit.repository.query.CardQueryMapper;
+import com.honeywen.credit.service.BatchService;
 import com.honeywen.credit.service.CardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +33,8 @@ public class CardServiceImpl implements CardService {
     private CardQueryMapper cardQueryMapper;
     @Autowired
     private CardCommandMapper cardCommandMapper;
+    @Autowired
+    private BatchService batchService;
 
     @Override
     public List<Card> findAll() {
@@ -131,6 +135,21 @@ public class CardServiceImpl implements CardService {
 
 
         return cardQueryMapper.findByTest3(map);
+    }
+
+    @Transactional(readOnly = false, rollbackFor = Exception.class)
+    @Override
+    public void removeByIds(String ids) {
+
+        Arrays.stream(ids.split(",")).forEach(i -> {
+            try {
+                batchService.deleteCardById(i);
+            } catch (Exception e) {
+                log.error("<--删除失败--> id-->" + i, e);
+            }
+        });
+
+
     }
 
     private int getCardRepayDay(Card card) {

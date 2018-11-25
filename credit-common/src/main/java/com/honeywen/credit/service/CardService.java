@@ -27,4 +27,6 @@ public interface CardService {
     Map<String, Object> findByTest2();
 
     Map<String,Object> findByTest3();
+
+    void removeByIds(String ids);
 }

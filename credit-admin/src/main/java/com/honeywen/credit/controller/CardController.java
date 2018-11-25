@@ -1,10 +1,6 @@
 package com.honeywen.credit.controller;
 
-import cn.binarywang.wx.miniapp.message.WxMaMessageRouter;
-import com.github.pagehelper.Page;
 import com.honeywen.credit.base.response.JsonResult;
-import com.honeywen.credit.config.WxMaConfiguration;
-import com.honeywen.credit.config.WxMaProperties;
 import com.honeywen.credit.dto.EventDTO;
 import com.honeywen.credit.model.Card;
 import com.honeywen.credit.service.CardService;
@@ -13,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 卡片控制类
@@ -52,11 +47,13 @@ public class CardController {
         return JsonResult.success();
     }
 
-    @PostMapping("/remove/{id}")
-    public JsonResult remove(@PathVariable("id") Integer id) {
-        cardService.removeById(id);
+    @PostMapping("/remove/{ids}")
+    public JsonResult remove(@PathVariable("ids") String ids) {
+        cardService.removeByIds(ids);
         return JsonResult.success();
     }
+
+
 
     @GetMapping("/overview")
     public List<EventDTO> overview() {
@@ -64,25 +61,5 @@ public class CardController {
         return cardService.showOverview();
     }
 
-    @GetMapping("/test")
-    public Page<Card> test() {
-        return cardService.findByTest();
-    }
-
-    @GetMapping("/test2")
-    public Map<String, Object> test2() {
-        return cardService.findByTest2();
-    }
-
-    @GetMapping("/test3")
-    public Map<String, Object> test3() {
-        return cardService.findByTest3();
-    }
-
-    @GetMapping("/test4")
-    public String test4() {
-
-        return "success-->" + WxMaConfiguration.getMaServices();
-    }
 
 }
