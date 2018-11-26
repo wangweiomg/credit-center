@@ -38,7 +38,7 @@ public class WxMaUserController {
 
         try {
             WxMaJscode2SessionResult session = wxService.getUserService().getSessionInfo(code);
-            log.info("<--session:  sessionKey-->{}, openid-->{}", session.getSessionKey(), session.getOpenid());
+            log.info("<--session:  sessionKey-->{}, openid-->{}, unionid-->{}", session.getSessionKey(), session.getOpenid(), session.getUnionid());
 
             // 保存到数据库
             String openId = session.getOpenid();
