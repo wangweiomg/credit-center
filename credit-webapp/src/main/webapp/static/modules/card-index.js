@@ -110,12 +110,12 @@ function createAction() {
                 btnClass: 'waves-effect waves-button',
                 action: function () {
                     var params = new Object();
-                    params.name = this.$content.find("#updateForm input[name='name']").val();
-                    params.cardLimit = this.$content.find("#updateForm input[name='cardLimit']").val();
-                    params.billDay = this.$content.find("#updateForm input[name='billDay']").val();
-                    params.repayDayType = this.$content.find("#updateForm input[name='repayDayType'][checked='checked']").val();
-                    params.repayDayNum = this.$content.find("#updateForm input[name='repayDayNum']").val();
-                    $.alert(params);
+                    params.name = this.$content.find("#createForm input[name='name']").val();
+                    params.cardLimit = this.$content.find("#createForm input[name='cardLimit']").val();
+                    params.billDay = this.$content.find("#createForm input[name='billDay']").val();
+                    params.repayDayType = this.$content.find("#createForm input[name='repayDayType'][checked='checked']").val();
+                    params.repayDayNum = this.$content.find("#createForm input[name='repayDayNum']").val();
+
                     var url = '/card/save';
                     $.ajax({
                         url: url,
@@ -123,9 +123,7 @@ function createAction() {
                         contentType: 'application/json',
                         data: JSON.stringify(params),
                         success: function(data) {
-                            if (data.head !== null) {
-                                $.alert(data.head.msg);
-                            } else {
+                            if (data.head === null) {
                                 $.alert('server error!');
                             }
                             $table.bootstrapTable("refresh");
@@ -179,14 +177,21 @@ function updateAction() {
                     text: '确认',
                     btnClass: 'waves-effect waves-button',
                     action: function () {
-                        var params = this.$content.find("#updateForm").serialize();
-                        params = params + '&id=' + rows[0].id;
 
-                        console.log(params);
+                        var params = new Object();
+                        params.id = + rows[0].id;
+                        params.name = this.$content.find("#updateForm input[name='name']").val();
+                        params.cardLimit = this.$content.find("#updateForm input[name='cardLimit']").val();
+                        params.billDay = this.$content.find("#updateForm input[name='billDay']").val();
+                        params.repayDayType = this.$content.find("#updateForm input[name='repayDayType'][checked='checked']").val();
+                        params.repayDayNum = this.$content.find("#updateForm input[name='repayDayNum']").val();
+
                         var url = '/card/update';
                         $.ajax({
                             url: url,
-                            data: params,
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify(params),
                             success: function (data) {
                                 if (data.head !== null) {
                                     $.alert(data.head.msg);
