@@ -113,7 +113,7 @@ function createAction() {
                     params.name = this.$content.find("#createForm input[name='name']").val();
                     params.cardLimit = this.$content.find("#createForm input[name='cardLimit']").val();
                     params.billDay = this.$content.find("#createForm input[name='billDay']").val();
-                    params.repayDayType = this.$content.find("#createForm input[name='repayDayType'][checked='checked']").val();
+                    params.repayDayType = this.$content.find("#createForm input[name='repayDayType']:checked").val();
                     params.repayDayNum = this.$content.find("#createForm input[name='repayDayNum']").val();
 
                     var url = '/card/save';
@@ -183,8 +183,10 @@ function updateAction() {
                         params.name = this.$content.find("#updateForm input[name='name']").val();
                         params.cardLimit = this.$content.find("#updateForm input[name='cardLimit']").val();
                         params.billDay = this.$content.find("#updateForm input[name='billDay']").val();
-                        params.repayDayType = this.$content.find("#updateForm input[name='repayDayType'][checked='checked']").val();
+                        params.repayDayType = this.$content.find("#updateForm input[name='repayDayType']:checked").val();
                         params.repayDayNum = this.$content.find("#updateForm input[name='repayDayNum']").val();
+                        console.log(111, params);
+                        return false;
 
                         var url = '/card/update';
                         $.ajax({

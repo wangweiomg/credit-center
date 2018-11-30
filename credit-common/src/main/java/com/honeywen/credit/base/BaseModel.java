@@ -10,12 +10,12 @@ import java.util.Date;
  */
 public @Data class BaseModel {
 
-    private Integer id;
-    private Date createAt;
-    private Integer createBy;
-    private Date updateAt;
-    private Integer updateBy;
-    private Integer deleteFlag;
+    protected Integer id;
+    protected Date createAt;
+    protected Integer createBy;
+    protected Date updateAt;
+    protected Integer updateBy;
+    protected Integer deleteFlag;
 
     public enum DeleteFlagEnum {
         /**

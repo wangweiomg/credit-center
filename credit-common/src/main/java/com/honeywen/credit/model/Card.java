@@ -12,7 +12,6 @@ import java.math.BigDecimal;
 public @Data class Card extends BaseModel {
 
 
-    private Integer id;
     /**
      * 卡片名称， 非空
      */

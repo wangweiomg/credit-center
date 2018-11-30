@@ -42,6 +42,7 @@ public class WxMaUserController {
 
             // 保存到数据库
             String openId = session.getOpenid();
+            // unionid 可能为空，需要 getUserInfo 获取
             String unionId = session.getUnionid();
 
 
