@@ -13,9 +13,6 @@
     <name>credit-parent</name>
     <url>http://maven.apache.org</url>
     <modules>
-        <module>../credit-util</module>
-        <module>../credit-common</module>
-        <module>../credit-admin</module>
         <module>../credit-webapp</module>
     </modules>
 
