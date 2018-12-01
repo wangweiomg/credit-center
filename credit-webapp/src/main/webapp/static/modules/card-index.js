@@ -185,8 +185,6 @@ function updateAction() {
                         params.billDay = this.$content.find("#updateForm input[name='billDay']").val();
                         params.repayDayType = this.$content.find("#updateForm input[name='repayDayType']:checked").val();
                         params.repayDayNum = this.$content.find("#updateForm input[name='repayDayNum']").val();
-                        console.log(111, params);
-                        return false;
 
                         var url = '/card/update';
                         $.ajax({

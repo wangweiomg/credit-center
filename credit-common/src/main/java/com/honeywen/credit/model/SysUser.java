@@ -20,5 +20,11 @@ public @Data class SysUser extends BaseModel {
     private Integer status;
     private String wxOpenId;
     private String wxUnionId;
-    private String remark;
+    private String nickName;
+    private String avatarUrl;
+    private Integer gender;
+    private String country;
+    private String province;
+    private String city;
+    private String language;
 }

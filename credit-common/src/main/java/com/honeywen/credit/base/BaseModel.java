@@ -11,6 +11,7 @@ import java.util.Date;
 public @Data class BaseModel {
 
     protected Integer id;
+    protected String remark;
     protected Date createAt;
     protected Integer createBy;
     protected Date updateAt;

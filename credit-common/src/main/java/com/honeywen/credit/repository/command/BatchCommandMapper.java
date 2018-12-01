@@ -1,5 +1,7 @@
 package com.honeywen.credit.repository.command;
 
+import com.honeywen.credit.model.Card;
+
 /**
  * 批量处理
  * @author wangwei
@@ -7,5 +9,5 @@ package com.honeywen.credit.repository.command;
  */
 public interface BatchCommandMapper {
 
-    void deleteCardById(String id);
+    void deleteCardById(Card card);
 }

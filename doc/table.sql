@@ -13,6 +13,7 @@ CREATE TABLE t_card (
   repay_day_type tinyint(1) NOT NULL DEFAULT 1 COMMENT '还款日类型1.固定还款日 2.账单日后多少天',
   repay_day_num tinyint(2) NOT NULL COMMENT '还款日记数',
   status tinyint(1) NOT NULL DEFAULT 1 COMMENT '状态 1.启用中 2.已停用',
+  remark VARCHAR(100) COMMENT '备注',
   create_by int(11) COMMENT '创建人ID',
   create_at datetime COMMENT '创建时间',
   update_by int(11) COMMENT '更新人ID',
@@ -36,6 +37,14 @@ CREATE TABLE sys_user (
   status tinyint(1) NOT NULL DEFAULT 1 COMMENT '状态 1.启用中 2.已停用',
   wx_open_id VARCHAR(60) COMMENT '微信open id',
   wx_union_id VARCHAR(60) COMMENT '微信union id',
+  nick_name VARCHAR(30) COMMENT '用户昵称',
+  avatar_url VARCHAR(100) COMMENT '用户头像URL',
+  gender TINYINT(1) COMMENT '性别1.男 2女 0未知',
+  country VARCHAR(30) COMMENT '用户所在国家',
+  province VARCHAR(30) COMMENT '用户所在省份',
+  city VARCHAR(30) COMMENT '用户所在城市',
+  language VARCHAR(30) COMMENT '所用的语言',
+
   remark VARCHAR(100) COMMENT '备注',
   create_by int(11) COMMENT '创建人ID',
   create_at datetime COMMENT '创建时间',
@@ -93,12 +102,11 @@ CREATE TABLE sys_menu (
 ) COMMENT '资源表';
 
 
-DROP TABLE IF EXISTS sys_auth;
+DROP TABLE IF EXISTS sys_role_menu;
 CREATE TABLE sys_auth (
-  subject_id INT(11) COMMENT '主题ID',
-  type TINYINT(1) COMMENT '1. 用户 2角色',
+  role_id INT(11) COMMENT '角色ID',
   menu_id INT(11) COMMENT '资源ID',
-  PRIMARY KEY (subject_id, type, menu_id)
+  PRIMARY KEY (role_id, menu_id)
 ) COMMENT '授权表';
 
 

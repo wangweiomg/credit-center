@@ -27,7 +27,7 @@ public class BatchServiceImpl implements BatchService {
         card.setId(Integer.parseInt(id));
         card.setUpdateBy(1);
 
-        batchCommandMapper.deleteCardById(id);
+        batchCommandMapper.deleteCardById(card);
 
     }
 }
