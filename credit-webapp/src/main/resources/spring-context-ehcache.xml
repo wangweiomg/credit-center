@@ -12,18 +12,18 @@
 	<!--<description>Spring EhCache</description>-->
 
 	<!-- 加载配置属性文件 -->
-	<!--<context:property-placeholder  ignore-unresolvable="true"  location="classpath*:config.properties" />-->
+	<context:property-placeholder  ignore-unresolvable="true"  location="classpath*:config.properties" />
 
-	<!--<cache:annotation-driven cache-manager="ehCacheManager" />-->
+	<cache:annotation-driven cache-manager="ehCacheManager" />
 
-	<!--<bean id="ehCacheManager"
-	            class="org.springframework.cache.ehcache.EhCacheCacheManager"	
-		        p:cache-manager-ref="cacheManager" scope="singleton" />-->
+	<bean id="ehCacheManager"
+	            class="org.springframework.cache.ehcache.EhCacheCacheManager"
+		        p:cache-manager-ref="cacheManager" scope="singleton" />
 
 	<!-- EhCache library setup -->
-	<!--<bean id="cacheManager"
+	<bean id="cacheManager"
 	            class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
 		        p:config-location="classpath:${ehcache.configFile}" scope="singleton" />
 
-	<cache:annotation-driven cache-manager="ehCacheManager" />-->
+	<cache:annotation-driven cache-manager="ehCacheManager" />
 </beans>

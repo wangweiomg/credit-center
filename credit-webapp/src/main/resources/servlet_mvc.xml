@@ -48,7 +48,7 @@
 				</property>
 				<property name="prettyPrint" value="false" />
 				<property name="objectMapper">
-					<bean class="cn.com.yintongkaxinyue.amlrs.base.mapper.JsonMapper"></bean>
+					<bean class="cn.com.yintongkaxinyue.amlrs.base.repository.JsonMapper"></bean>
 				</property>
 			</bean>-->
 

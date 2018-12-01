@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间 是必须的 -->
+<mapper namespace="com.honeywen.credit.modules.cms.repository.query.CardQueryMapper">
+
+    <sql id="cardColumns">
+        t.id,
+        t.name,
+        t.card_no,
+        t.bank_id,
+        t.card_type,
+        t.card_limit,
+        t.bill_day,
+        t.repay_day_type,
+        t.repay_day_num,
+        t.status,
+        t.create_by,
+        t.create_at,
+        t.update_by,
+        t.update_at,
+        t.delete_flag
+    </sql>
+
+    <select id="findAll" resultType="com.honeywen.credit.modules.cms.entity.Card">
+        SELECT
+        <include refid="cardColumns"/>
+         FROM t_card t
+        WHERE 1=1
+        AND t.delete_flag = 0
+    </select>
+
+    <select id="findByTest" resultType="com.honeywen.credit.modules.cms.entity.Card">
+        SELECT
+        <include refid="cardColumns"/>
+        FROM t_card t
+        WHERE 1=1
+        AND t.delete_flag = 0
+
+        <if test="second = ''">
+            limit 2
+        </if>
+    </select>
+
+    <select id="findByTest2" resultType="java.util.Map">
+        SELECT
+        100 as flag,
+        <if test="first = ''">
+            2 as second,
+        </if>
+        <if test='first = ""'>
+            3 as third,
+        </if>
+        <if test="second = ''">
+            4 as forth,
+        </if>
+        <if test='second = ""'>
+            4 as forth2,
+        </if>
+        <if test="second = 0">
+            5 as fifth,
+        </if>
+        <if test='second != ""'>
+            6 as sixth,
+        </if>
+        <if test="second != ''">
+            7 as seventh,
+        </if>
+        101 as flag2
+    </select>
+
+    <select id="findByTest3" resultType="java.util.Map">
+
+        SELECT 1
+        <if test="first != null and first.length > 0">
+            ,2
+        </if>
+
+        <if test="second != null and second.size > 0">
+            ,3
+        </if>
+
+        <if test="second != null and second.size() > 0">
+            ,4
+        </if>
+
+
+
+
+    </select>
+</mapper>

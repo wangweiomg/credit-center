@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间 是必须的 -->
+<mapper namespace="com.honeywen.credit.modules.cms.repository.command.BatchCommandMapper">
+
+    <update id="deleteCardById">
+        UPDATE t_card
+        <set>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            update_at = NOW(),
+            DELETE_FLAG = 1
+        </set>
+         WHERE id = #{id}
+    </update>
+
+</mapper>

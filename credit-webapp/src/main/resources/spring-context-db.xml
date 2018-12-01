@@ -44,13 +44,13 @@
 	</bean>
 	<!-- 集成mybatis通用mapper -->
 	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.honeywen.credit.repository" />
+		<property name="basePackage" value="com.honeywen.credit.modules.cms.repository" />
 		<property name="sqlSessionFactoryBeanName" value="ds1_ssf" />
 	</bean>
 	<!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
 	<bean id="mapperScannerConfigurerBase" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="sqlSessionFactoryBeanName" value="ds1_ssf" />
-		 <property name="basePackage" value="com.honeywen.credit.repository" />
+		 <property name="basePackage" value="com.honeywen.credit.modules.cms.repository" />
 	</bean>
 	<!-- 定义事务 -->
 	<bean id="ds1TransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -86,13 +86,13 @@
 	</bean>
 	<!-- 集成mybatis通用mapper -->
 	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.honeywen.credit.repository" />
+		<property name="basePackage" value="com.honeywen.credit.modules.cms.repository" />
 		<property name="sqlSessionFactoryBeanName" value="ds2_ssf" />
 	</bean>
 	<!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
 	<bean id="mapperScannerConfigurerParent" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="sqlSessionFactoryBeanName" value="ds1_ssf" />
-		<property name="basePackage" value="com.honeywen.credit.repository" />
+		<property name="basePackage" value="com.honeywen.credit.modules.cms.repository" />
 		<!--<property name="annotationClass" value="cn.com.yintongkaxinyue.amlrs.base.persistence.annotation.MyBatisDao" />-->
 	</bean>
 	<!-- 系统事务定义 开始 -->
