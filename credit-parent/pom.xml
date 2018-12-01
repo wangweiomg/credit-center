@@ -71,7 +71,6 @@
         <metadata-extractor.version>2.6.2</metadata-extractor.version>
         <activation.version>1.1.1</activation.version>
         <javax-mail.version>1.4.7</javax-mail.version>
-        <fastjson.version>1.1.15</fastjson.version>
         <jedis.version>2.5.1</jedis.version>
 
         <!-- web version -->
