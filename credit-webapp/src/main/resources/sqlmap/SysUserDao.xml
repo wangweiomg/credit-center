@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间 是必须的 -->
+<mapper namespace="com.honeywen.credit.modules.sys.dao.SysUserDao">
+
+    <sql id="userColumns">
+      id,
+      login_name,
+      password,
+      name,
+      email,
+      mobile,
+      status,
+      wx_open_id,
+      wx_union_id,
+      nick_name,
+      avatar_url,
+      gender,
+      country,
+      province,
+      city,
+      language,
+      remark,
+      create_by,
+      create_at,
+      update_by,
+      update_at,
+      delete_flag
+    </sql>
+
+    <select id="findByLoginName" resultType="com.honeywen.credit.modules.sys.entity.SysUser">
+        SELECT
+        <include refid="userColumns"/>
+        FROM sys_user u
+        WHERE 1=1
+        AND u.login_name = #{loginName}
+
+    </select>
+
+    <select id="findById">
+        SELECT
+        <include refid="userColumns"/>
+        FROM sys_user u
+        WHERE 1=1
+        AND u.id = #{id}
+    </select>
+
+</mapper>

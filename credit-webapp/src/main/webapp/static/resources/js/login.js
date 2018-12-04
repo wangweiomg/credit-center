@@ -22,9 +22,11 @@ $(function() {
 	});
 });
 // 登录
+var BASE_PATH = '';
+var BACK_URL = '/';
 function login() {
 	$.ajax({
-		url: BASE_PATH + '/sso/login',
+		url: BASE_PATH + '/login',
 		type: 'POST',
 		data: {
 			username: $('#username').val(),

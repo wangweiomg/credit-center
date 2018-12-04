@@ -27,4 +27,9 @@ public @Data class SysUser extends BaseModel {
     private String province;
     private String city;
     private String language;
+
+
+    public boolean isAdmin() {
+        return id != null && 1 == id;
+    }
 }

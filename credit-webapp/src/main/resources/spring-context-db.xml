@@ -22,9 +22,9 @@
 	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
 	<bean id="ds1_ssf" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds1" />
-		<property name="typeAliasesPackage" value="com.honeywen.credit.model" />
+		<property name="typeAliasesPackage" value="com.honeywen.credit" />
 		
-		<property name="mapperLocations" value="classpath*:sqlmap/**/*.xml" />
+		<property name="mapperLocations" value="classpath:/sqlmap/**/*.xml" />
 		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
         <property name="plugins">
             <array>
@@ -66,7 +66,7 @@
 	<bean id="ds2_ssf" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds2" />
 		<property name="typeAliasesPackage" value="com.honeywen.credit.model" />
-		<property name="mapperLocations" value="classpath*:sqlmap/**/*.xml" />
+		<property name="mapperLocations" value="classpath*:sqlmap/*.xml" />
 		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
         <property name="plugins">
             <array>
@@ -89,12 +89,7 @@
 		<property name="basePackage" value="com.honeywen.credit.modules.cms.repository" />
 		<property name="sqlSessionFactoryBeanName" value="ds2_ssf" />
 	</bean>
-	<!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
-	<bean id="mapperScannerConfigurerParent" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="sqlSessionFactoryBeanName" value="ds1_ssf" />
-		<property name="basePackage" value="com.honeywen.credit.modules.cms.repository" />
-		<!--<property name="annotationClass" value="cn.com.yintongkaxinyue.amlrs.base.persistence.annotation.MyBatisDao" />-->
-	</bean>
+
 	<!-- 系统事务定义 开始 -->
 	<bean id="ds2TransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="ds2" />
@@ -108,4 +103,19 @@
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 
 	<import resource="spring-context-ds.xml"/>
+
+
+	<!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
+	<bean id="mapperScannerConfigurer1" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="ds1_ssf" />
+		<property name="basePackage" value="com.honeywen.credit"/>
+		<property name="annotationClass" value="com.honeywen.credit.common.annotation.MyBatisDao"/>
+	</bean>
+
+	<!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
+	<bean id="mapperScannerConfigurer2" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="ds2_ssf" />
+		<property name="basePackage" value="com.honeywen.credit"/>
+		<property name="annotationClass" value="com.honeywen.credit.common.annotation.MyBatisDao"/>
+	</bean>
 </beans>

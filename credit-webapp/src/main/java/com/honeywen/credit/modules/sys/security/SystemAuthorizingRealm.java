@@ -9,6 +9,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import com.honeywen.credit.modules.sys.entity.SysUser;
+import com.honeywen.credit.modules.sys.service.SystemService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -27,17 +29,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.honeywen.credit.common.config.Global;
-import com.honeywen.credit.common.servlet.ValidateCodeServlet;
+//import com.honeywen.credit.common.servlet.ValidateCodeServlet;
 import com.honeywen.credit.common.utils.Encodes;
 import com.honeywen.credit.common.utils.SpringContextHolder;
-import com.honeywen.credit.common.web.Servlets;
 import com.honeywen.credit.modules.sys.entity.SysMenu;
-import com.honeywen.credit.modules.sys.entity.SysRole;
-import com.honeywen.credit.modules.sys.entity.User;
-import com.honeywen.credit.modules.sys.service.SystemService;
-import com.honeywen.credit.modules.sys.utils.LogUtils;
 import com.honeywen.credit.modules.sys.utils.UserUtils;
-import com.honeywen.credit.modules.sys.web.LoginController;
 
 /**
  * 系统安全认证实现类
@@ -45,7 +41,6 @@ import com.honeywen.credit.modules.sys.web.LoginController;
  * @version 2014-7-5
  */
 @Service
-//@DependsOn({"userDao","roleDao","menuDao"})
 public class SystemAuthorizingRealm extends AuthorizingRealm {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
@@ -69,20 +64,10 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 		}
 
 		// 校验登录验证码
-		if (LoginController.isValidateCodeLogin(token.getUsername(), false, false)){
-			Session session = UserUtils.getSession();
-			String code = (String)session.getAttribute(ValidateCodeServlet.VALIDATE_CODE);
-			if (token.getCaptcha() == null || !token.getCaptcha().toUpperCase().equals(code)){
-				throw new AuthenticationException("msg:验证码错误, 请重试.");
-			}
-		}
 
 		// 校验用户名密码
-		User user = getSystemService().getUserByLoginName(token.getUsername());
+		SysUser user = getSystemService().getUserByLoginName(token.getUsername());
 		if (user != null) {
-			if (Global.NO.equals(user.getLoginFlag())){
-				throw new AuthenticationException("msg:该已帐号禁止登录.");
-			}
 			byte[] salt = Encodes.decodeHex(user.getPassword().substring(0,16));
 			return new SimpleAuthenticationInfo(new Principal(user, token.isMobileLogin()),
 					user.getPassword().substring(16), ByteSource.Util.bytes(salt), getName());
@@ -94,6 +79,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 	/**
 	 * 获取权限授权信息，如果缓存中存在，则直接从缓存中获取，否则就重新获取， 登录成功后调用
 	 */
+	@Override
 	protected AuthorizationInfo getAuthorizationInfo(PrincipalCollection principals) {
 		if (principals == null) {
             return null;
@@ -136,11 +122,11 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 				}
 			}
 		}
-		User user = getSystemService().getUserByLoginName(principal.getLoginName());
+		SysUser user = getSystemService().getUserByLoginName(principal.getLoginName());
 		if (user != null) {
 			SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-			List<Menu> list = UserUtils.getMenuList();
-			for (Menu menu : list){
+			List<SysMenu> list = UserUtils.getMenuList();
+			for (SysMenu menu : list){
 				if (StringUtils.isNotBlank(menu.getPermission())){
 					// 添加基于Permission的权限信息
 					for (String permission : StringUtils.split(menu.getPermission(),",")){
@@ -151,13 +137,13 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 			// 添加用户权限
 			info.addStringPermission("user");
 			// 添加用户角色信息
-			for (Role role : user.getRoleList()){
-				info.addRole(role.getEnname());
-			}
+//			for (SysRole role : user.getRoleList()){
+//				info.addRole(role.getEnname());
+//			}
 			// 更新登录IP和时间
-			getSystemService().updateUserLoginInfo(user);
+//			getSystemService().updateUserLoginInfo(user);
 			// 记录登录日志
-			LogUtils.saveLog(Servlets.getRequest(), "系统登录");
+//			LogUtils.saveLog(Servlets.getRequest(), "系统登录");
 			return info;
 		} else {
 			return null;
@@ -253,21 +239,21 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 
 		private static final long serialVersionUID = 1L;
 
-		private String id; // 编号
+		private Integer id; // 编号
 		private String loginName; // 登录名
 		private String name; // 姓名
 		private boolean mobileLogin; // 是否手机登录
 
 //		private Map<String, Object> cacheMap;
 
-		public Principal(User user, boolean mobileLogin) {
+		public Principal(SysUser user, boolean mobileLogin) {
 			this.id = user.getId();
 			this.loginName = user.getLoginName();
 			this.name = user.getName();
 			this.mobileLogin = mobileLogin;
 		}
 
-		public String getId() {
+		public Integer getId() {
 			return id;
 		}
 
@@ -304,7 +290,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 
 		@Override
 		public String toString() {
-			return id;
+			return id + "-" + loginName;
 		}
 
 	}

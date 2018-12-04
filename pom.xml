@@ -25,13 +25,13 @@
             <id>alimaven</id>
             <url>http://maven.aliyun.com/nexus/content/groups/public</url>
         </repository>
-        <!--<repository>
+        <!--<dao>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
             <id>public</id>
             <url>http://10.10.2.3:8081/nexus/content/groups/public</url>
-        </repository>-->
+        </dao>-->
         <repository>
             <id>spring-release</id>
             <name>Spring RELEASE Repository</name>
@@ -97,10 +97,10 @@
             <id>snapshots</id>
             <url>http://10.10.2.3:8081/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
-        <repository>
+        <dao>
             <id>releases</id>
             <url>http://10.10.2.3:8081/nexus/content/repositories/releases</url>
-        </repository>
+        </dao>
     </distributionManagement>-->
 
     <build>

@@ -3,7 +3,7 @@ package com.honeywen.credit.modules.cms.service.impl;
 import com.google.common.collect.Lists;
 import com.honeywen.credit.modules.cms.dto.EventDTO;
 import com.honeywen.credit.modules.cms.entity.Card;
-import com.honeywen.credit.modules.cms.repository.query.CardQueryMapper;
+import com.honeywen.credit.modules.cms.dao.CardDao;
 import com.honeywen.credit.modules.cms.service.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,13 +20,13 @@ import java.util.List;
 public class PlanServiceImpl implements PlanService {
 
     @Autowired
-    private CardQueryMapper cardQueryMapper;
+    private CardDao cardDao;
 
 
     @Override
     public List<EventDTO> generatePlan() {
 
-        List<Card> cards = cardQueryMapper.findAll();
+        List<Card> cards = cardDao.findAll();
 
         final LocalDate now = LocalDate.now();
 

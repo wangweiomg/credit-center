@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 命名空间 是必须的 -->
-<mapper namespace="com.honeywen.credit.modules.cms.repository.command.BatchCommandMapper">
+<mapper namespace="com.honeywen.credit.modules.cms.dao.BatchDao">
 
     <update id="deleteCardById">
         UPDATE t_card

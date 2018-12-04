@@ -1,8 +1,13 @@
 package com.honeywen.credit.modules.sys.service;
 
+import org.springframework.stereotype.Service;
+
 /**
+ * 字典
  * @author wangwei
- * @date 2018/11/21 下午10:58
+ * @date 2018/12/2 下午2:50
  */
-public interface SysDictService {
+@Service
+public class SysDictService {
+
 }

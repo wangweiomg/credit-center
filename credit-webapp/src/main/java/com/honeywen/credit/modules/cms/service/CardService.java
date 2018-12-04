@@ -22,11 +22,5 @@ public interface CardService {
 
     void update(Card card);
 
-    Page<Card> findByTest();
-
-    Map<String, Object> findByTest2();
-
-    Map<String,Object> findByTest3();
-
     void removeByIds(String ids);
 }

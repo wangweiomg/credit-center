@@ -1,7 +1,7 @@
 package com.honeywen.credit.modules.cms.service.impl;
 
 import com.honeywen.credit.modules.cms.entity.Card;
-import com.honeywen.credit.modules.cms.repository.command.BatchCommandMapper;
+import com.honeywen.credit.modules.cms.dao.BatchDao;
 import com.honeywen.credit.modules.cms.service.BatchService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 public class BatchServiceImpl implements BatchService {
 
     @Resource
-    private BatchCommandMapper batchCommandMapper;
+    private BatchDao batchCommandMapper;
 
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     @Override

@@ -33,7 +33,7 @@ CREATE TABLE sys_user (
   password VARCHAR(100) NOT NULL COMMENT '密码',
   name VARCHAR(30) NOT NULL COMMENT '用户名',
   email VARCHAR(60) COMMENT '邮箱',
-  phone VARCHAR(30) COMMENT '手机号',
+  mobile VARCHAR(30) COMMENT '手机号',
   status tinyint(1) NOT NULL DEFAULT 1 COMMENT '状态 1.启用中 2.已停用',
   wx_open_id VARCHAR(60) COMMENT '微信open id',
   wx_union_id VARCHAR(60) COMMENT '微信union id',
@@ -55,8 +55,11 @@ CREATE TABLE sys_user (
 )COMMENT '用户';
 CREATE INDEX idx_sys_user_login_name ON sys_user(login_name) ;
 CREATE INDEX idx_sys_user_email ON sys_user(email);
+CREATE INDEX idx_sys_user_mobile ON sys_user(mobile);
 CREATE INDEX idx_sys_user_wx_union_id ON sys_user(wx_union_id);
 
+-- init user
+INSERT INTO sys_user (id, login_name, password, name, email, mobile, status, wx_open_id, wx_union_id, nick_name, avatar_url, gender, country, province, city, language, remark, create_by, create_at, update_by, update_at, delete_flag) VALUES (1, 'admin', '123456', 'admin', 'wangwei_omg@163.com', '18911580722', 1, null, null, '取个好名字', null, 1, null, null, null, null, null, 1, now(), 1, now(), 0);
 
 
 

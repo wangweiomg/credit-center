@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 public class CacheUtils {
 	
 	private static Logger logger = LoggerFactory.getLogger(CacheUtils.class);
-	private static CacheManager cacheManager = com.honeywen.credit.common.utils.SpringContextHolder.getBean(CacheManager.class);
+	private static CacheManager cacheManager = SpringContextHolder.getBean(CacheManager.class);
 	
 	private static final String SYS_CACHE = "sysCache";
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间 是必须的 -->
+<mapper namespace="com.honeywen.credit.modules.sys.dao.SysDictDao">
+
+    <sql id="dictColumns">
+      id,
+      type,
+      label,
+      value,
+      description,
+      sort,
+      remark,
+      create_by,
+      create_at,
+      update_by,
+      update_at,
+      delete_flag
+    </sql>
+
+    <select id="findAll">
+        SELECT
+        <include refid="dictColumns"/>
+        FROM sys_dict
+    </select>
+
+
+</mapper>
