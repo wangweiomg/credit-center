@@ -25,12 +25,16 @@ $(function() {
 var BASE_PATH = '';
 var BACK_URL = '/';
 function login() {
-	$.ajax({
+    var pass = $("#password").val();
+    // var srcs = CryptoJS.enc.Utf8.parse(pass)
+    // var key  = CryptoJS.enc.Utf8.parse('o7H8uIM2O5qv65l2');
+    // var encrypted = CryptoJS.AES.encrypt(srcs, key, {mode:CryptoJS.mode.ECB,padding: CryptoJS.pad.Pkcs7});
+    $.ajax({
 		url: BASE_PATH + '/login',
 		type: 'POST',
 		data: {
 			username: $('#username').val(),
-			password: $('#password').val(),
+			password: pass,
 			rememberMe: $('#rememberMe').is(':checked'),
 			backurl: BACK_URL
 		},
@@ -38,7 +42,8 @@ function login() {
 
 		},
 		success: function(json){
-			if (json.code == 1) {
+            console.log(1, json);
+            if (json.code == 1) {
 				location.href = json.data;
 			} else {
 				alert(json.data);

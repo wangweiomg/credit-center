@@ -1,4 +1,4 @@
-package com.honeywen.credit.modules.wx;
+package com.honeywen.credit.modules.wx.web;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;

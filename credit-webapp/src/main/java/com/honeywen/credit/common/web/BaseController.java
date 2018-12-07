@@ -45,7 +45,7 @@ public abstract class BaseController {
 	/**
 	 * 管理基础路径
 	 */
-	@Value("${adminPath}")
+//	@Value("${adminPath}")
 	protected String adminPath;
 	
 	/**

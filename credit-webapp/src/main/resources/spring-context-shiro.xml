@@ -15,10 +15,12 @@
 		<constructor-arg>
 			<value>
 				/static/** = anon
-				${wwwPath}/login = authc
-				${wwwPath}/logout = logout
-				${wwwPath}/servlet/validateCodeServlet = anon
-				${wwwPath}/** = user
+				/login = authc
+				/logout = logout
+				/servlet/validateCodeServlet = anon
+				/card/** = anon
+				/wx/** = anon
+				/** = user
 			</value>
 		</constructor-arg>
 	</bean>
@@ -26,9 +28,9 @@
 	<!-- 安全认证过滤器 -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" /><!--
-		<property name="loginUrl" value="${cas.server.url}?service=${cas.project.url}${wwwPath}/cas" /> -->
-		<property name="loginUrl" value="${wwwPath}/login" />
-		<property name="successUrl" value="${wwwPath}?login" />
+		<property name="loginUrl" value="${cas.server.url}?service=${cas.project.url}/cas" /> -->
+		<property name="loginUrl" value="/login" />
+		<property name="successUrl" value="/router/index" />
 		<property name="filters">
             <map>
                 <entry key="cas" value-ref="casFilter"/>
@@ -42,7 +44,7 @@
 	
 	<!-- CAS认证过滤器 -->
 	<bean id="casFilter" class="org.apache.shiro.cas.CasFilter">  
-		<property name="failureUrl" value="${wwwPath}/login"/>
+		<property name="failureUrl" value="/login"/>
 	</bean>
 	
 	<!-- 定义Shiro安全管理配置 -->

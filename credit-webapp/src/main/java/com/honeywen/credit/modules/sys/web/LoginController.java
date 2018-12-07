@@ -1,6 +1,8 @@
 package com.honeywen.credit.modules.sys.web;
 
+import com.honeywen.credit.common.config.Global;
 import com.honeywen.credit.common.security.shiro.session.SessionDAO;
+import com.honeywen.credit.common.utils.CookieUtils;
 import com.honeywen.credit.common.utils.SpringContextHolder;
 import com.honeywen.credit.common.utils.StringUtils;
 import com.honeywen.credit.common.web.BaseController;
@@ -31,17 +33,26 @@ public class LoginController extends BaseController {
 
     @GetMapping("/login")
     public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
-
-        SysUserDao userDao = SpringContextHolder.getBean(SysUserDao.class);
         Principal principal = UserUtils.getPrincipal();
-        if (principal != null) {
-            return "redirect:/";
+        if (logger.isDebugEnabled()) {
+            logger.debug("login, active session size: {}", sessionDAO.getActiveSessions(false).size());
+        }
+
+        // 如果已登录，再次访问主页，则退出原账号。
+        if (Global.TRUE.equals(Global.getConfig("notAllowRefreshIndex"))) {
+            CookieUtils.setCookie(response, "LOGINED", "false");
+        }
+
+        // 如果已经登录，则跳转到管理首页
+        if (principal != null && !principal.isMobileLogin()) {
+            return "redirect:/router/index";
         }
         return "login";
     }
 
     /**
      * 登录失败处理， 真正的登陆在filter里处理
+     *
      * @return
      */
     @PostMapping("/login")
@@ -49,17 +60,17 @@ public class LoginController extends BaseController {
 
         Principal principal = UserUtils.getPrincipal();
         // 如果已经登录，则跳转到管理首页
-        if(principal != null){
+        if (principal != null) {
             return "redirect:" + adminPath;
         }
 
         String username = WebUtils.getCleanParam(request, FormAuthenticationFilter.DEFAULT_USERNAME_PARAM);
         boolean rememberMe = WebUtils.isTrue(request, FormAuthenticationFilter.DEFAULT_REMEMBER_ME_PARAM);
         boolean mobile = WebUtils.isTrue(request, FormAuthenticationFilter.DEFAULT_MOBILE_PARAM);
-        String exception = (String)request.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
-        String message = (String)request.getAttribute(FormAuthenticationFilter.DEFAULT_MESSAGE_PARAM);
+        String exception = (String) request.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
+        String message = (String) request.getAttribute(FormAuthenticationFilter.DEFAULT_MESSAGE_PARAM);
 
-        if (StringUtils.isBlank(message) || StringUtils.equals(message, "null")){
+        if (StringUtils.isBlank(message) || StringUtils.equals(message, "null")) {
             message = "用户或密码错误, 请重试.";
         }
 
@@ -69,7 +80,7 @@ public class LoginController extends BaseController {
         model.addAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME, exception);
         model.addAttribute(FormAuthenticationFilter.DEFAULT_MESSAGE_PARAM, message);
 
-        if (logger.isDebugEnabled()){
+        if (logger.isDebugEnabled()) {
             logger.debug("login fail, active session size: {}, message: {}, exception: {}",
                     sessionDAO.getActiveSessions(false).size(), message, exception);
         }
@@ -83,7 +94,7 @@ public class LoginController extends BaseController {
 //        request.getSession().setAttribute(ValidateCodeServlet.VALIDATE_CODE, IdGen.uuid());
 
         // 如果是手机登录，则返回JSON字符串
-        if (mobile){
+        if (mobile) {
             return renderString(response, model);
         }
 
@@ -100,52 +111,23 @@ public class LoginController extends BaseController {
     public String index(HttpServletRequest request, HttpServletResponse response) {
         Principal principal = UserUtils.getPrincipal();
 
-        // 登录成功后，验证码计算器清零
-//        isValidateCodeLogin(principal.getLoginName(), false, true);
-
-        if (logger.isDebugEnabled()){
+        if (logger.isDebugEnabled()) {
             logger.debug("show index, active session size: {}", sessionDAO.getActiveSessions(false).size());
         }
 
-        // 如果已登录，再次访问主页，则退出原账号。
-//        if (Global.TRUE.equals(Global.getConfig("notAllowRefreshIndex"))){
-//            String logined = CookieUtils.getCookie(request, "LOGINED");
-//            if (StringUtils.isBlank(logined) || "false".equals(logined)){
-//                CookieUtils.setCookie(response, "LOGINED", "true");
-//            }else if (StringUtils.equals(logined, "true")){
-//                UserUtils.getSubject().logout();
-//                return "redirect:" + adminPath + "/login";
-//            }
-//        }
-
-        // 如果是手机登录，则返回JSON字符串
-        if (principal.isMobileLogin()){
-            if (request.getParameter("login") != null){
-                return renderString(response, principal);
+//         如果已登录，再次访问主页，则退出原账号。
+        if (Global.TRUE.equals(Global.getConfig("notAllowRefreshIndex"))) {
+            String logined = CookieUtils.getCookie(request, "LOGINED");
+            if (StringUtils.isBlank(logined) || "false".equals(logined)) {
+                CookieUtils.setCookie(response, "LOGINED", "true");
+            } else if (StringUtils.equals(logined, "true")) {
+                UserUtils.getSubject().logout();
+                return "redirect:" + adminPath + "/login";
             }
-            if (request.getParameter("index") != null){
-                return "index";
-            }
-            return "redirect:" + adminPath + "/login";
         }
 
-//		// 登录成功后，获取上次登录的当前站点ID
-//		UserUtils.putCache("siteId", StringUtils.toLong(CookieUtils.getCookie(request, "siteId")));
 
-//		System.out.println("==========================a");
-//		try {
-//			byte[] bytes = com.thinkgem.jeesite.common.utils.FileUtils.readFileToByteArray(
-//					com.thinkgem.jeesite.common.utils.FileUtils.getFile("c:\\sxt.dmp"));
-//			UserUtils.getSession().setAttribute("kkk", bytes);
-//			UserUtils.getSession().setAttribute("kkk2", bytes);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-////		for (int i=0; i<1000000; i++){
-////			//UserUtils.getSession().setAttribute("a", "a");
-////			request.getSession().setAttribute("aaa", "aa");
-////		}
-//		System.out.println("==========================b");
+//
         return "index";
     }
 

@@ -3,13 +3,14 @@ package com.honeywen.credit.modules.sys.entity;
 import com.honeywen.credit.base.BaseModel;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * @author wangwei
  * @date 2018/11/22 上午8:18
  */
-public @Data class SysUser extends BaseModel {
+public @Data class SysUser extends BaseModel implements Serializable {
 
     private Integer id;
     private String loginName;
