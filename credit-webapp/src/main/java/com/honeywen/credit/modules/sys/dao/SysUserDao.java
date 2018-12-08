@@ -23,4 +23,12 @@ public interface SysUserDao {
      * @return
      */
     SysUser findById(@Param("id") Integer id);
+
+    /**
+     * 保存用户
+     * @param user
+     */
+    void save(SysUser user);
+
+    SysUser findByOpenId(String openId);
 }

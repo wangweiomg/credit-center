@@ -3,11 +3,13 @@ package com.honeywen.credit.modules.sys.service;
 import com.honeywen.credit.common.security.Digests;
 import com.honeywen.credit.common.security.shiro.session.SessionDAO;
 import com.honeywen.credit.common.utils.Encodes;
+import com.honeywen.credit.common.utils.StringUtils;
 import com.honeywen.credit.modules.sys.dao.SysUserDao;
 import com.honeywen.credit.modules.sys.entity.SysUser;
 import com.honeywen.credit.modules.sys.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -42,6 +44,38 @@ public class SystemService {
     }
 
 
+    @Transactional(readOnly = false, rollbackFor = Exception.class)
+    public void saveUser(SysUser user) {
+        SysUser currentUser = UserUtils.getUser();
+        user.setCreateBy(currentUser.getId());
+        user.setStatus(SysUser.StatusEnum.ON.getValue());
+
+        sysUserDao.save(user);
+    }
+
+    /**
+     * 保存/更新微信用户
+     */
+    @Transactional(readOnly = false, rollbackFor = Exception.class)
+    public SysUser saveWxUser(String openId, String unionId) {
+
+        SysUser user = UserUtils.getByWxOpenId(openId);
+
+        if (user != null) {
+            return user;
+        }
+
+        user = new SysUser();
+        user.setWxOpenId(openId);
+        user.setCreateBy(1);
+        user.setStatus(SysUser.StatusEnum.ON.getValue());
+        sysUserDao.save(user);
+
+        return user;
+    }
+
+
+
     /**
      * 生成安全的密码，生成随机的16位salt并经过1024次 sha-1 hash
      * @param plainPassword
@@ -71,4 +105,6 @@ public class SystemService {
     public static void main(String[] args) {
         System.out.println(encryptPassword("thinkgem"));
     }
+
+
 }

@@ -6,9 +6,12 @@ import cn.binarywang.wx.miniapp.bean.WxMaPhoneNumberInfo;
 import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.Strings;
+import com.honeywen.credit.modules.sys.entity.SysUser;
+import com.honeywen.credit.modules.sys.service.SystemService;
 import com.honeywen.credit.modules.wx.config.WxMaConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxErrorException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +26,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/wx/user/{appid}")
 public class WxMaUserController {
+
+    @Autowired
+    private SystemService systemService;
 
     @GetMapping("/login")
     public String login(@PathVariable String appid, String code) {
@@ -44,6 +50,7 @@ public class WxMaUserController {
             String openId = session.getOpenid();
             // unionid 可能为空，需要 getUserInfo 获取
             String unionId = session.getUnionid();
+            systemService.saveWxUser(openId, unionId);
 
 
             return JSON.toJSONString(session);
@@ -70,6 +77,7 @@ public class WxMaUserController {
 
         // 解密用户信息
         WxMaUserInfo userInfo = wxService.getUserService().getUserInfo(sessionKey, encryptedData, iv);
+        log.debug("<--用户信息 userinfo-->{}", userInfo);
 
         return JSON.toJSONString(userInfo);
     }

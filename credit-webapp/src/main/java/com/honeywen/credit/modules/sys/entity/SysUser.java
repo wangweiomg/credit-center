@@ -33,4 +33,21 @@ public @Data class SysUser extends BaseModel implements Serializable {
     public boolean isAdmin() {
         return id != null && 1 == id;
     }
+
+    public enum StatusEnum {
+        /**
+         * 1. 启用 2停用
+         */
+        ON(1), OFF(2)
+        ;
+
+        private int value;
+        StatusEnum (int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
 }

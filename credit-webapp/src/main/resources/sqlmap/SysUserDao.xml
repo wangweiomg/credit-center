@@ -47,4 +47,49 @@
         AND u.id = #{id}
     </select>
 
+    <insert id="save" parameterType="com.honeywen.credit.modules.sys.entity.SysUser" keyProperty="id" useGeneratedKeys="true">
+      INSERT INTO sys_user (
+        login_name,
+        password,
+        name,
+        email,
+        mobile,
+        status,
+        wx_open_id,
+        wx_union_id,
+        nick_name,
+        avatar_url,
+        gender,
+        country,
+        province,
+        city,
+        language,
+        remark,
+        create_by,
+        create_at,
+        delete_flag
+      )
+      VALUES(
+        #{loginName},
+        #{password},
+        #{name},
+        #{email},
+        #{mobile},
+        #{status},
+        #{wxOpenId},
+        #{wxUnionId},
+        #{nickName},
+        #{avatarUrl},
+        #{gender},
+        #{country},
+        #{province},
+        #{city},
+        #{language},
+        #{remark},
+        #{createBy},
+        NOW(),
+        0
+      )
+    </insert>
+
 </mapper>

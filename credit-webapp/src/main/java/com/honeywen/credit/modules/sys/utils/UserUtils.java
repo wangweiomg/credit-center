@@ -37,6 +37,7 @@ public class UserUtils {
     public static final String USER_CACHE = "userCache";
     public static final String USER_CACHE_ID_ = "id_";
     public static final String USER_CACHE_LOGIN_NAME_ = "ln";
+    public static final String USER_CACHE_WX_OPEN_ID = "open_";
     public static final String USER_CACHE_LIST_BY_OFFICE_ID_ = "oid_";
 
     public static final String CACHE_AUTH_INFO = "authInfo";
@@ -84,6 +85,20 @@ public class UserUtils {
             CacheUtils.put(USER_CACHE, USER_CACHE_LOGIN_NAME_ + user.getLoginName(), user);
         }
         return user;
+    }
+
+    public static SysUser getByWxOpenId(String openId) {
+        SysUser user = (SysUser) CacheUtils.get(USER_CACHE, USER_CACHE_WX_OPEN_ID + openId);
+        if (user == null) {
+            user = userDao.findByOpenId(openId);
+            if (user == null) {
+                return null;
+            }
+            CacheUtils.put(USER_CACHE, USER_CACHE_WX_OPEN_ID + openId, user);
+        }
+
+        return user;
+
     }
 
     /**
@@ -283,6 +298,8 @@ public class UserUtils {
 //		getCacheMap().remove(key);
         getSession().removeAttribute(key);
     }
+
+
 
 //	public static Map<String, Object> getCacheMap(){
 //		Principal principal = getPrincipal();
