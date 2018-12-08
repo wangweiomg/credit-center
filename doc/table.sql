@@ -59,7 +59,7 @@ CREATE INDEX idx_sys_user_mobile ON sys_user(mobile);
 CREATE INDEX idx_sys_user_wx_union_id ON sys_user(wx_union_id);
 
 -- init user
-INSERT INTO sys_user (id, login_name, password, name, email, mobile, status, wx_open_id, wx_union_id, nick_name, avatar_url, gender, country, province, city, language, remark, create_by, create_at, update_by, update_at, delete_flag) VALUES (1, 'admin', '123456', 'admin', 'wangwei_omg@163.com', '18911580722', 1, null, null, '取个好名字', null, 1, null, null, null, null, null, 1, now(), 1, now(), 0);
+INSERT INTO sys_user (id, login_name, password, name, email, mobile, status, wx_open_id, wx_union_id, nick_name, avatar_url, gender, country, province, city, language, remark, create_by, create_at, update_by, update_at, delete_flag) VALUES (1, 'admin', '02a3f0772fcca9f415adc990734b45c6f059c7d33ee28362c4852032', 'admin', 'wangwei_omg@163.com', '18911580722', 1, null, null, '取个好名字', null, 1, null, null, null, null, null, 1, now(), 1, now(), 0);
 
 
 

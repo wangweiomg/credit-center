@@ -30,5 +30,5 @@ public interface SysUserDao {
      */
     void save(SysUser user);
 
-    SysUser findByOpenId(String openId);
+    SysUser findByOpenId(@Param("openId") String openId);
 }

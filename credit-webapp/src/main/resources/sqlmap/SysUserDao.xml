@@ -39,6 +39,15 @@
 
     </select>
 
+    <select id="findByOpenId" resultType="com.honeywen.credit.modules.sys.entity.SysUser">
+        SELECT
+        <include refid="userColumns"/>
+        FROM sys_user u
+        WHERE 1=1
+        AND u.wx_open_id = #{openId}
+
+    </select>
+
     <select id="findById">
         SELECT
         <include refid="userColumns"/>
