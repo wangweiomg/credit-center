@@ -39,7 +39,7 @@ CREATE TABLE sys_user (
   wx_open_id VARCHAR(60) COMMENT '微信open id',
   wx_union_id VARCHAR(60) COMMENT '微信union id',
   nick_name VARCHAR(30) COMMENT '用户昵称',
-  avatar_url VARCHAR(100) COMMENT '用户头像URL',
+  avatar_url VARCHAR(300) COMMENT '用户头像URL',
   gender TINYINT(1) COMMENT '性别1.男 2女 0未知',
   country VARCHAR(30) COMMENT '用户所在国家',
   province VARCHAR(30) COMMENT '用户所在省份',
