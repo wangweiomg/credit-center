@@ -138,7 +138,7 @@ public class CardServiceImpl implements CardService {
     @Override
     public void initTestCards(Integer userId) {
 
-        List<Card> list = Lists.newArrayListWithCapacity(5);
+
         Card card1 = new Card();
         Card card2 = new Card();
         Card card3 = new Card();
@@ -199,6 +199,8 @@ public class CardServiceImpl implements CardService {
         card4.setCreateBy(1);
         card5.setCreateBy(1);
 
+
+        List<Card> list = Lists.newArrayList(card1, card2, card3, card4, card5);
         cardDao.saveList(list);
     }
 
