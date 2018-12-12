@@ -48,7 +48,7 @@
 
     </select>
 
-    <select id="findById">
+    <select id="findById" resultType="com.honeywen.credit.modules.sys.entity.SysUser">
         SELECT
         <include refid="userColumns"/>
         FROM sys_user u
