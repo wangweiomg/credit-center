@@ -115,9 +115,6 @@
                     <source>1.8</source>
                     <target>1.8</target>
                     <encoding>UTF-8</encoding>
-                    <fork>true</fork>
-                    <meminitial>1024m</meminitial>
-                    <maxmem>2048m</maxmem>
                 </configuration>
             </plugin>
 
