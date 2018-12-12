@@ -9,11 +9,14 @@ import com.honeywen.credit.modules.cms.entity.Card;
 import com.honeywen.credit.modules.cms.dao.CardDao;
 import com.honeywen.credit.modules.cms.service.BatchService;
 import com.honeywen.credit.modules.cms.service.CardService;
+import com.honeywen.credit.modules.sys.entity.SysUser;
+import com.honeywen.credit.modules.sys.utils.UserUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -48,6 +51,13 @@ public class CardServiceImpl implements CardService {
 
         if (card.getStatus() == null) {
             card.setStatus(Card.StatusEnum.ON.getValue());
+        }
+
+        SysUser user = UserUtils.getByWxOpenId(card.getWxOpenId());
+        if (user == null) {
+            card.setUserId(1);
+        } else {
+            card.setUserId(user.getId());
         }
 
         if (card.getMultipleNum() != null) {
@@ -118,6 +128,78 @@ public class CardServiceImpl implements CardService {
         });
 
 
+    }
+
+    /**
+     * 为用户初始化五个测试
+     * @param userId
+     */
+    @Transactional(readOnly = false, rollbackFor = Exception.class)
+    @Override
+    public void initTestCards(Integer userId) {
+
+        List<Card> list = Lists.newArrayListWithCapacity(5);
+        Card card1 = new Card();
+        Card card2 = new Card();
+        Card card3 = new Card();
+        Card card4 = new Card();
+        Card card5 = new Card();
+
+        card1.setUserId(userId);
+        card2.setUserId(userId);
+        card3.setUserId(userId);
+        card4.setUserId(userId);
+        card5.setUserId(userId);
+
+        card1.setName("工商银行-测试");
+        card2.setName("招行桑银行-测试");
+        card3.setName("广发银行-测试");
+        card4.setName("中信银行-测试");
+        card5.setName("农业银行-测试");
+
+        card1.setCardType(Card.CardTypeEnum.CREDIT_CARD.getValue());
+        card2.setCardType(Card.CardTypeEnum.CREDIT_CARD.getValue());
+        card3.setCardType(Card.CardTypeEnum.CREDIT_CARD.getValue());
+        card4.setCardType(Card.CardTypeEnum.CREDIT_CARD.getValue());
+        card5.setCardType(Card.CardTypeEnum.CREDIT_CARD.getValue());
+
+        card1.setCardLimit(BigDecimal.valueOf(35000));
+        card2.setCardLimit(BigDecimal.valueOf(68000));
+        card3.setCardLimit(BigDecimal.valueOf(60000));
+        card4.setCardLimit(BigDecimal.valueOf(40000));
+        card5.setCardLimit(BigDecimal.valueOf(43000));
+
+        card1.setBillDay(5);
+        card2.setBillDay(12);
+        card3.setBillDay(15);
+        card4.setBillDay(17);
+        card5.setBillDay(22);
+
+        card1.setRepayDayType(Card.RepayDayTypeEnum.FIXED_DAY.getValue());
+        card2.setRepayDayType(Card.RepayDayTypeEnum.FIXED_DAY.getValue());
+        card3.setRepayDayType(Card.RepayDayTypeEnum.FIXED_DAY.getValue());
+        card4.setRepayDayType(Card.RepayDayTypeEnum.DELAY_DAY.getValue());
+        card5.setRepayDayType(Card.RepayDayTypeEnum.FIXED_DAY.getValue());
+
+        card1.setRepayDayNum(25);
+        card2.setRepayDayNum(1);
+        card3.setRepayDayNum(5);
+        card4.setRepayDayNum(20);
+        card5.setRepayDayNum(13);
+
+        card1.setStatus(Card.StatusEnum.ON.getValue());
+        card2.setStatus(Card.StatusEnum.ON.getValue());
+        card3.setStatus(Card.StatusEnum.ON.getValue());
+        card4.setStatus(Card.StatusEnum.ON.getValue());
+        card5.setStatus(Card.StatusEnum.ON.getValue());
+
+        card1.setCreateBy(1);
+        card2.setCreateBy(1);
+        card3.setCreateBy(1);
+        card4.setCreateBy(1);
+        card5.setCreateBy(1);
+
+        cardDao.saveList(list);
     }
 
     private int getCardRepayDay(Card card) {

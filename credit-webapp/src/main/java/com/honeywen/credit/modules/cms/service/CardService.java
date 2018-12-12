@@ -23,4 +23,6 @@ public interface CardService {
     void update(Card card);
 
     void removeByIds(String ids);
+
+    void initTestCards(Integer id);
 }

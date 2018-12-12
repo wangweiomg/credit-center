@@ -1,9 +1,11 @@
 package com.honeywen.credit.modules.sys.service;
 
+import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
 import com.honeywen.credit.common.security.Digests;
 import com.honeywen.credit.common.security.shiro.session.SessionDAO;
 import com.honeywen.credit.common.utils.Encodes;
 import com.honeywen.credit.common.utils.StringUtils;
+import com.honeywen.credit.modules.cms.service.CardService;
 import com.honeywen.credit.modules.sys.dao.SysUserDao;
 import com.honeywen.credit.modules.sys.entity.SysUser;
 import com.honeywen.credit.modules.sys.utils.UserUtils;
@@ -29,6 +31,8 @@ public class SystemService {
     private SessionDAO sessionDao;
     @Autowired
     private SysUserDao sysUserDao;
+    @Autowired
+    private CardService cardService;
 
     public SessionDAO getSessionDao() {
         return sessionDao;
@@ -73,7 +77,23 @@ public class SystemService {
 
         return user;
     }
+    @Transactional(readOnly = false, rollbackFor = Exception.class)
+    public void saveWxUserInfo(WxMaUserInfo userInfo) {
+        SysUser user = UserUtils.getByWxOpenId(userInfo.getOpenId());
+        user.setWxUnionId(userInfo.getUnionId());
+        user.setNickName(userInfo.getNickName());
+        user.setAvatarUrl(userInfo.getAvatarUrl());
+        user.setCountry(userInfo.getCountry());
+        user.setCity(userInfo.getCity());
+        user.setGender(userInfo.getGender());
+        user.setLanguage(userInfo.getLanguage());
+        user.setUpdateBy(1);
 
+        sysUserDao.update(user);
+        UserUtils.clearCache(user);
+
+        cardService.initTestCards(user.getId());
+    }
 
 
     /**
@@ -105,6 +125,7 @@ public class SystemService {
     public static void main(String[] args) {
         System.out.println(encryptPassword("thinkgem"));
     }
+
 
 
 }

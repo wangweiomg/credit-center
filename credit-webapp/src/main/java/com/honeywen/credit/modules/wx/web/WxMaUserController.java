@@ -78,6 +78,7 @@ public class WxMaUserController {
         // 解密用户信息
         WxMaUserInfo userInfo = wxService.getUserService().getUserInfo(sessionKey, encryptedData, iv);
         log.debug("<--用户信息 userinfo-->{}", userInfo);
+        systemService.saveWxUserInfo(userInfo);
 
         return JSON.toJSONString(userInfo);
     }

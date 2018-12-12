@@ -17,13 +17,13 @@ public @Data class SysUser extends BaseModel implements Serializable {
     private String password;
     private String name;
     private String email;
-    private String phone;
+    private String mobile;
     private Integer status;
     private String wxOpenId;
     private String wxUnionId;
     private String nickName;
     private String avatarUrl;
-    private Integer gender;
+    private String gender;
     private String country;
     private String province;
     private String city;

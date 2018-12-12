@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 public @Data class Card extends BaseModel {
 
 
+    private Integer userId;
     /**
      * 卡片名称， 非空
      */
@@ -65,6 +66,10 @@ public @Data class Card extends BaseModel {
      * 批量添加数量
      */
     private Integer multipleNum;
+    /**
+     * 微信open id
+     */
+    private String wxOpenId;
 
 
 

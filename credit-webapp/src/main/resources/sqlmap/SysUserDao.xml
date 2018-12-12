@@ -101,4 +101,58 @@
       )
     </insert>
 
+    <update id="update" parameterType="com.honeywen.credit.modules.sys.entity.SysUser">
+        UPDATE sys_user
+        <set>
+            <if test="loginName != null">
+                login_name = #{loginName},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="mobile != null and mobile != ''">
+                mobile = #{mobile},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="wxOpenId != null and wxOpenId !=''">
+                wx_open_id = #{wxOpenId},
+            </if>
+            <if test="wxUnionId != null and wxUnionId !=''">
+                wx_union_id = #{wxUnionId},
+            </if>
+            <if test="nickName != null and nickName != ''">
+                nick_name = #{nickName},
+            </if>
+            <if test="avatarUrl != null and avatarUrl != ''">
+                avatar_url = #{avatarUrl},
+            </if>
+            <if test="gender != null">
+                gender = #{gender},
+            </if>
+            <if test="country != null and country !=''">
+                country = #{country},
+            </if>
+            <if test="province != null">
+                province = #{province},
+            </if>
+            <if test="city != null">
+                city = #{city},
+            </if>
+            <if test="language != null">
+                language = #{language},
+            </if>
+            update_by = #{updateBy},
+            update_at = NOW()
+        </set>
+        WHERE id = #{id}
+    </update>
+
 </mapper>

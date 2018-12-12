@@ -115,6 +115,8 @@ function createAction() {
                     params.billDay = this.$content.find("#createForm input[name='billDay']").val();
                     params.repayDayType = this.$content.find("#createForm input[name='repayDayType']:checked").val();
                     params.repayDayNum = this.$content.find("#createForm input[name='repayDayNum']").val();
+                    // 新增人是系统
+                    params.userId = 1;
 
                     var url = '/card/save';
                     $.ajax({

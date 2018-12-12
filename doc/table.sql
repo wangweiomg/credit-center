@@ -4,6 +4,7 @@
 DROP TABLE IF EXISTS t_card;
 CREATE TABLE t_card (
   id int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id' ,
+  user_id INT NOT NULL COMMENT '所属人id',
   name VARCHAR(32) NOT NULL COMMENT '名称',
   card_no VARCHAR(32) COMMENT '卡号',
   bank_id tinyint(2) NOT NULL COMMENT '银行ID',
