@@ -97,7 +97,7 @@ public class WxPortalController {
 
 
             // 发送给管理员，
-            SysUser admin = UserUtils.get(1);
+            SysUser admin = UserUtils.get(2);
             WxMaKefuMessage msg = WxMaKefuMessage.newTextBuilder().toUser(admin.getWxOpenId()).content(inMessage.getContent()).build();
             wxService.getMsgService().sendKefuMsg(msg);
 
