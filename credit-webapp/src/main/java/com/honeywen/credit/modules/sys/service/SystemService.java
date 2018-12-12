@@ -70,6 +70,7 @@ public class SystemService {
         }
 
         user = new SysUser();
+        user.setLoginName(openId);
         user.setWxOpenId(openId);
         user.setCreateBy(1);
         user.setStatus(SysUser.StatusEnum.ON.getValue());
