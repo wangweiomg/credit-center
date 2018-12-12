@@ -71,6 +71,8 @@ public class SystemService {
 
         user = new SysUser();
         user.setLoginName(openId);
+        user.setPassword(encryptPassword("admin"));
+        user.setName("wx user");
         user.setWxOpenId(openId);
         user.setCreateBy(1);
         user.setStatus(SysUser.StatusEnum.ON.getValue());
