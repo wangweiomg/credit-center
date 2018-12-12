@@ -63,6 +63,7 @@
 
     <insert id="saveList" parameterType="java.util.List">
         INSERT INTO t_card (
+        user_id,
         name,
         card_no,
         bank_id,
@@ -77,6 +78,7 @@
         VALUES
         <foreach collection="list" item="item" separator=",">
             (
+            #{item.userId},
             #{item.name},
             #{item.cardNo},
             #{item.bankId},
