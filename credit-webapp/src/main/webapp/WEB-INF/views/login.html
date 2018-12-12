@@ -13,7 +13,9 @@
 	<link href="/static/resources/css/login.css" rel="stylesheet"/>
 </head>
 <body>
+
 <div id="login-window">
+    <form method="post" action="/login" id="myForm">
 	<div class="input-group m-b-20">
 		<span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
 		<div class="fg-line">
@@ -32,7 +34,9 @@
 		<input id="rememberMe" type="checkbox" class="checkbix" data-text="自动登录" name="rememberMe">
 	</div>
 	<a id="login-bt" href="javascript:;" class="waves-effect waves-button waves-float"><i class="zmdi zmdi-arrow-forward"></i></a>
+    </form>
 </div>
+
 <script src="/static/resources/plugins/jquery.1.12.4.min.js"></script>
 <script src="/static/resources/plugins/bootstrap-3.3.0/js/bootstrap.min.js"></script>
 <script src="/static/resources/plugins/waves-0.7.5/waves.min.js"></script>

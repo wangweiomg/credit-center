@@ -42,11 +42,12 @@ function login() {
 
 		},
 		success: function(json){
+		    location.href = '/index';
             console.log(1, json);
-            if (json.code == 1) {
+            if (json.code == 200) {
 				location.href = json.data;
 			} else {
-				alert(json.data);
+				// alert(json.data);
 				if (10101 == json.code) {
 					$('#username').focus();
 				}
@@ -56,7 +57,7 @@ function login() {
 			}
 		},
 		error: function(error){
-			console.log(error);
+			console.log(2, error);
 		}
 	});
 }

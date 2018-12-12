@@ -30,7 +30,7 @@
 		<property name="securityManager" ref="securityManager" /><!--
 		<property name="loginUrl" value="${cas.server.url}?service=${cas.project.url}/cas" /> -->
 		<property name="loginUrl" value="/login" />
-		<property name="successUrl" value="/router/index" />
+		<property name="successUrl" value="/" />
 		<property name="filters">
             <map>
                 <entry key="cas" value-ref="casFilter"/>

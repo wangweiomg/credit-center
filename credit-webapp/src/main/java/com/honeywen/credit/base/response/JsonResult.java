@@ -2,12 +2,10 @@ package com.honeywen.credit.base.response;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Maps;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 
-import java.util.Collections;
 import java.util.Map;
 
 /**
@@ -16,52 +14,37 @@ import java.util.Map;
  */
 public @Data class JsonResult {
 
-    private Head head;
-    private Map<String, Object> body;
+    private int code;
+    private String message;
+    private Object body;
 
 
     private JsonResult() {
     }
 
-    private JsonResult(Head head, Map<String, Object> body) {
-        this.head = head;
+    private JsonResult(int code, String message, Object body) {
+        this.code = code;
+        this.message = message;
         this.body = body;
-    }
-
-    private static @Data @AllArgsConstructor class Head {
-
-        private Integer code;
-        private String msg;
-
-        static Head success() {
-            return new Head(HttpStatus.OK.value(), "Success");
-        }
-
-        static Head success(String msg) {
-            return new Head(HttpStatus.OK.value(), msg);
-        }
-
-        static Head error(Integer code, String msg) {
-            return new Head(code, msg);
-        }
     }
 
 
     public static JsonResult success() {
-        return new JsonResult(Head.success(), Collections.emptyMap());
+        return new JsonResult(HttpStatus.OK.value(), HttpStatus.OK.name(), null);
 
     }
 
     public static JsonResult success(String msg) {
-        return new JsonResult(Head.success(msg), Collections.emptyMap());
+        return new JsonResult(HttpStatus.OK.value(), msg, null);
     }
 
-    public static JsonResult success(Map<String, Object> body) {
-        return new JsonResult(Head.success(), body);
+    public static JsonResult success(Object body) {
+        return new JsonResult(HttpStatus.OK.value(), HttpStatus.OK.name(), body);
     }
 
-    public static JsonResult error(Integer code, String msg) {
-        return new JsonResult(Head.error(code, msg), Collections.emptyMap());
+    public static JsonResult error(int code, String msg) {
+
+        return new JsonResult(code, msg, null);
     }
 
 
