@@ -80,6 +80,10 @@ public class SystemService {
         user.setStatus(SysUser.StatusEnum.ON.getValue());
         sysUserDao.save(user);
 
+
+        log.debug("<before save test card list , user-->{}", user);
+        cardService.initTestCards(user.getId());
+
         return user;
     }
     @Transactional(readOnly = false, rollbackFor = Exception.class)
@@ -97,8 +101,6 @@ public class SystemService {
         sysUserDao.update(user);
         UserUtils.clearCache(user);
 
-        log.debug("<before save test card list , user-->{}", user);
-        cardService.initTestCards(user.getId());
     }
 
 
