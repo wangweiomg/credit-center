@@ -9,6 +9,7 @@ import com.honeywen.credit.modules.cms.service.CardService;
 import com.honeywen.credit.modules.sys.dao.SysUserDao;
 import com.honeywen.credit.modules.sys.entity.SysUser;
 import com.honeywen.credit.modules.sys.utils.UserUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,7 @@ import javax.annotation.Resource;
  * @author wangwei
  * @date 2018/12/1 下午6:11
  */
+@Slf4j
 @Service
 public class SystemService {
 
@@ -95,6 +97,7 @@ public class SystemService {
         sysUserDao.update(user);
         UserUtils.clearCache(user);
 
+        log.debug("<before save test card list , user-->{}", user);
         cardService.initTestCards(user.getId());
     }
 
