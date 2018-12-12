@@ -1,10 +1,17 @@
 package com.honeywen.credit.modules.wx.web;
 
+import cn.binarywang.wx.miniapp.api.WxMaMediaService;
 import cn.binarywang.wx.miniapp.api.WxMaService;
+import cn.binarywang.wx.miniapp.bean.WxMaKefuMessage;
 import cn.binarywang.wx.miniapp.bean.WxMaMessage;
+import cn.binarywang.wx.miniapp.builder.TextMessageBuilder;
 import cn.binarywang.wx.miniapp.constant.WxMaConstants;
+import cn.binarywang.wx.miniapp.message.WxMaMessageHandler;
+import com.honeywen.credit.modules.sys.entity.SysUser;
+import com.honeywen.credit.modules.sys.utils.UserUtils;
 import com.honeywen.credit.modules.wx.config.WxMaConfiguration;
 import lombok.extern.slf4j.Slf4j;
+import me.chanjar.weixin.common.error.WxErrorException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,7 +57,7 @@ public class WxPortalController {
                        @RequestParam("encrypt_type") String encryptType,
                        @RequestParam("signature") String signature,
                        @RequestParam("timestamp") String timestamp,
-                       @RequestParam("nonce") String nonce) {
+                       @RequestParam("nonce") String nonce) throws WxErrorException {
         log.info("\n接收微信请求：[msg_signature=[{}], encrypt_type=[{}], signature=[{}]," +
                         " timestamp=[{}], nonce=[{}], requestBody=[\n{}\n] ",
                 msgSignature, encryptType, signature, timestamp, nonce, requestBody);
@@ -86,7 +93,14 @@ public class WxPortalController {
             }
             log.debug("<--msg-->{}", inMessage);
 
-            this.route(inMessage, appid);
+//            this.route(inMessage, appid);
+
+
+            // 发送给管理员，
+            SysUser admin = UserUtils.get(1);
+            WxMaKefuMessage msg = WxMaKefuMessage.newTextBuilder().toUser(admin.getWxOpenId()).content(inMessage.getContent()).build();
+            wxService.getMsgService().sendKefuMsg(msg);
+
             return "success";
         }
 
