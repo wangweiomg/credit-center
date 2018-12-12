@@ -15,13 +15,8 @@ public interface CardDao {
 
     List<Card> findAll();
 
-    List<Card> findByTest(Map<String, Object> map);
+    List<Card> findList(Card card);
 
-    Map<String, Object> findByTest2(Map<String,Object> map);
-
-    Map<String,Object> ç(Map<String,Object> map);
-
-    Map<String,Object> findByTest3(Map<String,Object> map);
 
     void saveList(List<Card> list);
 

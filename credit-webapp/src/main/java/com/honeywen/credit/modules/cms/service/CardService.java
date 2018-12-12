@@ -25,4 +25,6 @@ public interface CardService {
     void removeByIds(String ids);
 
     void initTestCards(Integer id);
+
+    List<Card> findList(String wxOpenId);
 }

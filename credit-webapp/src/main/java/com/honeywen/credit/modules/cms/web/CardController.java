@@ -4,6 +4,7 @@ import com.honeywen.credit.base.response.JsonResult;
 import com.honeywen.credit.modules.cms.dto.EventDTO;
 import com.honeywen.credit.modules.cms.entity.Card;
 import com.honeywen.credit.modules.cms.service.CardService;
+import com.honeywen.credit.modules.sys.utils.UserUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,9 +26,9 @@ public class CardController {
     private CardService cardService;
 
     @GetMapping("/list")
-    public List<Card> findAll() {
+    public List<Card> findList(String wxOpenId) {
 
-        return cardService.findAll();
+        return cardService.findList(wxOpenId);
     }
 
 

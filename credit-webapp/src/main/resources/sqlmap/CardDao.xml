@@ -31,6 +31,18 @@
         AND t.delete_flag = 0
     </select>
 
+    <select id="findList" resultType="com.honeywen.credit.modules.cms.entity.Card">
+        SELECT
+        <include refid="cardColumns"/>
+         FROM t_card t
+        WHERE 1=1
+        AND t.delete_flag = 0
+        <if test="userId != null">
+            AND t.user_id = #{userId}
+        </if>
+    </select>
+
+
     <insert id="save" parameterType="com.honeywen.credit.modules.cms.entity.Card" keyProperty="id" useGeneratedKeys="true">
         INSERT INTO t_card (
         name,

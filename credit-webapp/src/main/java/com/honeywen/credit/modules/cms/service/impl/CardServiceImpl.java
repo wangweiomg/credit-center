@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.honeywen.credit.common.utils.StringUtils;
 import com.honeywen.credit.modules.cms.dto.EventDTO;
 import com.honeywen.credit.modules.cms.entity.Card;
 import com.honeywen.credit.modules.cms.dao.CardDao;
@@ -202,6 +203,20 @@ public class CardServiceImpl implements CardService {
 
         List<Card> list = Lists.newArrayList(card1, card2, card3, card4, card5);
         cardDao.saveList(list);
+    }
+
+    @Override
+    public List<Card> findList(String wxOpenId) {
+
+        Card param = new Card();
+        param.setUserId(1);
+        if (StringUtils.isNotBlank(wxOpenId)) {
+            SysUser user = UserUtils.getByWxOpenId(wxOpenId);
+            if (user != null) {
+                param.setUserId(user.getId());
+            }
+        }
+        return cardDao.findList(param);
     }
 
     private int getCardRepayDay(Card card) {
