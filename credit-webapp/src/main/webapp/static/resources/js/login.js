@@ -42,7 +42,7 @@ function login() {
 
 		},
 		success: function(json){
-		    location.href = '/index';
+		    location.href = '/';
             console.log(1, json);
             if (json.code == 200) {
 				location.href = json.data;
