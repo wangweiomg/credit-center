@@ -7,6 +7,7 @@
 
     <sql id="cardColumns">
         t.id,
+        t.user_id,
         t.name,
         t.card_no,
         t.bank_id,
@@ -45,6 +46,7 @@
 
     <insert id="save" parameterType="com.honeywen.credit.modules.cms.entity.Card" keyProperty="id" useGeneratedKeys="true">
         INSERT INTO t_card (
+        user_id,
         name,
         card_no,
         bank_id,
@@ -58,6 +60,7 @@
         create_at)
         VALUES
         (
+        #{userId},
         #{name},
         #{cardNo},
         #{bankId},

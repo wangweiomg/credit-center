@@ -153,7 +153,7 @@ public class CardServiceImpl implements CardService {
         card5.setUserId(userId);
 
         card1.setName("工商银行-测试");
-        card2.setName("招行桑银行-测试");
+        card2.setName("招行银行-测试");
         card3.setName("广发银行-测试");
         card4.setName("中信银行-测试");
         card5.setName("农业银行-测试");
