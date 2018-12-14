@@ -1,6 +1,7 @@
 package com.honeywen.credit.modules.wx.web;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
+import cn.binarywang.wx.miniapp.bean.WxMaKefuMessage;
 import cn.binarywang.wx.miniapp.bean.WxMaMessage;
 import cn.binarywang.wx.miniapp.constant.WxMaConstants;
 import com.alibaba.fastjson.JSON;
@@ -103,16 +104,12 @@ public class WxPortalController {
 
             String content = inMessage.getContent();
             String reply = getTuling(content, inMessage.getFromUser());
-            inMessage.setContent(reply);
 
+//            this.route(inMessage, appid);
 
-            this.route(inMessage, appid);
-
-
-            // 发送给管理员，
-//            SysUser admin = UserUtils.get(2);
-//            WxMaKefuMessage msg = WxMaKefuMessage.newTextBuilder().toUser(admin.getWxOpenId()).content(inMessage.getContent()).build();
-//            wxService.getMsgService().sendKefuMsg(msg);
+            // 回复
+            WxMaKefuMessage msg = WxMaKefuMessage.newTextBuilder().toUser(inMessage.getFromUser()).content(reply).build();
+            wxService.getMsgService().sendKefuMsg(msg);
 
 
             return "success";
