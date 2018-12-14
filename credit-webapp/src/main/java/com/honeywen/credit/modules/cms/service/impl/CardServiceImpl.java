@@ -68,7 +68,7 @@ public class CardServiceImpl implements CardService {
             List<Card> list = Lists.newArrayListWithCapacity(num);
 
             for (int i = 0; i < card.getMultipleNum(); i++) {
-                card.setName(card.getName() + "-" + (i + 1));
+                card.setName(card.getName());
                 list.add(card);
             }
 
