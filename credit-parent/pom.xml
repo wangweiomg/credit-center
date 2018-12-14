@@ -95,6 +95,7 @@
 
 
     <dependencyManagement>
+
         <dependencies>
             <!-- SPRING begin -->
             <dependency>

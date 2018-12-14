@@ -1,21 +1,23 @@
 package com.honeywen.credit.modules.wx.web;
 
-import cn.binarywang.wx.miniapp.api.WxMaMediaService;
 import cn.binarywang.wx.miniapp.api.WxMaService;
-import cn.binarywang.wx.miniapp.bean.WxMaKefuMessage;
 import cn.binarywang.wx.miniapp.bean.WxMaMessage;
-import cn.binarywang.wx.miniapp.builder.TextMessageBuilder;
 import cn.binarywang.wx.miniapp.constant.WxMaConstants;
-import cn.binarywang.wx.miniapp.message.WxMaMessageHandler;
-import com.honeywen.credit.modules.sys.entity.SysUser;
-import com.honeywen.credit.modules.sys.utils.UserUtils;
+import com.alibaba.fastjson.JSON;
 import com.honeywen.credit.modules.wx.config.WxMaConfiguration;
+import com.honeywen.credit.modules.wx.dto.TulingRequest;
+import com.honeywen.credit.modules.wx.dto.TulingResponse;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxErrorException;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.*;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.Objects;
+import java.nio.charset.Charset;
+import java.util.*;
 
 /**
  * @author wangwei
@@ -25,6 +27,11 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/wx/portal/{appid}")
 public class WxPortalController {
+
+
+    public static final String TULING_URL = "http://openapi.tuling123.com/openapi/api/v2";
+
+
     @GetMapping(produces = "text/plain;charset=utf-8")
     public String authGet(@PathVariable String appid,
                           @RequestParam(name = "signature", required = false) String signature,
@@ -93,18 +100,74 @@ public class WxPortalController {
             }
             log.debug("<--msg-->{}", inMessage);
 
-//            this.route(inMessage, appid);
+
+            String content = inMessage.getContent();
+            String reply = getTuling(content, inMessage.getFromUser());
+            inMessage.setContent(reply);
+
+
+            this.route(inMessage, appid);
 
 
             // 发送给管理员，
-            SysUser admin = UserUtils.get(2);
-            WxMaKefuMessage msg = WxMaKefuMessage.newTextBuilder().toUser(admin.getWxOpenId()).content(inMessage.getContent()).build();
-            wxService.getMsgService().sendKefuMsg(msg);
+//            SysUser admin = UserUtils.get(2);
+//            WxMaKefuMessage msg = WxMaKefuMessage.newTextBuilder().toUser(admin.getWxOpenId()).content(inMessage.getContent()).build();
+//            wxService.getMsgService().sendKefuMsg(msg);
+
 
             return "success";
         }
 
         throw new RuntimeException("不可识别的加密类型：" + encryptType);
+    }
+
+    private static String getTuling(String content, String userId) {
+        if (StringUtils.isBlank(content)) {
+            return null;
+        }
+
+
+        TulingRequest dto = TulingRequest.builder()
+                .reqType(0)
+                .perception(TulingRequest.Perception.builder().inputText(TulingRequest.Perception.inputText(content)).build())
+                .userInfo(new TulingRequest.UserInfo("92abc57cc89f487189e7b6e26de8d6b6", userId))
+                .build();
+        System.out.println(JSON.toJSONString(dto));
+
+        RestTemplate restTemplate = new RestTemplate();
+        List<HttpMessageConverter<?>> converterList = restTemplate.getMessageConverters();
+
+        HttpMessageConverter<?> converter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
+        converterList.add(0, converter);
+        restTemplate.setMessageConverters(converterList);
+
+        HttpHeaders headers = new HttpHeaders();
+        //设置类型
+        MediaType type = MediaType.parseMediaType("application/json; charset=UTF-8");
+        headers.setContentType(type);
+        headers.add("Accept", MediaType.APPLICATION_JSON.toString());
+        HttpEntity<TulingRequest> entity = new HttpEntity<>(dto, headers);
+
+        String result = restTemplate.postForObject(TULING_URL, entity, String.class);
+        System.out.println(result);
+
+        TulingResponse data = JSON.parseObject(result, TulingResponse.class);
+
+
+
+        data.getResults().forEach(i ->{
+            String value = (String) i.getValues().get(i.getResultType());
+        });
+
+        TulingResponse.Result r = data.getResults().get(0);
+        return (String) r.getValues().get(r.getResultType());
+
+
+    }
+
+    public static void main(String[] args) {
+        getTuling("你好，美女！", "12931");
+
     }
 
     private void route(WxMaMessage message, String appid) {
