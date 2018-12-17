@@ -5,7 +5,7 @@ $(function () {
     $("#time").html(nowDate);
     $("h3").html(nowDate);
 
-    $.get('/card/list', function (data) {
+    $.get('/card/list', {"wxOpenId": 1}, function (data) {
         var tr = $("#cloneTr");
         $.each(data, function (index, card) {
             var cloneTr = tr.clone();
