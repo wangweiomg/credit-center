@@ -26,7 +26,7 @@ public class CardController {
     private CardService cardService;
 
     @GetMapping("/list")
-    public List<Card> findList(String wxOpenId) {
+    public List<Card> findList(@RequestParam(required = true) String wxOpenId) {
 
         return cardService.findList(wxOpenId);
     }

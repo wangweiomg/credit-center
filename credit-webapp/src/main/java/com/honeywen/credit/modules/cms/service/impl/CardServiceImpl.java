@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -209,12 +210,13 @@ public class CardServiceImpl implements CardService {
     public List<Card> findList(String wxOpenId) {
 
         Card param = new Card();
-        param.setUserId(1);
-        if (StringUtils.isNotBlank(wxOpenId)) {
+
+        if (!"1".equals(wxOpenId)) {
             SysUser user = UserUtils.getByWxOpenId(wxOpenId);
-            if (user != null) {
-                param.setUserId(user.getId());
+            if (user == null) {
+                return Collections.EMPTY_LIST;
             }
+            param.setUserId(user.getId());
         }
         return cardDao.findList(param);
     }
