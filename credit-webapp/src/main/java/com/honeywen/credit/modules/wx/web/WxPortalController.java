@@ -102,13 +102,13 @@ public class WxPortalController {
             log.debug("<--msg-->{}", inMessage);
 
 
-            String content = inMessage.getContent();
-            String reply = getTuling(content, inMessage.getFromUser());
+//            String content = inMessage.getContent();
+//            String reply = getTuling(content, inMessage.getFromUser());
 
 //            this.route(inMessage, appid);
 
             // 回复
-            WxMaKefuMessage msg = WxMaKefuMessage.newTextBuilder().toUser(inMessage.getFromUser()).content(reply).build();
+            WxMaKefuMessage msg = WxMaKefuMessage.newTextBuilder().toUser(inMessage.getFromUser()).content("更多问题请加客服微信:[wangweijava]").build();
             wxService.getMsgService().sendKefuMsg(msg);
 
 
