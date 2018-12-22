@@ -17,6 +17,7 @@ import java.util.List;
  * @author wangwei
  * @date 2018/09/10
  */
+@CrossOrigin(origins = "*", maxAge = 3600)
 @Slf4j
 @RestController
 @RequestMapping("/card")
@@ -26,7 +27,7 @@ public class CardController {
     private CardService cardService;
 
     @GetMapping("/list")
-    public List<Card> findList(@RequestParam(required = true) String wxOpenId) {
+    public List<Card> findList(@RequestParam String wxOpenId) {
 
         return cardService.findList(wxOpenId);
     }
