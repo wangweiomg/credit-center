@@ -42,6 +42,7 @@ $(function() {
             {field: 'state', checkbox: true},
             {field: 'id', title: '编号', sortable: true, halign: 'center', visible: false},
             {field: 'name', title: '卡片名称', sortable: true, halign: 'center'},
+            {field: 'user.nickName', title: '用户名称', sortable: true, halign: 'center'},
             {field: 'cardNo', title: '卡号', sortable: true, halign: 'center', visible: false},
             {field: 'bankId', title: '所属银行', sortable: true, halign: 'center', visible: false},
             {field: 'cardType', title: '卡片类型', sortable: true, halign: 'center', visible: false},

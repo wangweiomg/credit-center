@@ -35,7 +35,11 @@
     <select id="findList" resultType="com.honeywen.credit.modules.cms.entity.Card">
         SELECT
         <include refid="cardColumns"/>
+        ,u.id AS 'user.id',
+        u.nick_name AS 'user.nickName'
+
          FROM t_card t
+        LEFT JOIN sys_user u ON u.id = t.user_id
         WHERE 1=1
         AND t.delete_flag = 0
         <if test="userId != null">

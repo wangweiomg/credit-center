@@ -1,6 +1,7 @@
 package com.honeywen.credit.modules.cms.entity;
 
 import com.honeywen.credit.base.BaseModel;
+import com.honeywen.credit.modules.sys.entity.SysUser;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -71,6 +72,7 @@ public @Data class Card extends BaseModel {
      */
     private String wxOpenId;
 
+    private SysUser user;
 
 
     public enum CardTypeEnum {
