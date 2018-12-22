@@ -108,7 +108,7 @@ public class WxPortalController {
 //            this.route(inMessage, appid);
 
             // 回复
-            WxMaKefuMessage msg = WxMaKefuMessage.newTextBuilder().toUser(inMessage.getFromUser()).content("更多问题请加客服微信:[wangweijava]").build();
+            WxMaKefuMessage msg = WxMaKefuMessage.newTextBuilder().toUser(inMessage.getFromUser()).content("更多问题请加客服微信: wangweijava").build();
             wxService.getMsgService().sendKefuMsg(msg);
 
 
