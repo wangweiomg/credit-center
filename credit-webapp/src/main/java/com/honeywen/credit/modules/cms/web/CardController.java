@@ -26,6 +26,12 @@ public class CardController {
     @Autowired
     private CardService cardService;
 
+    @GetMapping("/findAll")
+    public List<Card> findAll() {
+
+        return cardService.findAll();
+    }
+
     @GetMapping("/list")
     public List<Card> findList(String wxOpenId) {
 

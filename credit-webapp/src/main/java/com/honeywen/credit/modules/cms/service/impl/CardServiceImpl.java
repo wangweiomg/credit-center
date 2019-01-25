@@ -1,9 +1,6 @@
 package com.honeywen.credit.modules.cms.service.impl;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.honeywen.credit.common.utils.StringUtils;
 import com.honeywen.credit.modules.cms.dto.EventDTO;
 import com.honeywen.credit.modules.cms.entity.Card;
@@ -22,7 +19,6 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by wangwei on 2017/9/10.
@@ -209,19 +205,19 @@ public class CardServiceImpl implements CardService {
     @Override
     public List<Card> findList(String wxOpenId) {
 
-        Card param = new Card();
 
-        if ("1".equals(wxOpenId)) {
-            param.setUserId(1);
-        } else {
 
-            SysUser user = UserUtils.getByWxOpenId(wxOpenId);
-            if (user == null) {
-                return Collections.emptyList();
-            }
-            param.setUserId(user.getId());
-
+        if (StringUtils.isEmpty(wxOpenId)) {
+            return Collections.emptyList();
         }
+
+        SysUser user = UserUtils.getByWxOpenId(wxOpenId);
+        if (user == null) {
+            return Collections.emptyList();
+        }
+        Card param = new Card();
+        param.setUserId(user.getId());
+
         return cardDao.findList(param);
     }
 

@@ -21,13 +21,20 @@
         t.create_at,
         t.update_by,
         t.update_at,
-        t.delete_flag
+        t.delete_flag,
+        u.id AS 'user.id',
+        u.nick_name AS 'user.nickName'
+    </sql>
+
+    <sql id="cardJoins">
+        LEFT JOIN sys_user u ON u.id = t.user_id
     </sql>
 
     <select id="findAll" resultType="com.honeywen.credit.modules.cms.entity.Card">
         SELECT
         <include refid="cardColumns"/>
          FROM t_card t
+        <include refid="cardJoins"/>
         WHERE 1=1
         AND t.delete_flag = 0
     </select>
@@ -35,11 +42,8 @@
     <select id="findList" resultType="com.honeywen.credit.modules.cms.entity.Card">
         SELECT
         <include refid="cardColumns"/>
-        ,u.id AS 'user.id',
-        u.nick_name AS 'user.nickName'
-
          FROM t_card t
-        LEFT JOIN sys_user u ON u.id = t.user_id
+        <include refid="cardJoins"/>
         WHERE 1=1
         AND t.delete_flag = 0
         <if test="userId != null">

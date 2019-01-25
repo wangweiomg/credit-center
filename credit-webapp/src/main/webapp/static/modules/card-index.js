@@ -11,7 +11,7 @@ $(function() {
     // http://bootstrap-table.wenzhixin.net.cn/zh-cn/documentation/
     $table.bootstrapTable({
         // url: '/static/resources/data/data1.json',
-        url: '/card/list',
+        url: '/card/findAll',
         height: getHeight(),
         striped: true,
         search: true,

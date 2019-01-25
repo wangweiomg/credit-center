@@ -4,6 +4,8 @@ import com.honeywen.credit.common.annotation.MyBatisDao;
 import com.honeywen.credit.modules.sys.entity.SysUser;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @author wangwei
  * @date 2018/12/2 下午3:16
@@ -33,4 +35,6 @@ public interface SysUserDao {
     SysUser findByOpenId(@Param("openId") String openId);
 
     void update(SysUser user);
+
+    List<SysUser> findAll();
 }

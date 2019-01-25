@@ -2,12 +2,8 @@ package com.honeywen.credit.modules.wx.job;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaKefuMessage;
-import cn.binarywang.wx.miniapp.bean.WxMaTemplateData;
-import cn.binarywang.wx.miniapp.bean.WxMaTemplateMessage;
-import com.google.common.collect.Lists;
 import com.honeywen.credit.modules.cms.entity.Card;
 import com.honeywen.credit.modules.cms.service.CardService;
-import com.honeywen.credit.modules.sys.entity.SysUser;
 import com.honeywen.credit.modules.sys.utils.UserUtils;
 import com.honeywen.credit.modules.wx.config.WxMaConfiguration;
 import com.honeywen.credit.modules.wx.config.WxMaProperties;
@@ -21,8 +17,6 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * @author wangwei
@@ -48,7 +42,7 @@ public class NoticeSchedule {
      */
     public static final String CREDIT_REPAY_TEMPLATE = "teQ0KiurQeXO_4mC3ULBj4XJLwgjTNGTiBuqsCVlQxA";
 
-    @Scheduled(cron = "* * 9 * * *")
+    @Scheduled(cron = "0 0 9 * * *")
     public void test() {
         log.debug("hello schedule-->{}", wxMaProperties.getAppid());
 

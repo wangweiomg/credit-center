@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 系统类
@@ -135,5 +136,8 @@ public class SystemService {
     }
 
 
+    public List<SysUser> findAllUser() {
 
+        return sysUserDao.findAll();
+    }
 }

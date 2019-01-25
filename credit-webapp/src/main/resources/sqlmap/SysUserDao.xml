@@ -30,6 +30,14 @@
       delete_flag
     </sql>
 
+    <select id="findAll" resultType="com.honeywen.credit.modules.sys.entity.SysUser">
+        SELECT
+        <include refid="userColumns"/>
+        FROM sys_user u
+        WHERE 1=1
+        AND delete_flag = 0
+    </select>
+
     <select id="findByLoginName" resultType="com.honeywen.credit.modules.sys.entity.SysUser">
         SELECT
         <include refid="userColumns"/>

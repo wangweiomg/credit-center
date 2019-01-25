@@ -4,7 +4,6 @@ import com.honeywen.credit.common.annotation.MyBatisDao;
 import com.honeywen.credit.modules.cms.entity.Card;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by wangwei on 2017/9/2.

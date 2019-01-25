@@ -20,6 +20,8 @@
 <div id="main">
     <div id="toolbar">
         <h3>卡片列表</h3>
+        <select id="userSelect" class="form-control" style="width: 150px" onchange="changeSelect()">
+        </select>
     </div>
     <table class="table table-bordered">
         <thead>
@@ -34,7 +36,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr id="cloneTr">
+        <tr class="cloneTr hidden">
         </tr>
         </tbody>
     </table>
