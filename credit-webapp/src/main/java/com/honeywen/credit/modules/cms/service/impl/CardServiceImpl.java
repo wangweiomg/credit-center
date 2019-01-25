@@ -211,8 +211,9 @@ public class CardServiceImpl implements CardService {
 
         Card param = new Card();
 
-        if (!"1".equals(wxOpenId)) {
-            SysUser user = UserUtils.getByWxOpenId(wxOpenId);
+        if ("1".equals(wxOpenId)) {
+//            SysUser user = UserUtils.getByWxOpenId(wxOpenId);
+            SysUser user = UserUtils.getUser();
             if (user == null) {
                 return Collections.EMPTY_LIST;
             }
