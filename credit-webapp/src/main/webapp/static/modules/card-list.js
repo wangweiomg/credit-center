@@ -8,7 +8,7 @@ function initUserSelect() {
     $.get(url, function (res) {
         var sel = $("#userSelect");
         sel.empty();
-        sel.append("<option value=''>全部</option>");
+        sel.append("<option value='0'>全部</option>");
         $.each(res, function (idx, item) {
             var opt = new Option();
             opt.text = item.nickName;
@@ -24,12 +24,17 @@ function changeSelect() {
     var userId = $("#userSelect :selected").val();
     var list = appData.cardList;
     var result = [];
-    for (var i = 0; i < list.length; i++) {
-        if (list[i].userId == userId) {
-            result.push(list[i]);
-        }
+    if (userId === '0') {
+        result = list;
+    } else {
+        for (var i = 0; i < list.length; i++) {
+            if (list[i].userId == userId) {
+                result.push(list[i]);
+            }
 
+        }
     }
+
 
     initTable(result);
 }
