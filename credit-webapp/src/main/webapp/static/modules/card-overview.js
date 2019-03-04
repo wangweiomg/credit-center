@@ -1,4 +1,8 @@
 $(function () {
+
+    initUserSelect();
+
+
     $("#calendar").fullCalendar({
         locale: 'zh-cn',
         height: 500,
@@ -37,4 +41,41 @@ $(function () {
 
     });
 });
+
+
+function initUserSelect() {
+    var url = '/user/list';
+    $.get(url, function (res) {
+        var sel = $("#userSelect");
+        sel.empty();
+        sel.append("<option value='0'>全部</option>");
+        $.each(res, function (idx, item) {
+            var opt = new Option();
+            opt.text = item.nickName;
+            opt.value = item.id;
+            sel.append(opt);
+
+        });
+    });
+}
+
+function changeSelect() {
+
+    /*var userId = $("#userSelect :selected").val();
+    var list = appData.cardList;
+    var result = [];
+    if (userId === '0') {
+        result = list;
+    } else {
+        for (var i = 0; i < list.length; i++) {
+            if (list[i].userId == userId) {
+                result.push(list[i]);
+            }
+
+        }
+    }
+
+
+    initTable(result);*/
+}
 
