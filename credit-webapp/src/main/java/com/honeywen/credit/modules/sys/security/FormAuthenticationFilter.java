@@ -3,10 +3,7 @@
  */
 package com.honeywen.credit.modules.sys.security;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-
+import com.honeywen.credit.common.utils.StringUtils;
 import com.honeywen.credit.modules.sys.utils.UserUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -15,7 +12,9 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.stereotype.Service;
 
-import com.honeywen.credit.common.utils.StringUtils;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 表单验证（包含验证码）过滤类
