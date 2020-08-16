@@ -7,6 +7,7 @@ CREATE TABLE t_card (
   user_id INT NOT NULL COMMENT '所属人id',
   name VARCHAR(32) NOT NULL COMMENT '名称',
   card_no VARCHAR(32) COMMENT '卡号',
+  password VARCHAR(10) COMMENT '密码',
   bank_id tinyint(2) NOT NULL COMMENT '银行ID',
   card_type tinyint(1) NOT NULL DEFAULT 1 COMMENT '1信用卡 2.储蓄卡',
   card_limit DECIMAL(10, 2) NOT NULL COMMENT '卡片额度',
