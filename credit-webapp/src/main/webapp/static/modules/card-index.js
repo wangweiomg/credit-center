@@ -42,6 +42,7 @@ $(function() {
             {field: 'state', checkbox: true},
             {field: 'id', title: '编号', sortable: true, halign: 'center', visible: false},
             {field: 'name', title: '卡片名称', sortable: true, halign: 'center'},
+            {field: 'password', title: '卡片密码', sortable: true, halign: 'center'},
             {field: 'user.nickName', title: '用户名称', sortable: true, halign: 'center'},
             {field: 'cardNo', title: '卡号', sortable: true, halign: 'center', visible: false},
             {field: 'bankId', title: '所属银行', sortable: true, halign: 'center', visible: false},
@@ -168,6 +169,7 @@ function updateAction() {
             onContentReady: function() {
                 var row = rows[0];
                 this.$content.find("#updateForm input[name='name']").val(row.name);
+                this.$content.find("#updateForm input[name='password']").val(row.password);
                 this.$content.find("#updateForm input[name='cardLimit']").val(row.cardLimit);
                 this.$content.find("#updateForm input[name='billDay']").val(row.billDay);
                 var repayDayType = row.repayDayType;
@@ -184,6 +186,7 @@ function updateAction() {
                         var params = new Object();
                         params.id = + rows[0].id;
                         params.name = this.$content.find("#updateForm input[name='name']").val();
+                        params.password = this.$content.find("#updateForm input[name='password']").val();
                         params.cardLimit = this.$content.find("#updateForm input[name='cardLimit']").val();
                         params.billDay = this.$content.find("#updateForm input[name='billDay']").val();
                         params.repayDayType = this.$content.find("#updateForm input[name='repayDayType']:checked").val();

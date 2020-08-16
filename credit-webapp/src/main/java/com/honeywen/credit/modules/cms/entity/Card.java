@@ -25,6 +25,11 @@ public @Data class Card extends BaseModel {
     private String cardNo;
 
     /**
+     * 支付密码
+     */
+    private String password;
+
+    /**
      * 所属银行ID,非空
      */
     private Integer bankId;

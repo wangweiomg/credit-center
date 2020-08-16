@@ -10,6 +10,7 @@
         t.user_id,
         t.name,
         t.card_no,
+        t.password,
         t.bank_id,
         t.card_type,
         t.card_limit,
@@ -57,6 +58,7 @@
         user_id,
         name,
         card_no,
+        password,
         bank_id,
         card_type,
         card_limit,
@@ -71,6 +73,7 @@
         #{userId},
         #{name},
         #{cardNo},
+        #{password},
         #{bankId},
         #{cardType},
         #{cardLimit},
@@ -125,6 +128,9 @@
         <set>
             <if test="name != null">
                 name = #{name},
+            </if>
+            <if test="password != null">
+                password = #{password},
             </if>
 
             <if test="cardLimit != null">
