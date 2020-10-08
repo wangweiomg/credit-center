@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间 是必须的 -->
+<mapper namespace="com.honeywen.credit.modules.cms.dao.RepaymentDao">
+
+    <insert id="save" parameterType="com.honeywen.credit.modules.cms.entity.Repayment">
+        INSERT INTO t_repayment (
+          user_id,
+          card_id,
+          amount,
+          remark,
+          create_by,
+          create_at
+          )
+          VALUES (
+          #{userId},
+          #{cardId},
+          #{amount},
+          #{remark},
+          #{createBy},
+          NOW()
+          )
+
+    </insert>
+
+</mapper>

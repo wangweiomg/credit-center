@@ -6,55 +6,58 @@ import lombok.Data;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
  * @author weiw@opera.com
  * @date 2018/9/26 上午9:42
  */
-public @Data class JsonResult {
+public @Data class BaseResult implements Serializable {
+
+
 
     private int code;
     private String message;
     private Object body;
 
 
-    private JsonResult() {
+    private BaseResult() {
     }
 
-    private JsonResult(int code, String message, Object body) {
+    private BaseResult(int code, String message, Object body) {
         this.code = code;
         this.message = message;
         this.body = body;
     }
 
 
-    public static JsonResult success() {
-        return new JsonResult(HttpStatus.OK.value(), HttpStatus.OK.name(), null);
+    public static BaseResult success() {
+        return new BaseResult(HttpStatus.OK.value(), HttpStatus.OK.name(), null);
 
     }
 
-    public static JsonResult success(String msg) {
-        return new JsonResult(HttpStatus.OK.value(), msg, null);
+    public static BaseResult success(String msg) {
+        return new BaseResult(HttpStatus.OK.value(), msg, null);
     }
 
-    public static JsonResult success(Object body) {
-        return new JsonResult(HttpStatus.OK.value(), HttpStatus.OK.name(), body);
+    public static BaseResult success(Object body) {
+        return new BaseResult(HttpStatus.OK.value(), HttpStatus.OK.name(), body);
     }
 
-    public static JsonResult error(int code, String msg) {
+    public static BaseResult error(int code, String msg) {
 
-        return new JsonResult(code, msg, null);
+        return new BaseResult(code, msg, null);
     }
 
 
     public static void main(String[] args) {
 
-        JsonResult r1 = JsonResult.success();
+        BaseResult r1 = BaseResult.success();
         Map<String, Object> map = Maps.newHashMap();
         map.put("score", "93.23");
 
-        JsonResult r2 = JsonResult.success(map);
+        BaseResult r2 = BaseResult.success(map);
 
         System.out.println(JSON.toJSONString(r1));
         System.out.println(JSON.toJSONString(r2));

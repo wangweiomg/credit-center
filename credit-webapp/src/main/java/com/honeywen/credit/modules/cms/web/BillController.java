@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * 记账，记录还款
  * @author wangwei
  * @date 2020/7/7
  */

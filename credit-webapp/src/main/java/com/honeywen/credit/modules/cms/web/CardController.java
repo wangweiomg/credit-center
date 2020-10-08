@@ -1,6 +1,6 @@
 package com.honeywen.credit.modules.cms.web;
 
-import com.honeywen.credit.base.response.JsonResult;
+import com.honeywen.credit.base.response.BaseResult;
 import com.honeywen.credit.modules.cms.dto.EventDTO;
 import com.honeywen.credit.modules.cms.entity.Card;
 import com.honeywen.credit.modules.cms.service.CardService;
@@ -39,25 +39,25 @@ public class CardController {
 
 
     @PostMapping("/save")
-    public JsonResult save(@RequestBody Card card) {
+    public BaseResult save(@RequestBody Card card) {
         log.debug("<--request--> card-->{}", card);
         cardService.save(card);
 
-        return JsonResult.success();
+        return BaseResult.success();
 
 
     }
 
     @PostMapping("/update")
-    public JsonResult update(@RequestBody Card card) {
+    public BaseResult update(@RequestBody Card card) {
         cardService.update(card);
-        return JsonResult.success();
+        return BaseResult.success();
     }
 
     @PostMapping("/remove/{ids}")
-    public JsonResult remove(@PathVariable("ids") String ids) {
+    public BaseResult remove(@PathVariable("ids") String ids) {
         cardService.removeByIds(ids);
-        return JsonResult.success();
+        return BaseResult.success();
     }
 
 

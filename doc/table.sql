@@ -26,6 +26,39 @@ CREATE TABLE t_card (
 ) COMMENT '卡片表';
 
 
+DROP TABLE IF EXISTS t_bill;
+CREATE TABLE t_bill (
+  id int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  user_id INT NOT NULL COMMENT '所属人id',
+  card_id INT NOT NULL COMMENT '卡片id',
+  amount DECIMAL(10, 2) COMMENT '消费金额',
+  merchant_type VARCHAR(20) COMMENT '商户类型',
+  remark VARCHAR(100) COMMENT '备注',
+  create_by int(11) COMMENT '创建人ID',
+  create_at datetime COMMENT '创建时间',
+  update_by int(11) COMMENT '更新人ID',
+  update_at datetime COMMENT '更新时间',
+  delete_flag tinyint(1) DEFAULT 0 COMMENT '删除标志1.是 0否',
+  UNIQUE (id),
+  PRIMARY KEY (id)
+
+) COMMENT '消费账单表';
+
+DROP TABLE IF EXISTS t_repayment;
+CREATE TABLE t_repayment (
+  id int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  card_id INT NOT NULL COMMENT '卡片id',
+  amount DECIMAL(10, 2) COMMENT '还款金额',
+  remark VARCHAR(100) COMMENT '备注',
+  create_by int(11) COMMENT '创建人ID',
+  create_at datetime COMMENT '创建时间',
+  update_by int(11) COMMENT '更新人ID',
+  update_at datetime COMMENT '更新时间',
+  delete_flag tinyint(1) DEFAULT 0 COMMENT '删除标志1.是 0否',
+  PRIMARY KEY (id)
+
+) COMMENT '还款记录表';
+
 
 -- 用户表
 DROP TABLE IF EXISTS sys_user;
