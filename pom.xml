@@ -23,7 +23,7 @@
                 <enabled>true</enabled>
             </snapshots>
             <id>alimaven</id>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <url>https://maven.aliyun.com/nexus/content/groups/public</url>
         </repository>
         <!--<dao>
             <snapshots>
@@ -35,12 +35,12 @@
         <repository>
             <id>spring-release</id>
             <name>Spring RELEASE Repository</name>
-            <url>http://repo.springsource.org/libs-release</url>
+            <url>https://repo.springsource.org/libs-release</url>
         </repository>
         <repository>
             <id>maven-net-cn</id>
             <name>Maven China Mirror</name>
-            <url>http://maven.net.cn/content/groups/public/</url>
+            <url>https://maven.net.cn/content/groups/public/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -52,7 +52,7 @@
             <id>central</id>
             <name>Maven Repository Switchboard</name>
             <layout>default</layout>
-            <url>http://repo1.maven.org/maven2</url>
+            <url>https://repo1.maven.org/maven2</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -65,7 +65,7 @@
         <!-- 如有Nexus私服, 取消注释并指向正确的服务器地址. -->
         <!--<pluginRepository>
           <id>public-plugin</id>
-          <url>http://10.10.2.3:8081/nexus/content/groups/public</url>
+          <url>https://10.10.2.3:8081/nexus/content/groups/public</url>
           <releases>
             <enabled>true</enabled>
           </releases>
@@ -76,17 +76,17 @@
         <pluginRepository>
           <id>public_repository</id>
           <name>Team Nexus Repository</name>
-          <url>http://10.10.2.157:8081/nexus/content/groups/public_repository</url>
+          <url>https://10.10.2.157:8081/nexus/content/groups/public_repository</url>
         </pluginRepository>-->
         <pluginRepository>
             <id>alimaven</id>
             <name>aliyun maven</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <url>https://maven.aliyun.com/nexus/content/groups/public</url>
         </pluginRepository>
         <pluginRepository>
             <id>oschina-repos</id>
             <name>Oschina Releases</name>
-            <url>http://maven.oschina.net/content/groups/public</url>
+            <url>https://maven.oschina.net/content/groups/public</url>
         </pluginRepository>
     </pluginRepositories>
 
@@ -95,7 +95,7 @@
     <!--<distributionManagement>
         <snapshotRepository>
             <id>snapshots</id>
-            <url>http://10.10.2.3:8081/nexus/content/repositories/snapshots</url>
+            <url>https://10.10.2.3:8081/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
         <dao>
             <id>releases</id>
