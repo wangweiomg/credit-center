@@ -25,4 +25,7 @@ public interface CardService {
     void initTestCards(Integer id);
 
     List<Card> findList(String wxOpenId);
+
+    List<Card> findByUserId(Integer userId);
+
 }

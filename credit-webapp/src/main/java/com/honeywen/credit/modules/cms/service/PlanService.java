@@ -2,6 +2,7 @@ package com.honeywen.credit.modules.cms.service;
 
 import com.honeywen.credit.modules.cms.dto.EventDTO;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -16,6 +17,12 @@ public interface PlanService {
      */
     List<EventDTO> generatePlan();
 
+    /**
+     * 根据所需金额生成计划
+     * @param needAmount
+     * @return
+     */
+    List<EventDTO> generatePlan(int needAmount);
 
 
 }

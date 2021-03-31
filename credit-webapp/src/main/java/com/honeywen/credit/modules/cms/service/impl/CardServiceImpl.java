@@ -221,6 +221,16 @@ public class CardServiceImpl implements CardService {
         return cardDao.findList(param);
     }
 
+    @Override
+    public List<Card> findByUserId(Integer userId) {
+
+
+        Card param = new Card();
+        param.setUserId(userId);
+
+        return cardDao.findList(param);
+    }
+
     private int getCardRepayDay(Card card) {
 
         Integer repayDayType = card.getRepayDayType();

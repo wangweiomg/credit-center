@@ -59,4 +59,25 @@ public class PlanServiceImpl implements PlanService {
         return list;
 
     }
+
+
+    /**
+     * 第二版刷卡计划
+     * @return
+     */
+    public List<EventDTO> generatePlanV2() {
+
+
+
+        return null;
+
+    }
+
+    @Override
+    public List<EventDTO> generatePlan(int needAmount) {
+        List<Card> cards = cardDao.findAll();
+
+        return null;
+
+    }
 }

@@ -18,6 +18,9 @@ public @Data class Bill {
     private BigDecimal amount;
     private String merchantType;
     private String remark;
+    private Date startDate;
+    private Date lastDate;
+    private Integer status;
 
     private Integer createBy;
     private Date createAt;
