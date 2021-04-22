@@ -21,7 +21,7 @@
         <!-- main version setting -->
         <spring.version>4.3.18.RELEASE</spring.version>
         <validator.version>5.1.1.Final</validator.version>
-        <mybatis.version>3.2.8</mybatis.version>
+        <mybatis.version>3.5.6</mybatis.version>
         <mybatis-spring.version>1.2.2</mybatis-spring.version>
         <mybatis.mapper.version>3.3.0</mybatis.mapper.version>
         <druid.version>1.1.10</druid.version>
