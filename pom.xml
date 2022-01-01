@@ -10,7 +10,7 @@
     </modules>
     <packaging>pom</packaging>
 
-    <name>prod-center</name>
+    <name>credit-center</name>
     <url>http://maven.apache.org</url>
 
     <properties>
