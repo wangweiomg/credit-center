@@ -5,6 +5,7 @@
     debug:当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 -->
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <!-- 定义日志文件 输入位置,注意此处的/ -->
+    <property name="CATALINA_HOME" value="/home/jack/tomcat-credit/bin" />
     <property name="log_dir" value="${CATALINA_HOME}/credit" />
     <!-- 日志最大的历史 60天 -->
     <property name="maxHistory" value="60"></property>
@@ -97,21 +98,21 @@
 
 
     <!--error错误日志 additivity="false"表示不向上传递 -->
-    <!-- <logger name="com.test" level="error" > -->
-    <!-- <appender-ref ref="ERROR" /> -->
-    <!-- </logger> -->
+     <logger name="com.honeywen.credit" level="error" >
+     <appender-ref ref="ERROR" />
+     </logger>
     <!--info日志 -->
-    <!--<logger name="com.glorystone.amg" level="debug" additivity="false">
+    <logger name="com.honeywen.credit" level="info" additivity="false">
         <appender-ref ref="debug" />
-    </logger>-->
+    </logger>
     <!--访问日志 -->
-    <!-- <logger name="com.test" level="info" additivity="false"> -->
-    <!-- <appender-ref ref="ACCESS" /> -->
-    <!-- </logger> -->
+     <logger name="com.honeywen.credit" level="info" additivity="false">
+     <appender-ref ref="ACCESS" />
+     </logger>
     <!--系统用户操作日志 -->
-    <!-- <logger name="com.test" level="info" additivity="false"> -->
-    <!-- <appender-ref ref="SYS-USER" /> -->
-    <!-- </logger> -->
+     <logger name="com.honeywen.credit" level="info" additivity="false">
+     <appender-ref ref="SYS-USER" />
+     </logger>
 
     <root>
         <level value="DEBUG" />
