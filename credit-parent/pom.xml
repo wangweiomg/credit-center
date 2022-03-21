@@ -54,7 +54,7 @@
         <logback.version>1.1.3</logback.version>
         <logback-ext-spring.version>0.1.1</logback-ext-spring.version>
         <pagehelper.version>5.0.4</pagehelper.version>
-        <dubbo.version>2.5.3</dubbo.version>
+        <dubbo.version>2.6.9</dubbo.version>
         <zookeeper.version>3.4.8</zookeeper.version>
         <zkclient.version>0.3</zkclient.version>
 
