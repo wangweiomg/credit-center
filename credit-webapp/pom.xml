@@ -437,8 +437,9 @@
         <finalName>credit</finalName>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.2.2</version>
+                <version>3.3.2</version>
                 <configuration>
                     <packagingExcludes>WEB-INF/lib/*log4j*.jar</packagingExcludes>
                 </configuration>

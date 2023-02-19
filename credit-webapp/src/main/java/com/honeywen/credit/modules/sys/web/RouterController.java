@@ -49,6 +49,11 @@ public class RouterController {
         return "modules/card-list";
     }
 
+    @GetMapping("/card/bill")
+    public String cardBill() {
+        return "modules/card-bill";
+    }
+
     @RequestMapping("/plan/index")
     public String plan() {
         return "modules/plan-index";
