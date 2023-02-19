@@ -70,7 +70,8 @@ function initTable(cardList) {
         }
 
         if (repayDayType === 2) {
-            var num = (billDay + repayDayNum) % daysInMonth + 1;
+            let num = moment().date(billDay).add(repayDayNum, 'days').format('D')
+
             cloneTr.find("td").eq(num).css("background-color", "red");
 
         }
