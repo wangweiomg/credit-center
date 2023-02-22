@@ -533,12 +533,6 @@
             </dependency>
             <!-- TEST end -->
 
-            <!--  定时-->
-            <dependency>
-                <groupId>org.quartz-scheduler</groupId>
-                <artifactId>quartz</artifactId>
-                <version>${quzrtz.version}</version>
-            </dependency>
             <!-- httpClient -->
             <dependency>
                 <groupId>commons-httpclient</groupId>

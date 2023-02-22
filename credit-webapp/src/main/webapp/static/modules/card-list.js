@@ -72,7 +72,7 @@ function initTable(cardList) {
         if (repayDayType === 2) {
             let num = moment().date(billDay).add(repayDayNum, 'days').format('D')
 
-            cloneTr.find("td").eq(num).css("background-color", "red");
+            cloneTr.find("td").eq(num-1).css("background-color", "red");
 
         }
         cloneTr.removeClass("hidden");
