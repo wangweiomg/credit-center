@@ -5,7 +5,7 @@ TOMCAT_PATH='/home/jack/tomcat-credit'
 # 1. pull code
 cd $CODE_PATH
 git pull
-git reset --hard HEAD
+git reset --hard origin/master
 # 2. package war
 cd $CODE_PATH
 mvn clean package -DskipTests
