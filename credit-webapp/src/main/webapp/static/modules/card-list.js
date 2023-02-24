@@ -93,6 +93,7 @@ $(function () {
     $("h3").html(nowDate);
 
     $.get('/card/findAll', function (data) {
+        data.sort((a, b) => a.billDay - b.billDay);
         appData.cardList = data;
         initTable(data);
     });
