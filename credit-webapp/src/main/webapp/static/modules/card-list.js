@@ -70,7 +70,19 @@ function initTable(cardList) {
         }
 
         if (repayDayType === 2) {
-            let num = moment().date(billDay).add(repayDayNum, 'days').format('D')
+
+            // 如果当前日在账单日前，就还在上个账单周期，找出上个账单日，计算还款日
+            // 如果当前日在账单日后，就在新的账单周期，找出本次账单日，计算还款日
+
+            let num = 0;
+            if ((day - 0) <= (billDay - 0)) {
+
+                num = moment().subtract(1, 'M').date(billDay).add(repayDayNum, 'days').format('D')
+            } else {
+
+                num = moment().date(billDay).add(repayDayNum, 'days').format('D')
+
+            }
 
             cloneTr.find("td").eq(num).css("background-color", "red");
 
