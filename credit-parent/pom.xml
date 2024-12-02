@@ -65,7 +65,7 @@
         <amqp-client.version>4.8.0</amqp-client.version>
         <spring-rabbit.version>1.4.5.RELEASE</spring-rabbit.version>
         <httpclient.version>3.1</httpclient.version>
-        <quzrtz.version>1.8.6</quzrtz.version>
+        <quzrtz.version>2.3.2</quzrtz.version>
         <javase.version>2.2</javase.version>
         <zxing-core.version>2.2</zxing-core.version>
         <metadata-extractor.version>2.6.2</metadata-extractor.version>
