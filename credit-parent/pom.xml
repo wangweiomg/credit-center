@@ -19,7 +19,7 @@
     <!-- Project dependencies -->
     <properties>
         <!-- main version setting -->
-        <spring.version>4.3.18.RELEASE</spring.version>
+        <spring.version>5.2.22.RELEASE</spring.version>
         <validator.version>5.1.1.Final</validator.version>
         <mybatis.version>3.5.7</mybatis.version>
         <mybatis-spring.version>2.0.6</mybatis-spring.version>
