@@ -3,11 +3,11 @@ package com.honeywen.credit.modules.cms.service.impl;
 import com.honeywen.credit.modules.cms.entity.Card;
 import com.honeywen.credit.modules.cms.dao.BatchDao;
 import com.honeywen.credit.modules.cms.service.BatchService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 
 /**
  * @author wangwei
@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 @Service
 public class BatchServiceImpl implements BatchService {
 
-    @Resource
+    @Autowired
     private BatchDao batchCommandMapper;
 
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
