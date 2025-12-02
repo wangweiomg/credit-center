@@ -39,7 +39,7 @@
         <!-- tools version setting -->
         <slf4j.version>1.7.7</slf4j.version>
         <commons-lang3.version>3.8</commons-lang3.version>
-        <commons-io.version>2.4</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
         <commons-codec.version>1.9</commons-codec.version>
         <commons-fileupload.version>1.3.1</commons-fileupload.version>
         <commons-beanutils.version>1.9.1</commons-beanutils.version>
